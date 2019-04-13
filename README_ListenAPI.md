@@ -62,6 +62,8 @@
 			longitude - kinh độ của khách sạn trên bề mặt trái đất
 	delete - /hotel/<<id>> - xóa 1 khách sạn nào đó
 		Args: id - mã khách sạn muốn xóa
+	get - /hotelSearch/<<key>> - tìm khách sạn theo tên
+		Args: key - từ khóa
 
 # table User
 	get - /users - lấy danh sách tất cả người dùng

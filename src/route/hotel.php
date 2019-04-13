@@ -72,3 +72,10 @@ $app->post('/hotelsAccordingToRadius', function (Request $request, Response $res
     return $this->response->withJson();
  });
  
+ $app->get('/hotelSearch/[{key}]', function (Request $request, Response $response, array $args) {
+    $db = $this->db->prepare("SELECT * FROM hotel WHERE name_hotel = CONCAT('%',:keyword,'%')";
+    $db->bindParam("keyword", $args['key']);
+    $db->execute();
+    $book = $db->fetchObject();
+    return $this->response->withJson($book);
+ });
