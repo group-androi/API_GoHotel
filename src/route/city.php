@@ -16,10 +16,10 @@ $app->get('/city/checkCity/[{name}]', function (Request $request, Response $resp
 
 
 $app->get('/citys', function (Request $request, Response $response, array $args) {
-    $db = $this->db->prepare("SELECT * FROM city ORDER BY name_city");
+    $db = $this->db->prepare("SELECT * FROM `city`");
     $db->execute();
-    $books = $db->fetchAll();
-    return $this->response->withJson($books);
+    $citys = $db->fetchAll();
+    return $this->response->withJson($citys);
 });
 
 // Retrieve book with id 
@@ -56,7 +56,7 @@ $app->get('/citys', function (Request $request, Response $response, array $args)
 
  // DELETE a book with given id
  $app->delete('/city/[{id}]', function (Request $request, Response $response, array $args) {
-    $sth = $this->db->prepare("DELETE FROM city WHERE id=:id");
+    $sth = $this->db->prepare("DELETE FROM city WHERE id_city=:id");
     $sth->bindParam("id", $args['id']);
     $sth->execute();
     return $this->response->withJson();
