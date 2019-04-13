@@ -71,3 +71,4 @@ $app->post('/hotelsAccordingToRadius', function (Request $request, Response $res
     $sth->execute();
     return $this->response->withJson();
  });
+ 

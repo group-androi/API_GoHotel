@@ -62,3 +62,4 @@
 			longitude - kinh độ của khách sạn trên bề mặt trái đất
 	delete - /hotel/<<id>> - xóa 1 khách sạn nào đó
 		Args: id - mã khách sạn muốn xóa
+		

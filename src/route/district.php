@@ -5,16 +5,6 @@ use Slim\Http\Response;
 
 // Routes
 
-
-$app->get('/city/checkCity/[{name}]', function (Request $request, Response $response, array $args) {
-    // Sample log message
-    $this->logger->info("Slim-Skeleton '/' route");
-
-    // Render index view
-    return $this->renderer->render($response, 'index.phtml', $args);
-});
-
-
 $app->get('/districts', function (Request $request, Response $response, array $args) {
     $db = $this->db->prepare("SELECT * FROM district ORDER BY name_district");
     $db->execute();
@@ -22,8 +12,17 @@ $app->get('/districts', function (Request $request, Response $response, array $a
     return $this->response->withJson($books);
 });
 
-// Retrieve book with id 
- $app->get('/district/[{id}]', function (Request $request, Response $response, array $args) {
+$app->post('/districtsAccordingToCityId', function (Request $request, Response $response) {
+    $input = $request->getParsedBody();
+    $sql = "SELECT * FROM district WHERE city_id = :cityId ORDER BY name_district";
+    $db = $this->db->prepare($sql);
+    $db->bindParam("cityId", $input['city_id']);
+    $db->execute();
+    $books = $db->fetchAll();
+    return $this->response->withJson($books);
+ });
+
+$app->get('/district/[{id}]', function (Request $request, Response $response, array $args) {
     $db = $this->db->prepare("SELECT * FROM district WHERE id_district = :id");
     $db->bindParam("id", $args['id']);
     $db->execute();
@@ -31,24 +30,22 @@ $app->get('/districts', function (Request $request, Response $response, array $a
     return $this->response->withJson($book);
  });
 
-// Add a new book
- $app->post('/district', function (Request $request, Response $response) {
+$app->post('/district', function (Request $request, Response $response) {
     $input = $request->getParsedBody();
     $sql = "INSERT INTO `district`(`name_district`, `city_id`) VALUES (:districtName,:cityId)";
     $db = $this->db->prepare($sql);
-    $db->bindParam("districtName", $input['district_name']);
+    $db->bindParam("districtName", $input['name']);
     $db->bindParam("cityId", $input['city_id']);
     $db->execute();
     $input['id'] = $this->db->lastInsertId();
     return $this->response->withJson($input);
  });
 
-// Update book with given id
- $app->put('/district/[{id}]', function (Request $request, Response $response, array $args) {
+$app->put('/district/[{id}]', function (Request $request, Response $response, array $args) {
     $input = $request->getParsedBody();
     $sql = "UPDATE `district` SET `name_district`=:name,`city_id`=:cityId WHERE `id_district`=:id";
     $db = $this->db->prepare($sql);
-    $db->bindParam("name", $input['name_district']);
+    $db->bindParam("name", $input['name']);
     $db->bindParam("cityId", $input['city_id']);
     $db->bindParam("id", $args['id']);
     $db->execute();
@@ -56,10 +53,10 @@ $app->get('/districts', function (Request $request, Response $response, array $a
     return $this->response->withJson($input);
  });
 
- // DELETE a book with given id
  $app->delete('/district/[{id}]', function (Request $request, Response $response, array $args) {
     $sth = $this->db->prepare("DELETE FROM district WHERE id_district=:id");
     $sth->bindParam("id", $args['id']);
     $sth->execute();
     return $this->response->withJson();
  });
+ 
