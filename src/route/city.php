@@ -24,7 +24,7 @@ $app->get('/citys', function (Request $request, Response $response, array $args)
     $input = $request->getParsedBody();
     $sql = "INSERT INTO `city`(`name_city`) VALUES (:cityName)";
     $db = $this->db->prepare($sql);
-    $db->bindParam("cityName", $input['city_name']);
+    $db->bindParam("cityName", $input['name']);
     $db->execute();
     $input['id'] = $this->db->lastInsertId();
     return $this->response->withJson($input);
@@ -47,4 +47,3 @@ $app->get('/citys', function (Request $request, Response $response, array $args)
     $sth->execute();
     return $this->response->withJson();
  });
- 
