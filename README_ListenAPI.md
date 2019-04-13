@@ -7,11 +7,11 @@
 		Args: id - mã tỉnh thành
 	post - /city - thêm một tỉnh thành. 
 		Parameter:
-			city_name - tên tỉnh thành
+			name - tên tỉnh thành
 	put - /city/<<id>> - cập nhật lại tên thành phố. 
 		Args: id - mã tỉnh thành
 		Parameter:
-			city_name - tên tỉnh thành
+			city_name - tên tỉnh thành mới
 	delete - /city/<<id>> - xóa tỉnh thành với id tương ứng
 		Args: id - mã tỉnh thành
 
@@ -62,4 +62,32 @@
 			longitude - kinh độ của khách sạn trên bề mặt trái đất
 	delete - /hotel/<<id>> - xóa 1 khách sạn nào đó
 		Args: id - mã khách sạn muốn xóa
-		
+
+# table User
+	get - /users - lấy danh sách tất cả người dùng
+	get - /hotel/<<id>> - lấy thông tin của 1 người dùng
+		Args: id - tên đăng nhập người dùng
+	post - /district - thêm một người dùng (đăng ký)
+		Parameter:
+			id - tên người dùng
+			birthday - ngày sinh - allow null
+			phone - số điện thoại
+			password - mật khẩu
+			gender - giới tính (0 hoặc 1) - null 
+			latitude - kinh độ của người dùng - null
+			longitude - vĩ độ của người dùng - null
+	put - /hotel/<<id>> - cập nhật thông tin người dùng
+		Args: id - tên đăng nhập 
+		Parameter: (thông tin sẽ thay đổi)
+			birthday - ngày sinh - allow null
+			phone - số điện thoại
+			password - mật khẩu
+			gender - giới tính (0 hoặc 1) - null 
+			latitude - kinh độ của người dùng - null
+			longitude - vĩ độ của người dùng - null
+	delete - /hotel/<<id>> - xóa người dùng
+		Args: id - tên đăng nhập muốn xóa
+	post - /login - đăng nhập
+		Parameter:
+			username - tên đăng nhập
+			password - mật khẩu

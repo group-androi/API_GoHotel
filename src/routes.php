@@ -16,3 +16,4 @@ $app->get('/check/[{name}]', function (Request $request, Response $response, arr
 require __DIR__ . '/route/city.php';
 require __DIR__ . '/route/district.php';
 require __DIR__ . '/route/hotel.php';
+require __DIR__ . '/route/user.php';
