@@ -33,6 +33,12 @@
 
 # table Hotel
 	get - /hotels - lấy danh sách tất cả khách sạn
+	post - /hotelsAccordingToRadius - lấy danh sách khách sạn theo bán kính bề mặt trái đất
+		Parameter:
+			lat_from - kinh độ bắt đầu
+			lat_to - kinh độ kết thúc
+			long_from - vĩ độ bắt đầu
+			long_to - vĩ độ kết thúc
 	get - /hotel/<<id>> - lấy thông tin của 1 khách sạn
 		Args: id - mã khách sạn
 	post - /district - thêm một khách sạn

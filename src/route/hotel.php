@@ -12,6 +12,18 @@ $app->get('/hotels', function (Request $request, Response $response, array $args
     return $this->response->withJson($books);
 });
 
+$app->post('/hotelsAccordingToRadius', function (Request $request, Response $response, array $args) {
+    $input = $request->getParsedBody();
+    $db = $this->db->prepare("SELECT * FROM `hotel` WHERE (`latitude` BETWEEN :latFrom AND :latTo) AND (`longitude` BETWEEN :longFrom AND :longTo)");
+    $db->bindParam("latFrom", $input['lat_from']);
+    $db->bindParam("letTo", $input['lat_to']);
+    $db->bindParam("longFrom", $input['long_from']);
+    $db->bindParam("longTo", $input['long_to']);
+    $db->execute();
+    $list = $db->fetchAll();
+    return $this->response->withJson($list);
+});
+
  $app->get('/hotel/[{id}]', function (Request $request, Response $response, array $args) {
     $db = $this->db->prepare("SELECT * FROM hotel WHERE id_hotel = :id");
     $db->bindParam("id", $args['id']);
