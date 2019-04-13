@@ -21,13 +21,38 @@
 		Args: id - mã quận huyện
 	post - /district - thêm một quận huyện
 		Parameter:
-			district_name - tên quận huyện
+			name - tên quận huyện
 			city_id - mã tỉnh thành
 	put - /district/<<id>> - cập nhật 1 quận huyện với id tương ứng
 		Args: id - mã quận huyện sẽ thay đổi
 		Parameter:
-			name_district - tên quận huyện mới
+			name - tên quận huyện mới
 			city_id - mã tỉnh thành mới tương ứng
 	delete - /district/<<id>> - xóa 1 quận huyện nào đó
 		Args: id - mã quận huyện muốn xóa
 
+# table Hotel
+	get - /hotels - lấy danh sách tất cả khách sạn
+	get - /hotel/<<id>> - lấy thông tin của 1 khách sạn
+		Args: id - mã khách sạn
+	post - /district - thêm một khách sạn
+		Parameter:
+			name - tên khách sạn
+			address - địa chỉ khách sạn
+			district_id - mã quận/huyện
+			city_id - mã tỉnh thành
+			price_1_day - chi phí trong 1 ngày (24 giờ)
+			latitude - vĩ độ của khách sạn trên bề mặt trái đất
+			longitude - kinh độ của khách sạn trên bề mặt trái đất
+	put - /hotel/<<id>> - cập nhật 1 khách sạn với id tương ứng
+		Args: id - mã khách sạn sẽ thay đổi
+		Parameter:
+			name - tên khách sạn
+			address - địa chỉ khách sạn
+			district_id - mã quận/huyện
+			city_id - mã tỉnh thành
+			price_1_day - chi phí trong 1 ngày (24 giờ)
+			latitude - vĩ độ của khách sạn trên bề mặt trái đất
+			longitude - kinh độ của khách sạn trên bề mặt trái đất
+	delete - /hotel/<<id>> - xóa 1 khách sạn nào đó
+		Args: id - mã khách sạn muốn xóa
