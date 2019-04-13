@@ -39,7 +39,7 @@ $app->get('/users', function (Request $request, Response $response, array $args)
     $db->bindParam("phone", $input['phone']);
     $db->bindParam("password", $input['password']);
     $db->bindParam("gender", $input['gender']);
-    $db->bindParam("latidute", $input['latidute']);
+    $db->bindParam("latitude", $input['latitude']);
     $db->bindParam("longitude", $input['longitude']);
     $db->execute();
     $input['id'] = $this->db->lastInsertId();
@@ -48,13 +48,13 @@ $app->get('/users', function (Request $request, Response $response, array $args)
 
  $app->put('/user/[{id}]', function (Request $request, Response $response, array $args) {
     $input = $request->getParsedBody();
-    $sql = "UPDATE `user` SET `dob`=:dob,`phone`=:phone,`password`=:password,`gender`=:gender,`lat`=:latidute,`log`=:longitude WHERE `id_user`=:id";
+    $sql = "UPDATE `user` SET `dob`=:dob,`phone`=:phone,`password`=:password,`gender`=:gender,`lat`=:latitude,`log`=:longitude WHERE `id_user`=:id";
     $db = $this->db->prepare($sql);
     $db->bindParam("dob", $input['birthday']);
     $db->bindParam("phone", $input['phone']);
     $db->bindParam("password", $input['password']);
     $db->bindParam("gender", $input['gender']);
-    $db->bindParam("latidute", $input['latidute']);
+    $db->bindParam("latitude", $input['latitude']);
     $db->bindParam("longitude", $input['longitude']);
     $db->bindParam("id", $args['id']);
     $db->execute();
@@ -67,5 +67,17 @@ $app->get('/users', function (Request $request, Response $response, array $args)
     $sth->bindParam("id", $args['id']);
     $sth->execute();
     return $this->response->withJson();
+ });
+
+ $app->put('/userUpLocation/[{id}]', function (Request $request, Response $response, array $args) {
+    $input = $request->getParsedBody();
+    $sql = "UPDATE `user` SET `lat`=:latitude,`log`=:longitude WHERE `id_user`=:id";
+    $db = $this->db->prepare($sql);
+    $db->bindParam("latitude", $input['latitude']);
+    $db->bindParam("longitude", $input['longitude']);
+    $db->bindParam("id", $args['id']);
+    $db->execute();
+    $input['id'] = $args['id'];
+    return $this->response->withJson($input);
  });
  

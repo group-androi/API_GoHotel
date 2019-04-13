@@ -91,3 +91,8 @@
 		Parameter:
 			username - tên đăng nhập
 			password - mật khẩu
+	post - /userUpLocation/<<id>> - cập nhật vị trí hiện tại của người dùng
+		Args: id - tên đăng nhập
+		Parameter:
+			latitude - kinh độ mới
+			longidute - vĩ độ mới
