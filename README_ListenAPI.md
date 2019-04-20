@@ -16,7 +16,17 @@
 		Args: id - mã tỉnh thành
 
 # table District
-	get - /districts - lấy danh sách tất cả quận/huyện/thành trực thuộc tỉnh thành.
+	get - /districts - lấy danh sách tất cả quận/huyện/thành thuộc tất cả tỉnh thành.
+	post - /districtsAccordingToCityId - lấy danh sách quận huyện theo mã tỉnh thành.
+		Parameter:
+			city_id - mã tỉnh thành
+	get - /districtsAccordingToCityId - lấy danh sách quận huyện theo mã tỉnh thành.
+		Args: city_id - mã tỉnh thành
+	post - /districtsAccordingToCityName - lấy danh sách quận huyện theo tên tỉnh thành.
+		Parameter:
+			city_name - tên tỉnh thành
+	get - /districtsAccordingToCityName - lấy danh sách quận huyện theo tên tỉnh thành.
+		Args: city_name - tên tỉnh thành
 	get - /district/<<id>> - lấy thông tin (tên và mã tỉnh thành) của 1 quận huyện.
 		Args: id - mã quận huyện
 	post - /district - thêm một quận huyện

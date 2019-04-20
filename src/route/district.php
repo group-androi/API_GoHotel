@@ -22,6 +22,34 @@ $app->post('/districtsAccordingToCityId', function (Request $request, Response $
     return $this->response->withJson($books);
  });
 
+$app->get('/districtsAccordingToCityId/[{city_id}]', function (Request $request, Response $response) {
+    $sql = "SELECT * FROM district WHERE city_id = :cityId ORDER BY name_district";
+    $db = $this->db->prepare($sql);
+    $db->bindParam("cityId", $args['city_id']);
+    $db->execute();
+    $books = $db->fetchAll();
+    return $this->response->withJson($books);
+ });
+
+$app->post('/districtsAccordingToCityName', function (Request $request, Response $response) {
+    $input = $request->getParsedBody();
+    $sql = "SELECT * FROM district WHERE city_id IN (SELECT id_city FROM city WHERE name_city like :cityName) ORDER BY name_district";
+    $db = $this->db->prepare($sql);
+    $db->bindParam("cityName", $input['city_name']);
+    $db->execute();
+    $books = $db->fetchAll();
+    return $this->response->withJson($books);
+ });
+
+$app->get('/districtsAccordingToCityName/[{city_name}]', function (Request $request, Response $response) {
+    $sql = "SELECT * FROM district WHERE city_id IN (SELECT id_city FROM city WHERE name_city like :cityName) ORDER BY name_district";
+    $db = $this->db->prepare($sql);
+    $db->bindParam("cityName", $args['city_name']);
+    $db->execute();
+    $books = $db->fetchAll();
+    return $this->response->withJson($books);
+ });
+
 $app->get('/district/[{id}]', function (Request $request, Response $response, array $args) {
     $db = $this->db->prepare("SELECT * FROM district WHERE id_district = :id");
     $db->bindParam("id", $args['id']);
