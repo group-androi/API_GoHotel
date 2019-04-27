@@ -1,30 +1,17 @@
-<?php
-if (PHP_SAPI == 'cli-server') {
-    // To help the built-in PHP dev server, check if the request was actually for
-    // something which should probably be served as a static file
-    $url  = parse_url($_SERVER['REQUEST_URI']);
-    $file = __DIR__ . $url['path'];
-    if (is_file($file)) {
-        return false;
-    }
-}
+<?php 
+	
+	require("./folderChild/child_demo1.php");
 
-require __DIR__ . '/vendor/autoload.php';
 
-session_start();
+	$request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
 
-// Instantiate the app
-$settings = require __DIR__ . '/src/settings.php';
-$app = new \Slim\App($settings);
+	print_r(empty($request[2]));
 
-// Set up dependencies
-require __DIR__ . '/src/dependencies.php';
+	echo $demo_element.'<br />';
 
-// Register middleware
-require __DIR__ . '/src/middleware.php';
+	echo $_SERVER['REQUEST_METHOD'];
+	echo '<pre>';
 
-// Register routes
-require __DIR__ . '/src/routes.php';
-
-// Run app
-$app->run();
+        print_r(json_encode($_REQUEST));
+        print_r(json_encode($_POST));
+  ?>
