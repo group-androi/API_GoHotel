@@ -3,11 +3,11 @@
 	$Database = new Database();
 	$db = $Database->connect();
 
-	$where = (!empty($_GET['user'])) ? "WHERE id_user = :id" : "" ;
+	$where = (!empty($_GET['phone'])) ? "WHERE phone = :id" : "" ;
 
-    $query = $db->prepare("SELECT id_user 'user', dob 'birthday', phone 'number_phone', gender, lat 'latitude', log 'longitude' FROM user ".$where." ORDER BY id_user");
-    if (!empty($_GET["id"])) {
-    	$query->bindParam("id", $_GET['user']);
+    $query = $db->prepare("SELECT dob 'birthday', phone 'number_phone', gender, lat 'latitude', log 'longitude' FROM user ".$where." ORDER BY phone");
+    if (!empty($_GET["phone"])) {
+    	$query->bindParam("id", $_GET['phone']);
     }
     $query->execute();
     

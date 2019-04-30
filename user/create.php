@@ -1,11 +1,11 @@
 <?php 
-if ($_POST['username']) {
+if ($_POST['phone']) {
 	require("./../database/connect_db.php");
 	$db = (new Database())->connect();
 
-	$sql = "SELECT * FROM user WHERE id_user like :user";
+	$sql = "SELECT * FROM user WHERE phone like :user";
 	$query = $db->prepare($sql);
-	$query->bindParam("user", $_POST["username"]);
+	$query->bindParam("user", $_POST["phone"]);
 	$query->execute();
 
 	$countAccountEquals = count($query->fetchAll());
@@ -14,13 +14,11 @@ if ($_POST['username']) {
 	if($countAccountEquals>0){
 		echo json_encode(array('message' => 'Username equal!', 'result' => 0));
 	}
-	else if (!empty($_POST['username']) && 
-				!empty($_POST['phone']) && 
-				!empty($_POST['password'])) {
+	else if (!empty($_POST['phone']) && 
+			!empty($_POST['password'])) {
 
-		$sql = "INSERT INTO `user`(`id_user`, `phone`, `password`) VALUES (:id, :phone, MD5(:password))";
+		$sql = "INSERT INTO `user`(`phone`, `password`) VALUES (:phone, MD5(:password))";
 	    $query = $db->prepare($sql);
-	    $query->bindParam("id", $_POST['username']);
 	    $query->bindParam("phone", $_POST['phone']);
 	    $query->bindParam("password", $_POST['password']);
 	    $query->execute();
@@ -32,30 +30,30 @@ if ($_POST['username']) {
 	    } else {
 	    	if (!empty($_POST['birthday'])) {
 	    		
-		    	$sql="UPDATE user SET dob = :dayOfBirth WHERE id_user like :username";
+		    	$sql="UPDATE user SET dob = :dayOfBirth WHERE phone like :username";
 		    	$query = $db->prepare($sql);
 		    	$query->bindParam("dayOfBirth", $_POST["birthday"]);
-		    	$query->bindParam("username", $_POST['username']);
+		    	$query->bindParam("username", $_POST['phone']);
 		    	$query->execute();
 
 		    	$query->closeCursor();	
 		    }
 		    if (!empty($_POST['gender'])) {
-		    	$sql="UPDATE user SET gender = :sex WHERE id_user like :username";
+		    	$sql="UPDATE user SET gender = :sex WHERE phone like :username";
 		    	$query = $db->prepare($sql);
 		    	$query->bindParam("sex", $_POST["gender"]);
-		    	$query->bindParam("username", $_POST['username']);
+		    	$query->bindParam("username", $_POST['phone']);
 		    	$query->execute();
 
 		    	$query->closeCursor();
 		    } 
 		    if (!empty($_POST['latitude']) && !empty($_POST['longitude'])) {
 		    	
-		    	$sql="UPDATE user SET lat = :lati, log = :longi WHERE id_user like :username";
+		    	$sql="UPDATE user SET lat = :lati, log = :longi WHERE phone like :username";
 		    	$query = $db->prepare($sql);
 		    	$query->bindParam("lati", $_POST["latitude"]);
 		    	$query->bindParam("longi", $_POST["longitude"]);
-		    	$query->bindParam("username", $_POST['username']);
+		    	$query->bindParam("username", $_POST['phone']);
 		    	$query->execute();
 
 		    	$query->closeCursor();

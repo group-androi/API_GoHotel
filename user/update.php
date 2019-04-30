@@ -1,5 +1,5 @@
 <?php 
-if(!empty($_POST["username"])) {
+if(!empty($_POST["phone"])) {
     $result = 1;
     require("./../database/connect_db.php");
     $db = (new Database())->connect();
@@ -8,9 +8,6 @@ if(!empty($_POST["username"])) {
     
     if (!empty($_POST["birthday"])) {
         array_push($changeParam, "dob = :birthd");
-    }
-    if (!empty($_POST['phone'])) {
-        array_push($changeParam, "phone = :phonen");
     }
     if (!empty($_POST['gender'])) {
         array_push($changeParam, "gender = :sexx");
@@ -27,15 +24,12 @@ if(!empty($_POST["username"])) {
 
     $parameters = implode(", ", $changeParam);
 
-	$sql = "UPDATE user SET ".$parameters." WHERE id_user like :usern";
+	$sql = "UPDATE user SET ".$parameters." WHERE phone like :usern";
 
     $query = $db->prepare($sql);
-    $query->bindParam("usern", $_POST['username']);
+    $query->bindParam("usern", $_POST['phone']);
     if (!empty($_POST["birthday"])) {
         $query->bindParam("birthd", $_POST['birthday']);
-    }
-    if (!empty($_POST['phone'])) {
-        $query->bindParam("phonen", $_POST['phone']);
     }
     if (!empty($_POST['gender'])) {
         $query->bindParam("sexx", $_POST['gender']);

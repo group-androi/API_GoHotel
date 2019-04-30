@@ -5,7 +5,7 @@
 
 	$where = (!empty($_GET['id'])) ? "WHERE id_district = :id" : "" ;
 
-    $query = $db->prepare("SELECT * FROM district ".$where." ORDER BY name_district");
+    $query = $db->prepare("SELECT id_district 'key', name_district 'name', city_id 'city_key' FROM district ".$where." ORDER BY name_district");
     if (!empty($_GET["id"])) {
     	$query->bindParam("id", $_GET['id']);
     }
