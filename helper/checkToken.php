@@ -4,6 +4,7 @@
 		$_POST['token'] : !empty($_GET['token']) ? 
 							$_GET['token'] : '')) {
 		echo json_encode(array("message"=>"token invalid"));
+		http_response_code(407);
 		die();
 	}
  ?>

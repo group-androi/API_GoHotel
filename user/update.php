@@ -15,6 +15,9 @@ if(!empty($_POST["phone"])) {
     if (!empty($_POST['gender'])) {
         array_push($changeParam, "gender = :sexx");
     }
+    if (isset($_POST['device_id'])) {
+        array_push($changeParam, "device_id = :device");
+    }
 
     $parameters = implode(", ", $changeParam);
 
@@ -27,6 +30,9 @@ if(!empty($_POST["phone"])) {
     }
     if (!empty($_POST['gender'])) {
         $query->bindParam("sexx", $_POST['gender']);
+    }
+    if (isset($_POST['device_id'])) {
+        $query->bindParam("device", $_POST['device_id']);
     }
 
     $query->execute();

@@ -1,5 +1,8 @@
 <?php 
 
+if (empty($_POST['device_id'])||empty($_POST['latitude']) || empty($_POST['longitude'])) {
+    die();
+}
     
 try {
 	require("./../helper/connect_db.php");

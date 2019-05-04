@@ -15,7 +15,6 @@ function CheckToken($token = "")
     return $result;
 }
 
-
 function SetToken($phone='',$pw='')
 {
     require("./../helper/connect_db.php");
@@ -31,5 +30,10 @@ function SetToken($phone='',$pw='')
     echo json_encode($query->fetchAll());
 
     $query->closeCursor();
+}
+
+function GetDirectoryCurrent()
+{
+    return str_replace(basename($_SERVER['SCRIPT_FILENAME']), "", $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 }
  ?>

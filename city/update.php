@@ -2,7 +2,7 @@
 
     require("./../helper/checkToken.php");
     
-if(!empty($_POST["city_name"]) && !empty($_POST["id"]))
+if(!empty($_POST["city_name"]) && !empty($_POST["id"])) {
 	require("./../helper/connect_db.php");
 	$db = (new Database())->connect();
     $sql = "UPDATE `city` 
@@ -14,4 +14,5 @@ if(!empty($_POST["city_name"]) && !empty($_POST["id"]))
     $query->execute();
     echo json_encode(array("rows_changed"=>$query->rowCount()));
     $query->closeCursor();
+}
  ?>

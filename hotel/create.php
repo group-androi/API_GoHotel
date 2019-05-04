@@ -18,7 +18,10 @@ if (!empty($_POST['name']) &&
     $db->bindParam("address", $_POST['address']);
     $db->bindParam("districtId", $_POST['district_id']);
     $db->bindParam("cityId", $_POST['city_id']);
-    $db->bindParam("price1Day", $_POST['price_1_day']);
+
+
+
+    $db->bindParam("price1Day", isset($_POST['price_1_day']) ? $_POST['price_1_day'] : 'null');
     $db->bindParam("latitude", (!empty($_POST['latitude'])) ? $_POST['latitude'] : 'null');
     $db->bindParam("longitude", (!empty($_POST['longitude'])) ? $_POST['longitude'] : 'null');
     
@@ -27,9 +30,10 @@ if (!empty($_POST['name']) &&
     echo json_encode(array("id_inserted"=>$db->lastInsertId()));
 
     $query->closeCursor();
+    http_response_code(201);
 } else {
 	echo json_encode("error"=>"Data transmission is missing!!!"));
-
+    http_response_code(401);
 	return;
 }
  ?>
