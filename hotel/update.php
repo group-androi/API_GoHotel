@@ -1,10 +1,13 @@
 <?php 
+
+    require("./../helper/checkToken.php");
+    
 if(!empty($_POST['name']) && 
     !empty($_POST['address']) && 
     !empty($_POST['district_id']) && 
     !empty($_POST['city_id']) && 
     !empty($_POST['id']))
-	require("./../database/connect_db.php");
+	require("./../helper/connect_db.php");
 	$db = (new Database())->connect();
     $sql = "UPDATE `hotel` 
             SET `name_hotel` = :name, 

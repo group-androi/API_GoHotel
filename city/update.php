@@ -1,6 +1,9 @@
 <?php 
+
+    require("./../helper/checkToken.php");
+    
 if(!empty($_POST["city_name"]) && !empty($_POST["id"]))
-	require("./../database/connect_db.php");
+	require("./../helper/connect_db.php");
 	$db = (new Database())->connect();
     $sql = "UPDATE `city` 
 		    SET `name_city`= :name WHERE 

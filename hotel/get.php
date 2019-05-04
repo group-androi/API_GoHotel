@@ -1,5 +1,8 @@
 <?php 
-	require("./../database/connect_db.php");
+
+    require("./../helper/checkToken.php");
+    
+	require("./../helper/connect_db.php");
 	$Database = new Database();
 	$db = $Database->connect();
 

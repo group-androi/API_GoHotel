@@ -1,7 +1,10 @@
 <?php 
+
+    require("./../helper/checkToken.php");
+    
 if (!empty($_POST["city_id"]) && !empty($_POST["name"])) {
 	
-	require("./../database/connect_db.php");
+	require("./../helper/connect_db.php");
 	$db = (new Database())->connect();
     
     $sql = "INSERT INTO `district`(`name_district`, `city_id`) VALUES (:districtName,:cityId)";

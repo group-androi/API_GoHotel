@@ -1,9 +1,12 @@
 <?php 
+
+    require("./../helper/checkToken.php");
+    
 if(!empty($_POST["name"]) && 
     !empty($_POST["id"]) && 
     !empty($_POST['city_id']))
 	
-    require("./../database/connect_db.php");
+    require("./../helper/connect_db.php");
 	$db = (new Database())->connect();
     
     $sql = "UPDATE `district` SET `name_district`=:name,`city_id`=:cityId WHERE `id_district`=:id";

@@ -1,5 +1,11 @@
 <?php 
-	require("./../database/connect_db.php");
+
+    require("./../helper/checkToken.php");
+if (empty($_POST['name'])) {
+	echo json_encode(array("message"=>"Parameter null."));
+	die();
+}    
+	require("./../helper/connect_db.php");
 	$db = (new Database())->connect();
     $sql = "INSERT INTO `city`(`name_city`) VALUES (:cityName)";
     $query = $db->prepare($sql);

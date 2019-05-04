@@ -1,7 +1,10 @@
 <?php 
+
+    require("./../helper/checkToken.php");
+    
     $where = (!empty($_GET["id"])) ? "WHERE id_district=:id" : "" ;
 
-	require("./../database/connect_db.php");
+	require("./../helper/connect_db.php");
 	$db = (new Database())->connect();
     
     $query = $db->prepare("DELETE FROM district ".$where);

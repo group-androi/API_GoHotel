@@ -1,8 +1,11 @@
 <?php 
+
+    require("./../helper/checkToken.php");
+    
 if (!empty($_GET['city_name']) || 
 	!empty($_POST['city_name'])) {
 	
-	require("./../database/connect_db.php");
+	require("./../helper/connect_db.php");
 	$Database = new Database();
 	$db = $Database->connect();
 

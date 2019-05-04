@@ -1,6 +1,9 @@
 <?php 
+
+    require("./../helper/checkToken.php");
+    
 if ($_POST['phone']) {
-	require("./../database/connect_db.php");
+	require("./../helper/connect_db.php");
 	$db = (new Database())->connect();
 
 	$sql = "SELECT * FROM user WHERE phone like :user";
@@ -57,6 +60,16 @@ if ($_POST['phone']) {
 		    	$query->execute();
 
 		    	$query->closeCursor();
+		    }
+	    	if (!empty($_POST['device_id'])) {
+	    		
+		    	$sql="UPDATE user SET device_id = :device_id WHERE phone like :username";
+		    	$query = $db->prepare($sql);
+		    	$query->bindParam("device_id", $_POST["device_id"]);
+		    	$query->bindParam("username", $_POST['phone']);
+		    	$query->execute();
+
+		    	$query->closeCursor();	
 		    }
 
 		    echo json_encode(array('message' => 'Created successfully!!!', 'result' => 2));
