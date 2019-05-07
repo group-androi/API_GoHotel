@@ -50,17 +50,6 @@ if ($_POST['phone']) {
 
 		    	$query->closeCursor();
 		    } 
-		    if (!empty($_POST['latitude']) && !empty($_POST['longitude'])) {
-		    	
-		    	$sql="UPDATE user SET lat = :lati, log = :longi WHERE phone like :username";
-		    	$query = $db->prepare($sql);
-		    	$query->bindParam("lati", $_POST["latitude"]);
-		    	$query->bindParam("longi", $_POST["longitude"]);
-		    	$query->bindParam("username", $_POST['phone']);
-		    	$query->execute();
-
-		    	$query->closeCursor();
-		    }
 	    	if (!empty($_POST['device_id'])) {
 	    		
 		    	$sql="UPDATE user SET device_id = :device_id WHERE phone like :username";
@@ -73,12 +62,17 @@ if ($_POST['phone']) {
 		    }
 
 		    echo json_encode(array('message' => 'Created successfully!!!', 'result' => 2));
+
+		    http_response_code(200);
 	    }
 	} else {
 		echo json_encode(array('message' => 'Registration information is not enough', 'result' => 3));
+
+		http_response_code(400);
 	}
 }
 else {	
 	echo json_encode(array('message' => 'Registration information is not enough', 'result' => 3));
+	http_response_code(400);
 }
  ?>}

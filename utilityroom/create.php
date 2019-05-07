@@ -4,6 +4,7 @@
 if (empty($_POST['hotel']) ||
     empty($_POST['utility'])) {
 	echo json_encode(array("message"=>"Parameter null."));
+http_response_code(400);
 	die();
 }    
 	require("./../helper/connect_db.php");
@@ -22,5 +23,5 @@ if (empty($_POST['hotel']) ||
     $query->execute();
     
     $query->closeCursor();
-    http_response_code(201);
+    http_response_code(200);
  ?>

@@ -40,8 +40,11 @@ if(!empty($_POST["phone"])) {
 
     echo json_encode(array("rows_changed"=>$query->rowCount()));
     $query->closeCursor();
+
+    http_response_code(200);
 }
 else {
     echo json_encode(array('rows_changed' => -1));
+    http_response_code(400);
 }
  ?>}

@@ -17,4 +17,6 @@
     echo json_encode($query->fetchAll());
 
     $query->closeCursor();
+
+    http_response_code(200);
  ?>

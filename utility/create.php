@@ -19,5 +19,5 @@ if (empty($_POST['name']) || $_FILES['image']) {
     
     move_uploaded_file($_FILES["image"]["tmp_name"], "files/" . basename($_FILES["image"]["name"]));
         
-    http_response_code(201);
+    http_response_code(200);
  ?>

@@ -15,4 +15,6 @@
     echo json_encode(array("rows_deleted"=>$query->rowCount()));
     
     $query->closeCursor();
+
+    http_response_code(200);
  ?>

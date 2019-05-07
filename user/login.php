@@ -12,7 +12,7 @@ if (!empty($_POST['phone']) && !empty($_POST['password'])) {
     $Database = new Database();
     $db = $Database->connect();
 
-    $query = $db->prepare("SELECT dob 'birthday', phone 'number_phone', gender, lat 'latitude', log 'longitude', token FROM user WHERE MD5(phone) like MD5(:user) AND password like MD5(:passw) ORDER BY phone");
+    $query = $db->prepare("SELECT dob 'birthday', phone 'number_phone', gender, token FROM user WHERE MD5(phone) like MD5(:user) AND password like MD5(:passw) ORDER BY phone");
     
     $query->bindParam("user", $_POST['phone']);
     $query->bindParam("passw", $_POST['password']);
@@ -21,7 +21,9 @@ if (!empty($_POST['phone']) && !empty($_POST['password'])) {
     echo json_encode($query->fetchAll());
 
     $query->closeCursor();
+
+    http_response_code(200);
 } else {
-     # code...
+     http_response_code(400);
 }
  ?>
