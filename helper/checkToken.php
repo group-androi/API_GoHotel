@@ -1,10 +1,19 @@
 <?php 
-	require("helper.php");
-	if (!CheckToken(!empty($_POST['token']) ? 
-		$_POST['token'] : !empty($_GET['token']) ? 
-							$_GET['token'] : '')) {
-		echo json_encode(array("message"=>"token invalid"));
-		http_response_code(407);
-		die();
+	$BooleanCheck=false;
+
+	foreach (getallheaders() as $key => $value) {
+		if ($key == "token") {
+			require("helper.php");
+			if (!CheckToken($value) && $value != "") {
+				echo json_encode(array("message"=>"token invalid"));
+				http_response_code(401);
+				die();
+			}
+			$BooleanCheck=true;
+		}
+	}
+
+	if (!$BooleanCheck) {
+		http_response_code(401);
 	}
  ?>
