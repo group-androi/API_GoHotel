@@ -17,12 +17,14 @@ function CheckToken($token = "")
 
 function SetToken($phone='',$pw='')
 {
+    $token=bin2hex(openssl_random_pseudo_bytes(32));
+
     require("./../helper/connect_db.php");
     $Database = new Database();
     $db = $Database->connect();
 
     $query = $db->prepare("UPDATE user SET token = :token WHERE MD5(phone) like MD5(:user) AND password like MD5(:passw) ORDER BY phone");
-    $query->bindParam("token", bin2hex(openssl_random_pseudo_bytes(32)));
+    $query->bindParam("token", $token);
     $query->bindParam("user", $phone);
     $query->bindParam("passw", $pw);
     $query->execute();
@@ -30,6 +32,8 @@ function SetToken($phone='',$pw='')
     echo json_encode($query->fetchAll());
 
     $query->closeCursor();
+
+    return $token;
 }
 
 function GetDirectoryCurrent()

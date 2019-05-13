@@ -2,7 +2,7 @@
 
     require("./../helper/checkToken.php");
     
-if ($_POST['phone']) {
+if (isset($_POST['phone'])) {
 	require("./../helper/connect_db.php");
 	$db = (new Database())->connect();
 
@@ -61,7 +61,11 @@ if ($_POST['phone']) {
 		    	$query->closeCursor();	
 		    }
 
-		    echo json_encode(array('message' => 'Created successfully!!!', 'result' => 2));
+
+			require("./../helper/helper.php");
+		    $token = SetToken($_POST['phone'],$_POST['password']);
+
+		    echo json_encode(array('message' => 'Created successfully!!!', 'result' => 2, 'token' => $token));
 
 		    http_response_code(200);
 	    }
