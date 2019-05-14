@@ -5,7 +5,7 @@
 if(!empty($_POST["phone"])) {
     $result = 1;
     require("./../helper/connect_db.php");
-    $db = (new Database())->connect();
+    $db = (new myDatabase())->connect();
 
     $changeParam = array();
     

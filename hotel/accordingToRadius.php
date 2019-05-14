@@ -1,13 +1,13 @@
 <?php 
 
     require("./../helper/checkToken.php");
-     if(empty($_POST['latitude']) || empty($_POST['longitude']) || empty($_POST['radius']))
-{
-die();
-}
+    if(empty($_POST['latitude']) || empty($_POST['longitude']) || empty($_POST['radius']))
+    {
+        die();
+    }
 
     require("./../helper/connect_db.php");
-    $Database = new Database();
+    $Database = new myDatabase();
     $db = $Database->connect();
 
 

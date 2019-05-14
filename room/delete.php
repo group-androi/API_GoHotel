@@ -12,7 +12,7 @@
     $where = " WHERE ".explode(" AND ", $array_parameter);
 
 	require("./../helper/connect_db.php");
-	$db = (new Database())->connect();
+	$db = (new myDatabase())->connect();
     $query = $db->prepare("DELETE FROM room ".$where);
     if (!empty($_GET["id"])) {
         $query->bindParam("id", $_GET['id']);

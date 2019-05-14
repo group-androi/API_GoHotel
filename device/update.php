@@ -16,7 +16,7 @@ if(!empty($_POST["device_id"])){
     $parameter = implode(", ", $changeParam);
 
 	require("./../helper/connect_db.php");
-	$db = (new Database())->connect();
+	$db = (new myDatabase())->connect();
     $sql = "UPDATE `device` 
 		    SET ".$parameter." WHERE 
 		    `device_id`=:id";

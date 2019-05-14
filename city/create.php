@@ -6,7 +6,7 @@ if (empty($_POST['name'])) {
 	die();
 }    
 	require("./../helper/connect_db.php");
-	$db = (new Database())->connect();
+	$db = (new myDatabase())->connect();
     $sql = "INSERT INTO `city`(`name_city`) VALUES (:cityName)";
     $query = $db->prepare($sql);
     $query->bindParam("cityName", $_POST['name']);

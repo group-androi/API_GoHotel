@@ -6,7 +6,7 @@ if (!empty($_POST['name']) &&
 	!empty($_POST['hotel'])) {
 
 	require("./../helper/connect_db.php");
-	$db = (new Database())->connect();
+	$db = (new myDatabase())->connect();
     
     $sql = "INSERT INTO room(name_room, price_per_day, image, count, status, hotel_id) VALUES (:name, :price, :image, :number_room, :status, :hotel)";
     

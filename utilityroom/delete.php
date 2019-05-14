@@ -15,7 +15,7 @@
     $where = " WHERE ".implode(" AND ", $array_param);
 
 	require("./../helper/connect_db.php");
-	$db = (new Database())->connect();
+	$db = (new myDatabase())->connect();
     $query = $db->prepare("DELETE FROM utilityroom ".$where);
     if (isset($_GET['utility'])) {
         $query->bindParam("utility", $_GET['utility']);

@@ -3,7 +3,7 @@
     require("./../helper/checkToken.php");
 
     require("./../helper/connect_db.php");
-    $db = (new Database())->connect();
+    $db = (new myDatabase())->connect();
 
     $array_parameter=array();
     if (!empty($_POST["hotel"])) {

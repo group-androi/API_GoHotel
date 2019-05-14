@@ -9,7 +9,7 @@ if (!empty($_POST['phone']) && !empty($_POST['password'])) {
 
     SetToken($_POST['phone'], $_POST['password']);
 
-    $Database = new Database();
+    $Database = new myDatabase();
     $db = $Database->connect();
 
     $query = $db->prepare("SELECT dob 'birthday', phone 'number_phone', gender, token FROM user WHERE MD5(phone) like MD5(:user) AND password like MD5(:passw) ORDER BY phone");

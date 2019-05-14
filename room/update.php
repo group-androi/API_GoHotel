@@ -24,7 +24,7 @@
         $set = explode(", ", $array_parameter);
         
         require("./../helper/connect_db.php");
-        $db = (new Database())->connect();
+        $db = (new myDatabase())->connect();
         
         $sql = "UPDATE `room` SET ".$set." WHERE `id_room`=:id  
                     AND `hotel_id`= :hotel";

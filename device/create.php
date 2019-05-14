@@ -6,7 +6,7 @@ if (empty($_POST['device_id'])||empty($_POST['latitude']) || empty($_POST['longi
     
 try {
 	require("./../helper/connect_db.php");
-	$db = (new Database())->connect();
+	$db = (new myDatabase())->connect();
     $sql = "INSERT INTO `device`(`id_device`, `latitude`, `longitude`) VALUES (:device, :latitude, :longitude)";
     $query = $db->prepare($sql);
     $query->bindParam("device", $_POST['device_id']);

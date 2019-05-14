@@ -6,7 +6,7 @@ if (!empty($_GET['city_id']) ||
 	!empty($_POST['city_id'])) {
 	
 	require("./../helper/connect_db.php");
-	$Database = new Database();
+	$Database = new myDatabase();
 	$db = $Database->connect();
 
     $sql = "SELECT id_district 'key', name_district 'name' FROM district WHERE city_id = :cityId ORDER BY name_district";

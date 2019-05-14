@@ -5,7 +5,7 @@
     $where = (!empty($_GET["phone"])) ? "WHERE phone=:id" : "" ;
 
 	require("./../helper/connect_db.php");
-	$db = (new Database())->connect();
+	$db = (new myDatabase())->connect();
     $query = $db->prepare("DELETE FROM user ".$where);
     if (!empty($_GET["user"])) {
         $query->bindParam("id", $_GET['phone']);

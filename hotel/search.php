@@ -4,7 +4,7 @@
     
 if (!empty($_GET['key'])) {
 	require("./../helper/connect_db.php");
-	$Database = new Database();
+	$Database = new myDatabase();
 	$db = $Database->connect();
 
     $query = $db->prepare("SELECT id_hotel 'key', 

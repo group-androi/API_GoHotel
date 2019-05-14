@@ -5,7 +5,7 @@
     $where = (!empty($_GET["id"])) ? "WHERE id_district=:id" : "" ;
 
 	require("./../helper/connect_db.php");
-	$db = (new Database())->connect();
+	$db = (new myDatabase())->connect();
     
     $query = $db->prepare("DELETE FROM district ".$where);
     if (!empty($_GET["id"])) {

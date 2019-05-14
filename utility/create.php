@@ -6,7 +6,7 @@ if (empty($_POST['name']) || $_FILES['image']) {
 	die();
 }    
 	require("./../helper/connect_db.php");
-	$db = (new Database())->connect();
+	$db = (new myDatabase())->connect();
     $sql = "INSERT INTO `utility`(`name_utility`, `image`) VALUES (:name,:img)";
     $query = $db->prepare($sql);
     $query->bindParam("name", $_POST['name']);

@@ -9,7 +9,7 @@ if (empty($_POST['hotel']) || empty($_FILES['file'])) {
 for ($i=0; $i < count($_FILES['file']['name']); $i++) { 
 	try {
 		require('./..helper/connect_db.php');
-		$db=(new Database())->connect();
+		$db=(new myDatabase())->connect();
 
 		if (move_uploaded_file($_FILES["file"]["tmp_name"][i], "files/" . basename($_FILES["file"]["name"][i]))) {
 		    $query="INSERT INTO `image`(`name_image`, `hotel_id`, `room_id`) VALUES (:file, :hotel, :room

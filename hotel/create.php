@@ -8,7 +8,7 @@ if (!empty($_POST['name']) &&
 	!empty($_POST['city_id'])) {
 
 	require("./../helper/connect_db.php");
-	$db = (new Database())->connect();
+	$db = (new myDatabase())->connect();
     
     $sql = "INSERT INTO `hotel`(`name_hotel`, `address`, `district_id`, `city_id`, `price_room_per_day`, `latitude`, `longitude`) VALUES (:nameHotel, :address, :districtId, :cityId, :price1Day, :latitude, :longitude)";
     

@@ -3,7 +3,7 @@
     require("./../helper/checkToken.php");
     
 	require("./../helper/connect_db.php");
-	$Database = new Database();
+	$Database = new myDatabase();
 	$db = $Database->connect();
 
     $array_parameter=array();

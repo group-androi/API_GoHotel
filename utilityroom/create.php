@@ -8,7 +8,7 @@ http_response_code(400);
 	die();
 }    
 	require("./../helper/connect_db.php");
-	$db = (new Database())->connect();
+	$db = (new myDatabase())->connect();
     if (empty($_POST['room'])) {
         $sql = "INSERT INTO `utilityroom`(`utility_id`, `hotel_id`) VALUES (:utility,:hotel)";
     } else {

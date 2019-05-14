@@ -5,7 +5,7 @@
 if (!empty($_POST["city_id"]) && !empty($_POST["name"])) {
 	
 	require("./../helper/connect_db.php");
-	$db = (new Database())->connect();
+	$db = (new myDatabase())->connect();
     
     $sql = "INSERT INTO `district`(`name_district`, `city_id`) VALUES (:districtName,:cityId)";
     

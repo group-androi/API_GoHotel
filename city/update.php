@@ -4,7 +4,7 @@
     
 if(!empty($_POST["city_name"]) && !empty($_POST["id"])) {
 	require("./../helper/connect_db.php");
-	$db = (new Database())->connect();
+	$db = (new myDatabase())->connect();
     $sql = "UPDATE `city` 
 		    SET `name_city`= :name WHERE 
 		    `id_city`=:id";

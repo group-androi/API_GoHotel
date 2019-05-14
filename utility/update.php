@@ -4,7 +4,7 @@
     
 if(!empty($_POST["id"])){
 	require("./../helper/connect_db.php");
-	$db = (new Database())->connect();
+	$db = (new myDatabase())->connect();
     
     $array_parameter = array();
     if (isset($_POST['name'])) {

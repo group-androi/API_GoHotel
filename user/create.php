@@ -1,10 +1,9 @@
 <?php 
-
-    require("./../helper/checkToken.php");
-    
+	require_once("./../helper/connect_db.php");
+	
+    require_once("./../helper/checkToken.php");
 if (isset($_POST['phone'])) {
-	require("./../helper/connect_db.php");
-	$db = (new Database())->connect();
+	$db = (new myDatabase())->connect();
 
 	$sql = "SELECT * FROM user WHERE phone like :user";
 	$query = $db->prepare($sql);
@@ -62,8 +61,7 @@ if (isset($_POST['phone'])) {
 		    }
 
 
-			require("./../helper/helper.php");
-		    $token = SetToken($_POST['phone'],$_POST['password']);
+			$token = SetToken($_POST['phone'],$_POST['password']);
 
 		    echo json_encode(array('message' => 'Created successfully!!!', 'result' => 2, 'token' => $token));
 

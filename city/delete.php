@@ -5,7 +5,7 @@
     $where = (!empty($_GET["id"])) ? "WHERE id_city=:id" : "" ;
 
 	require("./../helper/connect_db.php");
-	$db = (new Database())->connect();
+	$db = (new myDatabase())->connect();
     $query = $db->prepare("DELETE FROM city ".$where);
     if (!empty($_GET["id"])) {
         $query->bindParam("id", $_GET['id']);

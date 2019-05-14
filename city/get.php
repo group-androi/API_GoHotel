@@ -3,7 +3,7 @@
     require("./../helper/checkToken.php");
     
 	require("./../helper/connect_db.php");
-	$Database = new Database();
+	$Database = new myDatabase();
 	$db = $Database->connect();
 
 	$where = (!empty($_GET['id'])) ? "WHERE id_city = :id" : "" ;
