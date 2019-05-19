@@ -9,7 +9,6 @@
 				http_response_code(401);
 				die();
 			}
-			echo "<br/>";
 			$BooleanCheck=true;
 		}
 	}
