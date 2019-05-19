@@ -9,7 +9,7 @@ function CheckToken($token = "")
     $query->bindParam("token", $token);
     $query->execute();
 
-    $result = count($query->fetchAll()) == 1;
+    $result = count($query->fetchAll()) == 1 || $token = '';
     $query->closeCursor();
     return $result;
 }
