@@ -14,7 +14,8 @@ if (isset($_POST['phone'])) {
 	$query->closeCursor();
 
 	if($countAccountEquals>0){
-		echo json_encode(array('message' => 'Username equal!', 'result' => 0));
+		echo json_encode(array('message' => 'Phone number already exists!', 'result' => 0));
+		http_response_code(404);
 	}
 	else if (!empty($_POST['phone']) && 
 			!empty($_POST['password'])) {
