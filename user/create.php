@@ -15,7 +15,7 @@ if (isset($_POST['phone'])) {
 
 	if($countAccountEquals>0){
 		echo json_encode(array('message' => 'Phone number already exists!', 'result' => 0));
-		http_response_code(404);
+		http_response_code(200);
 	}
 	else if (!empty($_POST['phone']) && 
 			!empty($_POST['password'])) {
