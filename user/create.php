@@ -78,4 +78,4 @@ else {
 	echo json_encode(array('message' => 'Registration information is not enough', 'result' => 3));
 	http_response_code(400);
 }
- ?>}
+ ?>
