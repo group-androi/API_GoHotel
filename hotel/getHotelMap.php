@@ -1,7 +1,7 @@
 <?php 
 
     require("./../helper/checkToken.php");
-    if(empty($_POST['latitude']) || empty($_POST['longitude']))
+    if(empty($_POST['latitude']) || empty($_POST['longitude']) || empty($_POST['radius']))
     {
         die();
         http_response_code(401);
@@ -11,10 +11,10 @@
     $Database = new myDatabase();
     $db = $Database->connect();
 
-    
-    $query = $db->prepare("SELECT * FROM `hotel` ORDER BY SQRT((latitude - :latitude)*(latitude - :latitude)+(longitude - :longitude)*(longitude - :longitude))");
+    $query = $db->prepare("SELECT * FROM `hotel` WHERE SQRT((latitude - :latitude)*(latitude - :latitude)+(longitude - :longitude)*(longitude - :longitude)) <= :radius ORDER BY SQRT((latitude - :latitude)*(latitude - :latitude)+(longitude - :longitude)*(longitude - :longitude)) ");
     $query->bindParam("latitude", $_POST['latitude']);
     $query->bindParam("longitude", $_POST['longitude']);
+    $query->bindParam("radius", $_POST['radius']);
 
     $query->execute();
 
@@ -23,5 +23,4 @@
     $query->clodeCursor();
 
     http_response_code(200);
-
  ?>         
