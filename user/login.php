@@ -4,8 +4,8 @@
     
 if (!empty($_POST['phone']) && !empty($_POST['password'])) {
 
-    require("./../helper/connect_db.php");
-    require("./../helper/helper.php");
+    require_once("./../helper/connect_db.php");
+    require_once("./../helper/helper.php");
 
     SetToken($_POST['phone'], $_POST['password']);
 
@@ -18,12 +18,19 @@ if (!empty($_POST['phone']) && !empty($_POST['password'])) {
     $query->bindParam("passw", $_POST['password']);
     $query->execute();
 
-    echo json_encode($query->fetchAll());
+    $result = $query->fetchAll();
 
+    if (count($result)>0) {
+        echo json_encode($result[0]);
+    }
+    else{
+        echo json_encode(array('message' => "Login failed", "result"=>0));
+    }
     $query->closeCursor();
 
     http_response_code(200);
 } else {
-     http_response_code(400);
+    echo json_encode(array('message' => "Error other", "result"=>0));
+    http_response_code(400);
 }
  ?>
