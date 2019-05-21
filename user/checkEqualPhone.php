@@ -1,7 +1,7 @@
 <?php 
 	require_once("./../helper/connect_db.php");
 	
-    require_once("./../helper/checkToken.php");
+    //require_once("./../helper/checkToken.php");
 if (isset($_POST['phone'])) {
 	$db = (new myDatabase())->connect();
 
