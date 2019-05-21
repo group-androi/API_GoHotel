@@ -13,7 +13,9 @@
 
     $limit="";
 
-    if (isset($_POST['limitfrom']) && isset($_POST['limitfrom'])) {
+    $checkNumberLimit=filter_var($_POST['limitfrom'], FILTER_VALIDATE_INT) && filter_var($_POST['limitfrom'], FILTER_VALIDATE_INT)
+
+    if ($checkNumberLimit) {
         $limit=" LIMIT :limitFrom , :limitTo";
     }
 
@@ -22,7 +24,7 @@
     $query->bindParam("longitude", $_POST['longitude']);
     $query->bindParam("radius", $_POST['radius']);
 
-    if (isset($_POST['limitfrom']) && isset($_POST['limitfrom'])) {
+    if ($checkNumberLimit) {
         $query->bindParam("limitFrom", $_POST['limitfrom']);
         $query->bindParam("limitTo", $_POST['limitTo']);
     }
