@@ -13,7 +13,7 @@
 
     $limit="";
 
-    $checkNumberLimit=filter_var($_POST['limitfrom'], FILTER_VALIDATE_INT) && filter_var($_POST['limitfrom'], FILTER_VALIDATE_INT)
+    $checkNumberLimit=filter_var($_POST['limitfrom'], FILTER_VALIDATE_INT) && filter_var($_POST['limitcount'], FILTER_VALIDATE_INT)
 
     if ($checkNumberLimit) {
         $limit=" LIMIT :limitFrom , :limitTo";
@@ -26,7 +26,7 @@
 
     if ($checkNumberLimit) {
         $query->bindParam("limitFrom", $_POST['limitfrom']);
-        $query->bindParam("limitTo", $_POST['limitTo']);
+        $query->bindParam("limitTo", $_POST['limitcount']);
     }
 
     $query->execute();
