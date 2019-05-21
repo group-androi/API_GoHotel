@@ -21,6 +21,7 @@ if (!empty($_POST['phone']) && !empty($_POST['password'])) {
     $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
     if (count($result)>0) {
+        $result[0] += ['result' => 1] + ['message' => ""];
         echo json_encode($result[0]);
     }
     else{
