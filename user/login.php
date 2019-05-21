@@ -18,7 +18,7 @@ if (!empty($_POST['phone']) && !empty($_POST['password'])) {
     $query->bindParam("passw", $_POST['password']);
     $query->execute();
 
-    $result = $query->fetchAll();
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
     if (count($result)>0) {
         echo json_encode($result[0]);
