@@ -1,7 +1,7 @@
 <?php 
 
     require("./../helper/checkToken.php");
-    if(empty($_POST['latitude']) || empty($_POST['longitude']) || empty($_POST['radius']))
+    if(empty($_POST['latitude']) || empty($_POST['longitude']))
     {
         http_response_code(401);
         die();
@@ -19,10 +19,9 @@
         $limit=" LIMIT :limitFrom , :limitTo";
     }
 
-    $query = $db->prepare("SELECT * FROM `hotel` WHERE SQRT((latitude - :latitude)*(latitude - :latitude)+(longitude - :longitude)*(longitude - :longitude)) <= :radius ORDER BY SQRT((latitude - :latitude)*(latitude - :latitude)+(longitude - :longitude)*(longitude - :longitude)) ".$limit);
+    $query = $db->prepare("SELECT *,((latitude - :latitude)*(latitude - :latitude)+(longitude - :longitude)*(longitude - :longitude)) 'distance' FROM `hotel` ORDER BY ((latitude - :latitude)*(latitude - :latitude)+(longitude - :longitude)*(longitude - :longitude)) ".$limit);
     $query->bindParam("latitude", $_POST['latitude']);
     $query->bindParam("longitude", $_POST['longitude']);
-    $query->bindParam("radius", $_POST['radius']);
 
     if ($checkNumberLimit) {
         $query->bindParam("limitFrom", $_POST['limitfrom']);
