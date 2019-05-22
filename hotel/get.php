@@ -25,4 +25,6 @@
     $query->execute();
     //$citys = $db->fetchAll();
     echo json_encode($query->fetchAll());
+
+    $query->closeCursor();
  ?>

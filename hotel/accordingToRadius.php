@@ -33,7 +33,7 @@
 
     echo json_encode($query->fetchAll());
 
-    $query->clodeCursor();
+    $query->closeCursor();
 
     http_response_code(200);
  ?>         
