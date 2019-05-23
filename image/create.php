@@ -3,6 +3,7 @@
 require_once("./../helper/checkToken.php");
 $count_updated = 0;
 if (empty($_POST['hotel_id']) || empty($_FILES['file_id'])) {
+	echo json_encode(array('file_uploaded'=>-1));
 	http_response_code(400);
 	die();
 }

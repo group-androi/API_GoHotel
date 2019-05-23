@@ -1,0 +1,249 @@
+{
+	"id": "ff405afd-a7cf-bd84-b5f1-ae13df8c8fcb",
+	"name": "DoAnAndroid",
+	"description": "",
+	"order": [
+		"613ad104-b1c2-c81a-e133-35f96e578d92",
+		"5029da96-bee7-de6d-19c0-1af443960a37",
+		"5dfd927d-ce1e-ef15-1eeb-b3ed1ecd8436",
+		"9aa09a77-39fc-8cfb-9ff2-da42d860d006"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1558617276001,
+	"owner": "5557830",
+	"public": false,
+	"requests": [
+		{
+			"id": "5029da96-bee7-de6d-19c0-1af443960a37",
+			"headers": "//token: \n",
+			"headerData": [
+				{
+					"key": "token",
+					"value": "",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"url": "localhost/qlhs/hotel/getHotelMap.php",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "latitude",
+					"value": "10",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "longitude",
+					"value": "107",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "radius",
+					"value": "2000",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1558621948489,
+			"name": "hotel/getHotelHome",
+			"description": "",
+			"collectionId": "ff405afd-a7cf-bd84-b5f1-ae13df8c8fcb",
+			"responses": []
+		},
+		{
+			"id": "5dfd927d-ce1e-ef15-1eeb-b3ed1ecd8436",
+			"headers": "//token: \n",
+			"headerData": [
+				{
+					"key": "token",
+					"value": "",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"url": "localhost/qlhs/hotel/getHotelMap.php",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "latitude",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "longitude",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "radius",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1558621937867,
+			"name": "hotel/getHotelMap",
+			"description": "",
+			"collectionId": "ff405afd-a7cf-bd84-b5f1-ae13df8c8fcb",
+			"responses": []
+		},
+		{
+			"id": "613ad104-b1c2-c81a-e133-35f96e578d92",
+			"headers": "token: \n",
+			"headerData": [
+				{
+					"key": "token",
+					"value": "",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost/qlhs/hotel/create.php",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "name",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "address",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "district_id",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "city_id",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "price_1_day",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "latitude",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "longitude",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1558621966865,
+			"name": "hotel/create.php",
+			"description": "ddddas",
+			"collectionId": "ff405afd-a7cf-bd84-b5f1-ae13df8c8fcb",
+			"responses": []
+		},
+		{
+			"id": "9aa09a77-39fc-8cfb-9ff2-da42d860d006",
+			"headers": "token:  \n",
+			"headerData": [
+				{
+					"key": "token",
+					"value": " ",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost/qlhs/image/create.php",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "file[]",
+					"value": "",
+					"description": "",
+					"type": "file",
+					"enabled": true
+				},
+				{
+					"key": "hotel_id",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "room_id",
+					"value": "",
+					"description": "k can truyen neu la anh 1 khach san",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1558622259589,
+			"name": "image/create.php",
+			"description": "",
+			"collectionId": "ff405afd-a7cf-bd84-b5f1-ae13df8c8fcb",
+			"responses": []
+		}
+	]
+}
