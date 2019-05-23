@@ -2,18 +2,24 @@
 
     require("./../helper/checkToken.php");
 if (empty($_POST['name'])) {
-	echo json_encode(array("message"=>"Parameter null."));
+	echo json_encode(array("message"=>"Parameter null.","result"=>-1));
 	die();
 }    
-	require("./../helper/connect_db.php");
-	$db = (new myDatabase())->connect();
+
+try {
+    require("./../helper/connect_db.php");
+    $db = (new myDatabase())->connect();
     $sql = "INSERT INTO `city`(`name_city`) VALUES (:cityName)";
     $query = $db->prepare($sql);
     $query->bindParam("cityName", $_POST['name']);
     $query->execute();
     
-    echo json_encode(array("id_inserted"=>$db->lastInsertId()));
+    echo json_encode(array("result"=>$db->lastInsertId()));
     
     $query->closeCursor();
     http_response_code(201);
- ?>
+ 
+} catch (Exception $e) {
+    echo json_encode(array("result"=>0);
+}
+	?>

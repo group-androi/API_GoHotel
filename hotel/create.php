@@ -18,40 +18,20 @@ $temp="";
     $query->bindParam("address", $_POST['address']);
     $query->bindParam("districtId", $_POST['district_id']);
     $query->bindParam("cityId", $_POST['city_id']);
-
-/*    if (isset($_POST['price_1_day'])) {
-        $temp=$_POST['price_1_day'];
-    }else{
-        $temp="";
-    }
-    $query->bindParam("price1Day", $temp);
-    if (isset($_POST['latitude'])) {
-        $temp=$_POST['latitude'];
-    }else{
-        $temp="";
-    }
-    $query->bindParam("latitude", $temp);
-    if (isset($_POST['longitude'])) {
-        $temp=$_POST['longitude'];
-    }else{
-        $temp="";
-    }
-    $query->bindParam("longitude", $temp);
-  */
     $query->bindParam("price1Day", $_POST['price_1_day']);
     $query->bindParam("latitude", $_POST['latitude']);
     $query->bindParam("longitude", $_POST['longitude']);
     
     $query->execute();
 
-    echo json_encode(array("id_inserted"=>$db->lastInsertId()));
+    echo json_encode(array("message"=>"" ,"result"=>$db->lastInsertId()));
 
     $query->closeCursor();
     http_response_code(201);
 } 
 else {
-	echo json_encode(array("error"=>"Data transmission is missing!!!"));
+	echo json_encode(array("message"=>"Data transmission is missing!!!", 'result'=>0));
     http_response_code(401);
-	return;
+	die();
 }
  ?>

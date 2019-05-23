@@ -5,7 +5,7 @@
 		if ($key == "token") {
 			require_once("helper.php");
 			if (!CheckToken($value) && $value != "") {
-				echo json_encode(array("message"=>"token invalid"));
+				echo json_encode(array("message"=>"token invalid", "result"=>-2));
 				http_response_code(401);
 				die();
 			}
@@ -14,7 +14,7 @@
 	}
 
 	if (!$BooleanCheck) {
-		echo json_encode(array("message"=>"token not found"));
+		echo json_encode(array("message"=>"token not found", "result"=>-2));
 		http_response_code(401);
 		die();
 	}

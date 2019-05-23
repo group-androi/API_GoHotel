@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 23, 2019 at 03:36 PM
+-- Generation Time: May 23, 2019 at 04:05 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -117,6 +117,13 @@ CREATE TABLE IF NOT EXISTS `device` (
   `longitude` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_device`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `device`
+--
+
+INSERT INTO `device` (`id_device`, `latitude`, `longitude`) VALUES
+('sQxjxx8tCFWtyzqm', '10.7629123', '106.682188');
 
 -- --------------------------------------------------------
 

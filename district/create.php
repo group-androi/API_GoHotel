@@ -1,21 +1,30 @@
 <?php 
 
-    require("./../helper/checkToken.php");
+    require_once("./../helper/checkToken.php");
     
 if (!empty($_POST["city_id"]) && !empty($_POST["name"])) {
-	
-	require("./../helper/connect_db.php");
-	$db = (new myDatabase())->connect();
-    
-    $sql = "INSERT INTO `district`(`name_district`, `city_id`) VALUES (:districtName,:cityId)";
-    
-    $query = $db->prepare($sql);
-    $query->bindParam("districtName", $_POST['name']);
-    $query->bindParam("cityId", $_POST['city_id']);
-    $query->execute();
+	try {
+        require_once("./../helper/connect_db.php");
+        $db = (new myDatabase())->connect();
+        
+        $sql = "INSERT INTO `district`(`name_district`, `city_id`) VALUES (:districtName,:cityId)";
+        
+        $query = $db->prepare($sql);
+        $query->bindParam("districtName", $_POST['name']);
+        $query->bindParam("cityId", $_POST['city_id']);
+        $query->execute();
 
-    echo json_encode(array("id_inserted"=>$db->lastInsertId()));
-    
-    $query->closeCursor();
+        echo json_encode(array("message"=>"", "result"=>$db->lastInsertId()));
+        
+        $query->closeCursor();
+
+        http_response_code(201);
+    } catch (Exception $e) {
+        
+        echo json_encode(array("message"=>"", "result"=>0));
+    }
+    die();
 }
+
+        echo json_encode(array("message"=>"", "result"=>-1));
  ?>

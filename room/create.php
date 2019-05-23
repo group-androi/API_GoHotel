@@ -22,7 +22,7 @@ if (isset($_POST['name']) &&
     $query->bindParam("status", $_POST['status']);
     $query->execute();
 
-    echo json_encode(array("id_inserted"=>$db->lastInsertId()));
+    echo json_encode(array("result"=>$db->lastInsertId()));
 
     $query->closeCursor();
     if (isset($_FILES['image'])) {
@@ -30,7 +30,7 @@ if (isset($_POST['name']) &&
     }
     http_response_code(201);
 } else {
-	echo json_encode(array("id_inserted"=>-1));
+	echo json_encode(array("result"=>-1));
 
 	return;
 }

@@ -9,7 +9,8 @@
 		"9aa09a77-39fc-8cfb-9ff2-da42d860d006",
 		"096afe4a-52eb-2a92-3733-d39dd49e3c99",
 		"29529aa0-9dfd-4223-9119-aeea67dc2ecc",
-		"65f99adc-1dfd-46c8-a956-3a79b611973a"
+		"65f99adc-1dfd-46c8-a956-3a79b611973a",
+		"cfea4d82-08d6-c728-234f-9d2329f3c9de"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -397,7 +398,7 @@
 				{
 					"key": "room_id",
 					"value": "",
-					"description": "k can truyen neu la anh 1 khach san",
+					"description": "allow null",
 					"type": "text",
 					"enabled": true
 				}
@@ -406,8 +407,51 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1558622259589,
+			"time": 1558627479175,
 			"name": "image/create.php",
+			"description": "",
+			"collectionId": "ff405afd-a7cf-bd84-b5f1-ae13df8c8fcb",
+			"responses": []
+		},
+		{
+			"id": "cfea4d82-08d6-c728-234f-9d2329f3c9de",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost/qlhs/device/create.php",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "device_id",
+					"value": "sQxjxx8tCFWtyzqm",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "latitude",
+					"value": "10.7629123",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "longitude",
+					"value": "106.682188",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1558627445455,
+			"name": "device/create.php",
 			"description": "",
 			"collectionId": "ff405afd-a7cf-bd84-b5f1-ae13df8c8fcb",
 			"responses": []

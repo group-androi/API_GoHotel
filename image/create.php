@@ -3,10 +3,13 @@
 require_once("./../helper/checkToken.php");
 $count_updated = 0;
 if (empty($_POST['hotel_id']) || empty($_FILES['file_id'])) {
-	echo json_encode(array('file_uploaded'=>-1));
+	echo json_encode(array("message"=>"", 'result'=>-1));
 	http_response_code(400);
 	die();
 }
+try {
+	
+} catch (Exception $e) {
 
 for ($i=0; $i < count($_FILES['file']['name']); $i++) { 
 	try {
@@ -26,9 +29,14 @@ for ($i=0; $i < count($_FILES['file']['name']); $i++) {
 			$count_updated++;
 		} else {
 		}
+
+		echo json_encode(array("message"=>"", 'result'=>$count_updated));
+		http_response_code(200);
 	} catch (Exception $e) {
+		echo json_encode(array("message"=>"", 'result'=>$count_updated));
+		http_response_code(200);
+
 	}
+}	
 }
-	echo json_encode(array('file_uploaded'=>$count_updated));
-	http_response_code(200);
 ?>
