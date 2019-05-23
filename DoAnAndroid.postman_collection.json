@@ -7,7 +7,8 @@
 		"5029da96-bee7-de6d-19c0-1af443960a37",
 		"5dfd927d-ce1e-ef15-1eeb-b3ed1ecd8436",
 		"9aa09a77-39fc-8cfb-9ff2-da42d860d006",
-		"096afe4a-52eb-2a92-3733-d39dd49e3c99"
+		"096afe4a-52eb-2a92-3733-d39dd49e3c99",
+		"29529aa0-9dfd-4223-9119-aeea67dc2ecc"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -54,6 +55,77 @@
 			"helperAttributes": {},
 			"time": 1558623673007,
 			"name": "utility/create.php",
+			"description": "",
+			"collectionId": "ff405afd-a7cf-bd84-b5f1-ae13df8c8fcb",
+			"responses": []
+		},
+		{
+			"id": "29529aa0-9dfd-4223-9119-aeea67dc2ecc",
+			"headers": "token:  \n",
+			"headerData": [
+				{
+					"key": "token",
+					"value": " ",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost/qlhs/room/create.php",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "name",
+					"value": "Phòng đơn",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "hotel_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "image",
+					"value": "",
+					"description": "allow null\n",
+					"type": "file",
+					"enabled": true
+				},
+				{
+					"key": "price_1_day",
+					"value": "320000",
+					"description": "allow null",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "number_room",
+					"value": "12",
+					"description": "allow null",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "status",
+					"value": "Còn phòng",
+					"description": "allow null",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1558624195479,
+			"name": "room/create.php",
 			"description": "",
 			"collectionId": "ff405afd-a7cf-bd84-b5f1-ae13df8c8fcb",
 			"responses": []

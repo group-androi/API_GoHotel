@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 23, 2019 at 03:02 PM
+-- Generation Time: May 23, 2019 at 03:13 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -931,7 +931,15 @@ CREATE TABLE IF NOT EXISTS `room` (
   `hotel_id` int(11) NOT NULL,
   PRIMARY KEY (`id_room`),
   KEY `hotel_id` (`hotel_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `room`
+--
+
+INSERT INTO `room` (`id_room`, `name_room`, `price_per_day`, `image`, `count`, `status`, `hotel_id`) VALUES
+(1, 'Phòng đơn', '320000', '', '12', 'Còn phòng', 1),
+(2, 'Phòng đơn', '350000', 'localhost/qlhs/room/files/khach-san-iris-can-tho[1].jpg', '19', 'Còn ít', 2);
 
 -- --------------------------------------------------------
 
