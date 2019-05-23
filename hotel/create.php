@@ -19,7 +19,7 @@ $temp="";
     $query->bindParam("districtId", $_POST['district_id']);
     $query->bindParam("cityId", $_POST['city_id']);
 
-    if (isset($_POST['price_1_day'])) {
+/*    if (isset($_POST['price_1_day'])) {
         $temp=$_POST['price_1_day'];
     }else{
         $temp="";
@@ -37,6 +37,10 @@ $temp="";
         $temp="";
     }
     $query->bindParam("longitude", $temp);
+  */
+    $query->bindParam("price1Day", $_POST['price_1_day']);
+    $query->bindParam("latitude", $_POST['latitude']);
+    $query->bindParam("longitude", $_POST['longitude']);
     
     $query->execute();
 
