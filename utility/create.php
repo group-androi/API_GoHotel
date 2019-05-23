@@ -1,23 +1,30 @@
 <?php 
 
-    require("./../helper/checkToken.php");
-if (empty($_POST['name']) || $_FILES['image']) {
-	echo json_encode(array("message"=>"Parameter null."));
+    require_once("./../helper/checkToken.php");
+if (empty($_POST['name']) || empty($_FILES['image'])) {
+	echo json_encode(array("id_inserted"=>-1));
+    http_response_code(400);
 	die();
-}    
-	require("./../helper/connect_db.php");
+}   
+if (move_uploaded_file($_FILES["image"]["tmp_name"], "files/" . basename($_FILES["image"]["name"]))) {
+	require_once("./../helper/connect_db.php");
 	$db = (new myDatabase())->connect();
     $sql = "INSERT INTO `utility`(`name_utility`, `image`) VALUES (:name,:img)";
     $query = $db->prepare($sql);
     $query->bindParam("name", $_POST['name']);
-    $query->bindParam("img", GetDirectoryCurrent().'files/'.$_FILES["image"]["name"]);
+
+    $tempStr=GetDirectoryCurrent().'files/'.$_FILES["image"]["name"];
+    $query->bindParam("img", $tempStr);
     $query->execute();
     
     echo json_encode(array("id_inserted"=>$db->lastInsertId()));
     
     $query->closeCursor();
-    
-    move_uploaded_file($_FILES["image"]["tmp_name"], "files/" . basename($_FILES["image"]["name"]));
         
     http_response_code(200);
+    die();
+}
+    echo json_encode(array("id_inserted"=>-1));
+
+    http_response_code(400);
  ?>

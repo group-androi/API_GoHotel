@@ -6,7 +6,8 @@
 		"613ad104-b1c2-c81a-e133-35f96e578d92",
 		"5029da96-bee7-de6d-19c0-1af443960a37",
 		"5dfd927d-ce1e-ef15-1eeb-b3ed1ecd8436",
-		"9aa09a77-39fc-8cfb-9ff2-da42d860d006"
+		"9aa09a77-39fc-8cfb-9ff2-da42d860d006",
+		"096afe4a-52eb-2a92-3733-d39dd49e3c99"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -14,6 +15,49 @@
 	"owner": "5557830",
 	"public": false,
 	"requests": [
+		{
+			"id": "096afe4a-52eb-2a92-3733-d39dd49e3c99",
+			"headers": "token:  \n",
+			"headerData": [
+				{
+					"key": "token",
+					"value": " ",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost/qlhs/utility/create.php",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "image",
+					"value": "",
+					"description": "",
+					"type": "file",
+					"enabled": true
+				},
+				{
+					"key": "name",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1558623673007,
+			"name": "utility/create.php",
+			"description": "",
+			"collectionId": "ff405afd-a7cf-bd84-b5f1-ae13df8c8fcb",
+			"responses": []
+		},
 		{
 			"id": "5029da96-bee7-de6d-19c0-1af443960a37",
 			"headers": "//token: \n",

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 23, 2019 at 02:33 PM
+-- Generation Time: May 23, 2019 at 03:02 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -971,7 +971,22 @@ CREATE TABLE IF NOT EXISTS `utility` (
   `name_utility` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `image` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id_utility`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `utility`
+--
+
+INSERT INTO `utility` (`id_utility`, `name_utility`, `image`) VALUES
+(2, 'Cảm biến ánh sáng', 'localhost/qlhs/utility/files/2599_denled8[1].jpg'),
+(3, 'Có Tivi', 'localhost/qlhs/utility/files/SonyLCD[1].jpg'),
+(4, 'Đưa đón sân bay', 'localhost/qlhs/utility/files/duadonsanbay.png'),
+(5, 'Nằm ở trung tâm', 'localhost/qlhs/utility/files/namotrungtam.png'),
+(6, 'Wifi miễn phí cho mọi phòng', 'localhost/qlhs/utility/files/wifi.png'),
+(7, 'Dịch vụ làm đẹp', 'localhost/qlhs/utility/files/maysaytoc.png'),
+(8, 'Gần bãi biển', 'localhost/qlhs/utility/files/ganbien.png'),
+(9, 'Có bar', 'localhost/qlhs/utility/files/minibar.png'),
+(10, 'Dọn phòng hằng ngày', 'localhost/qlhs/utility/files/donphonghangngay.png');
 
 -- --------------------------------------------------------
 
