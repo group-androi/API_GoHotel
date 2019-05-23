@@ -1,5 +1,5 @@
 <?php 
-
+require_once("./../helper/connect_db.php");
 function CheckToken($token = "")
 {
 	$db = (new myDatabase())->connect();
