@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 23, 2019 at 03:13 PM
+-- Generation Time: May 23, 2019 at 03:36 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -1013,6 +1013,16 @@ CREATE TABLE IF NOT EXISTS `utilityroom` (
   KEY `room_id_2` (`room_id`),
   KEY `hotel_id` (`hotel_id`,`room_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `utilityroom`
+--
+
+INSERT INTO `utilityroom` (`utility_id`, `hotel_id`, `room_id`) VALUES
+(2, 2, NULL),
+(3, 2, 2),
+(4, 2, 2),
+(5, 2, 2);
 
 --
 -- Constraints for dumped tables

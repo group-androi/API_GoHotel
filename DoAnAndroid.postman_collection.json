@@ -8,7 +8,8 @@
 		"5dfd927d-ce1e-ef15-1eeb-b3ed1ecd8436",
 		"9aa09a77-39fc-8cfb-9ff2-da42d860d006",
 		"096afe4a-52eb-2a92-3733-d39dd49e3c99",
-		"29529aa0-9dfd-4223-9119-aeea67dc2ecc"
+		"29529aa0-9dfd-4223-9119-aeea67dc2ecc",
+		"65f99adc-1dfd-46c8-a956-3a79b611973a"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -308,6 +309,56 @@
 			"time": 1558621966865,
 			"name": "hotel/create.php",
 			"description": "ddddas",
+			"collectionId": "ff405afd-a7cf-bd84-b5f1-ae13df8c8fcb",
+			"responses": []
+		},
+		{
+			"id": "65f99adc-1dfd-46c8-a956-3a79b611973a",
+			"headers": "token:  \n",
+			"headerData": [
+				{
+					"key": "token",
+					"value": " ",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost/qlhs/utilityroom/create.php",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "utility_id",
+					"value": "5",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "hotel_id",
+					"value": "2",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "room_id",
+					"value": "2",
+					"description": "allow null",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1558625739244,
+			"name": "utilityroom/create.php",
+			"description": "",
 			"collectionId": "ff405afd-a7cf-bd84-b5f1-ae13df8c8fcb",
 			"responses": []
 		},
