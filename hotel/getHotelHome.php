@@ -19,7 +19,7 @@
         $limit=" LIMIT ".$_POST['limitcount'].", ".$_POST['limitcount'];
     }
 
-    $query = $db->prepare("SELECT *, SQRT((latitude - :latitude)*(latitude - :latitude)+(longitude - :longitude)*(longitude - :longitude)) 'distance' FROM `hotel` ORDER BY ((latitude - :latitude)*(latitude - :latitude)+(longitude - :longitude)*(longitude - :longitude)) ".$limit);
+    $query = $db->prepare("SELECT *, SQRT((latitude - :latitude)*(latitude - :latitude)+(longitude - :longitude)*(longitude - :longitude)) 'distance' FROM `hotel`, `image` WHERE `image`.`hotel_id` = `hotel`.`id_hotel` ORDER BY ((latitude - :latitude)*(latitude - :latitude)+(longitude - :longitude)*(longitude - :longitude)) ".$limit);
     $query->bindParam("latitude", $_POST['latitude']);
     $query->bindParam("longitude", $_POST['longitude']);
 
