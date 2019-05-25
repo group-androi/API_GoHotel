@@ -1,6 +1,6 @@
 <?php 
 
-    require("./../helper/checkToken.php");
+    //require("./../helper/checkToken.php");
     
 	require("./../helper/connect_db.php");
 	$Database = new myDatabase();
