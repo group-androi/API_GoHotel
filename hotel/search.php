@@ -2,10 +2,17 @@
 
     //require("./../helper/checkToken.php");
     
-if (isset($_GET['key'])) {
-	require_once("./../helper/connect_db.php");
+if (isset($_GET['key']) || isset($_POST['key'])) {
+    require_once("./../helper/connect_db.php");
+    require_once("./../helper/helper.php");
 	$Database = new myDatabase();
 	$db = $Database->connect();
+
+    $key_search=isset($_POST['key']) ? $_POST['key'] : $_GET['key'];
+
+    saveKeyword($key_search);
+
+    $key_search='%'.$key_search.'%';
 
     $query = $db->prepare("SELECT id_hotel 'key', 
     							name_hotel 'name', 
@@ -16,12 +23,14 @@ if (isset($_GET['key'])) {
     							latitude, 
     							longitude 
     						FROM hotel 
-    						WHERE name_hotel = CONCAT('%',:keyword,'%')");
-    $query->bindParam("keyword", $_GET['key']);
+    						WHERE name_hotel like :keyword");
+    $query->bindParam("keyword", $key_search);
     $query->execute();
     echo json_encode($query->fetchAll());
     $query->closeCursor();
 } else {
     require("./get.php");
 }
- ?>}
+
+
+ ?>

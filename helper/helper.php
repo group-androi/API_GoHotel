@@ -36,4 +36,15 @@ function GetDirectoryCurrent()
 {
     return str_replace(basename($_SERVER['SCRIPT_FILENAME']), "", $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 }
+
+function saveKeyword($value='')
+{
+    $sql = "INSERT INTO `key_word`(`key_word`) VALUES (:key)";
+    $query = (new myDatabase())->connect()->prepare($sql);
+
+    $query->bindParam("key",$value);
+    $query->execute();
+    
+    $query->closeCursor();
+}
  ?>
