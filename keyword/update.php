@@ -1,9 +1,9 @@
 <?php 
 
-    require("./../helper/checkToken.php");
+    require_once("./../helper/checkToken.php");
     
 if ((isset($_GET['key_new']) || isset($_POST['key_new'])) && (isset($_GET['key_old']) || isset($_POST['key_old']))) {
-	require("./../helper/connect_db.php");
+	require_once("./../helper/connect_db.php");
 	$db = (new myDatabase())->connect();
     $sql = "UPDATE `key_word` 
 		    SET `key_word`= :keyNew WHERE 

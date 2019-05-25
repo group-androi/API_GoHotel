@@ -1,8 +1,8 @@
 <?php
 
-require("./../helper/checkToken.php");
+require_once("./../helper/checkToken.php");
 
-require("./delete.php");
+require_once("./delete.php");
 
 $count_updated = 0;
 if (empty($_POST['hotel']) || empty($_FILES['file'])) {
@@ -11,7 +11,7 @@ if (empty($_POST['hotel']) || empty($_FILES['file'])) {
 }
 try {
     for ($i=0; $i < count($_FILES['file']['name']); $i++) { 
-        require('./..helper/connect_db.php');
+        require_once('./..helper/connect_db.php');
         $db=(new myDatabase())->connect();
 
         if (move_uploaded_file($_FILES["file"]["tmp_name"][i], "files/" . basename($_FILES["file"]["name"][i]))) {

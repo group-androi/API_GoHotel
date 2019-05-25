@@ -3,19 +3,34 @@
 # table City
 +	get - /city/get.php - lấy thông tin (tên) của tỉnh thành với id tương ứng nếu không truyền id thì sẽ lấy toàn bộ thông tin
 		Parameter: 
-			id - mã tỉnh thành - nếu có
-		Return:
-			json - all record city
+			id - mã tỉnh thành - nếu cần
 		
-+	post - /city/create.php - thêm một tỉnh thành. 
++	post - /city/create.php - thêm một tỉnh thành. - token
 		Parameter:
 			name - tên tỉnh thành
-+	post - /city/update.php - cập nhật lại tên thành phố. 
++	post - /city/update.php - cập nhật lại tên thành phố. - token
 		Parameter:
 			id - mã tỉnh thành muốn sửa
 			city_name - tên tỉnh thành mới
-+	get - /city/delete.php - xóa tỉnh thành với id tương ứng
++	get - /city/delete.php - xóa tỉnh thành với id tương ứng - token
 		Parameter: id - mã tỉnh thành
+
+# table Device
++	post - /city/create.php - 
+		Parameter:
+			device_id - 
+			longitude -
+			latitude - 
++	get - /city/delete.php -  - token
+		Parameter: device_id - 
++	get - /city/get.php -  - token
+		Parameter: 
+			device_id -  - nếu chỉ lấy 1 thông tin
++	post - /city/update.php -  - token
+		Parameter:
+			device_id - 
+			latitude - kinh độ mới - nếu cần truyền
+			longitude - vĩ độ mới - nếu cần truyền
 
 # table District
 	post/get - /district/accordingToCityId.php - lấy danh sách quận huyện theo mã tỉnh thành.
@@ -47,16 +62,18 @@
 			longitude_to - vĩ độ kết thúc
 	get - /hotel/get.php - lấy thông tin của 1 khách sạn
 		Args: id - mã khách sạn - bỏ nếu muốn lấy all record
-	post - /hotel/create.php - thêm một khách sạn
+	post - /hotel/create.php - thêm một khách sạn - token
 		Parameter:
 			name - tên khách sạn
 			address - địa chỉ khách sạn
 			district_id - mã quận/huyện
 			city_id - mã tỉnh thành
-			price_1_day - chi phí trong 1 ngày (24 giờ)
-			latitude - vĩ độ của khách sạn trên bề mặt trái đất
-			longitude - kinh độ của khách sạn trên bề mặt trái đất
-	post - /hotel/update.php - cập nhật 1 khách sạn với id tương ứng
+			price_1_day - chi phí trong 1 ngày (24 giờ) - null
+			latitude - vĩ độ của khách sạn trên bề mặt trái đất - null
+			longitude - kinh độ của khách sạn trên bề mặt trái đất - null
+			check_in - thời gian nhận phòng - null
+			check_out - thời gian trả phòng - null
+	post - /hotel/update.php - cập nhật 1 khách sạn với id tương ứng - token
 		Parameter:
 			id - mã khách sạn sẽ thay đổi
 			name - tên khách sạn
@@ -66,9 +83,11 @@
 			price_1_day - chi phí trong 1 ngày (24 giờ)
 			latitude - vĩ độ của khách sạn trên bề mặt trái đất
 			longitude - kinh độ của khách sạn trên bề mặt trái đất
-	get - /hotel/delete.php - xóa 1 khách sạn nào đó
-		Parameter: id - mã khách sạn muốn xóa
-	get/post - /hotel/search.php - tìm khách sạn theo tên
+			check_in - thời gian nhận phòng - null
+			check_out - thời gian trả phòng - null
+	get - /hotel/delete.php - xóa 1 khách sạn nào đó - token
+		Parameter: id - mã khách sạn muốn xóa - không truyền sẽ xóa tất cả
+	get/post - /hotel/search.php - tìm khách sạn theo tên (đồng thời sẽ lưu từ khóa vào cơ sở dữ liệu)
 		Parameter: key - từ khóa
 	post - /hotel/getHotelHome.php - lấy danh sách 
 		Parameter:
@@ -81,6 +100,58 @@
 			latitude -
 			longitude - 
 			radius - 
+
+# table Image
+	post - /image/create.php - thêm ảnh khách sạn - token
+		Parameter:
+			hotel_id - mã khách sạn
+			room_id - mã phòng muốn nhận - không cần truyền
+			image[] - danh sách file muốn up lên
+	post - /image/delete.php - xóa dữ liệu dựa vào 1 trong các giá trị. Khi không truyền giá trị nào thì sẽ xóa hết dữ liệu. - token
+		Parameter:
+			hotel - mã khách sạn - không cần truyền
+			room - mã phòng - không cần truyền
+			address_image - đường dẫn file muốn xóa - không cần truyền
+	post - /image/get.php
+		Parameter:
+			hotel - mã khách sạn - không cần truyền
+			room - mã phòng - không cần truyền
+			address_image - đường dẫn file - không cần truyền
+	post - /image/update.php
+		Parameter:
+			hotel - mã khách sạn - không cần truyền
+			room - mã phòng - không cần truyền
+			file[] - đường dẫn file muốn thêm vào - không cần truyền
+			
+# table Keyword
+	get/post - /keyword/get.php - 
+		Parameter:
+			key - từ khóa - không truyền nếu muốn lấy tất cả
+	get/post - /keyword/create.php - 
+		Parameter:
+			key - từ khóa cần tạo - 
+	get/post - /keyword/delete.php -  - token
+		Parameter:
+			key -  - không truyền sẽ xóa tất cả
+	get/post - /ketword/update.php -  - token
+		Parameter:
+			key_new - từ khóa mới
+			key_old - từ khóa cũ
+
+# table Room
+	get/post - /room/create.php - 
+		Parameter:
+			key - từ khóa cần tạo - 
+	get/post - /room/get.php - 
+		Parameter:
+			key - từ khóa - không truyền nếu muốn lấy tất cả
+	get/post - /room/delete.php -  - token
+		Parameter:
+			key -  - không truyền sẽ xóa tất cả
+	get/post - /room/update.php -  - token
+		Parameter:
+			key_new - từ khóa mới
+			key_old - từ khóa cũ
 
 # table User
 	get - /hotel/<<id>> - lấy thông tin của  người dùng
@@ -107,18 +178,3 @@
 		Parameter:
 			username - tên đăng nhập
 			password - mật khẩu
-
-# table Keyword
-	get/post - /keyword/get.php - 
-		Parameter:
-			key - từ khóa - không truyền nếu muốn lấy tất cả
-	get/post - /keyword/create.php - 
-		Parameter:
-			key - từ khóa cần tạo - 
-	get/post - /keyword/delete.php -  - token
-		Parameter:
-			key -  - không truyền sẽ xóa tất cả
-	get/post - /ketword/update.php -  - token
-		Parameter:
-			key_new - từ khóa mới
-			key_old - từ khóa cũ

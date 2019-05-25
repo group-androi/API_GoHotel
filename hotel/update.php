@@ -1,13 +1,9 @@
 <?php 
 
-    require("./../helper/checkToken.php");
+    require_once("./../helper/checkToken.php");
     
-if(!empty($_POST['name']) && 
-    !empty($_POST['address']) && 
-    !empty($_POST['district_id']) && 
-    !empty($_POST['city_id']) && 
-    !empty($_POST['id']))
-	require("./../helper/connect_db.php");
+if(isset($_POST['id']))
+	require_once("./../helper/connect_db.php");
 	$db = (new myDatabase())->connect();
     $sql = "UPDATE `hotel` 
             SET `name_hotel` = :name, 
@@ -16,7 +12,9 @@ if(!empty($_POST['name']) &&
                 `city_id` = :cityId, 
                 `price_room_per_day` = :price1Day, 
                 `latitude` = :latitude, 
-                `longitude` = :longitude 
+                `longitude` = :longitude, 
+                `check_in` = :checkIn,
+                `check_out` = :checkOut 
             WHERE `id_hotel` = :id";
     $query = $db->prepare($sql);
 
@@ -24,9 +22,11 @@ if(!empty($_POST['name']) &&
     $db->bindParam("address", $_POST['address']);
     $db->bindParam("districtId", $_POST['district_id']);
     $db->bindParam("cityId", $_POST['city_id']);
-    $db->bindParam("price1Day", (!empty($_POST['price_1_day'])) ? $_POST['price_1_day'] : 'null');
-    $db->bindParam("latitude", (!empty($_POST['latitude'])) ? $_POST['latitude'] : 'null');
-    $db->bindParam("longitude", (!empty($_POST['longitude'])) ? $_POST['longitude'] : 'null');
+    $db->bindParam("price1Day", $_POST['price_1_day']);
+    $db->bindParam("latitude", $_POST['latitude']);
+    $db->bindParam("longitude", $_POST['longitude']);
+    $db->bindParam("checkIn", $_POST['check_in']);
+    $db->bindParam("checkOut", $_POST['check_out']);
     $db->bindParam("id", $_POST['id']);
 
     $query->execute();

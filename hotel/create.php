@@ -1,6 +1,6 @@
 <?php 
 
-    require("./../helper/checkToken.php");
+    require_once("./../helper/checkToken.php");
     
 if (!empty($_POST['name']) && 
 	!empty($_POST['address']) && 
@@ -10,7 +10,7 @@ $temp="";
 	require_once("./../helper/connect_db.php");
 	$db = (new myDatabase())->connect();
     
-    $sql = "INSERT INTO `hotel`(`name_hotel`, `address`, `district_id`, `city_id`, `price_room_per_day`, `latitude`, `longitude`) VALUES (:nameHotel, :address, :districtId, :cityId, :price1Day, :latitude, :longitude)";
+    $sql = "INSERT INTO `hotel`(`name_hotel`, `address`, `district_id`, `city_id`, `price_room_per_day`, `latitude`, `longitude`, `check_in`, `check_out`) VALUES (:nameHotel, :address, :districtId, :cityId, :price1Day, :latitude, :longitude, :checkIn, :checkOut)";
     
     $query = $db->prepare($sql);
     
@@ -21,6 +21,8 @@ $temp="";
     $query->bindParam("price1Day", $_POST['price_1_day']);
     $query->bindParam("latitude", $_POST['latitude']);
     $query->bindParam("longitude", $_POST['longitude']);
+    $query->bindParam("checkIn", $_POST['check_in']);
+    $query->bindParam("checkout", $_POST['check_out']);
     
     $query->execute();
 

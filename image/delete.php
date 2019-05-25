@@ -1,11 +1,11 @@
 <?php 
 
-    require("./../helper/checkToken.php");
+    require_once("./../helper/checkToken.php");
 
-    require("./../helper/connect_db.php");
+    require_once("./../helper/connect_db.php");
     $db = (new myDatabase())->connect();
 
-    $array_parameter=array();
+    $array_parameter=array("1");
     if (!empty($_POST["hotel"])) {
         array_push($array_parameter, 'hotel_id = :hotel');
     }

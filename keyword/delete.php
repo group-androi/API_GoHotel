@@ -1,10 +1,10 @@
 <?php 
 
-    require("./../helper/checkToken.php");
+    require_once("./../helper/checkToken.php");
     
     $where = (isset($_GET['key']) || isset($_POST['key'])) ? "WHERE key_word = :key" : "" ;
 
-	require("./../helper/connect_db.php");
+	require_once("./../helper/connect_db.php");
 	$db = (new myDatabase())->connect();
     $query = $db->prepare("DELETE FROM key_word ".$where);
     if (isset($_GET['key']) || isset($_POST['key'])) {

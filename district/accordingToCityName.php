@@ -1,6 +1,6 @@
 <?php 
 
-    //require("./../helper/checkToken.php");
+    //require_once("./../helper/checkToken.php");
     
 if (!empty($_GET['city_name']) || 
 	!empty($_POST['city_name'])) {

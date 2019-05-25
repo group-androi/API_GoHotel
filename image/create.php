@@ -2,7 +2,7 @@
 
 require_once("./../helper/checkToken.php");
 $count_updated = 0;
-if (empty($_POST['hotel_id']) || empty($_FILES['file_id'])) {
+if (empty($_POST['hotel_id']) || empty($_FILES['file'])) {
 	echo json_encode(array("message"=>"", 'result'=>-1));
 	http_response_code(400);
 	die();

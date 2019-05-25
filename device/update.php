@@ -1,5 +1,5 @@
 <?php 
-    //require("./../helper/checkToken.php");
+    //require_once("./../helper/checkToken.php");
     
 if(!empty($_POST["device_id"])){
 
@@ -15,7 +15,7 @@ if(!empty($_POST["device_id"])){
 
     $parameter = implode(", ", $changeParam);
 
-	require("./../helper/connect_db.php");
+	require_once("./../helper/connect_db.php");
 	$db = (new myDatabase())->connect();
     $sql = "UPDATE `device` 
 		    SET ".$parameter." WHERE 

@@ -1,10 +1,10 @@
 <?php 
 
-    require("./../helper/checkToken.php");
+    require_once("./../helper/checkToken.php");
     
     $where = (!empty($_GET["id"])) ? "WHERE id_hotel=:id" : "" ;
 
-	require("./../helper/connect_db.php");
+	require_once("./../helper/connect_db.php");
 	$db = (new myDatabase())->connect();
     $query = $db->prepare("DELETE FROM hotel ".$where);
     if (!empty($_GET["id"])) {
