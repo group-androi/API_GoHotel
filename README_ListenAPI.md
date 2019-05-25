@@ -68,7 +68,7 @@
 			longitude - kinh độ của khách sạn trên bề mặt trái đất
 	get - /hotel/delete.php - xóa 1 khách sạn nào đó
 		Parameter: id - mã khách sạn muốn xóa
-	get - /hotel/search.php - tìm khách sạn theo tên
+	get/post - /hotel/search.php - tìm khách sạn theo tên
 		Parameter: key - từ khóa
 	post - /hotel/getHotelHome.php - lấy danh sách 
 		Parameter:
