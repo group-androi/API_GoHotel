@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 23, 2019 at 04:05 PM
+-- Generation Time: May 25, 2019 at 05:33 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -920,6 +920,42 @@ INSERT INTO `image` (`name_image`, `hotel_id`, `room_id`) VALUES
 ('localhost/qlhs/image//files/grand_hotel_green.jpg', 1, NULL),
 ('localhost/qlhs/image//files/grand-hotel-vung-tau1.jpg', 1, NULL),
 ('localhost/qlhs/image//files/khach-san-grand-vung-tau.jpg', 1, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `key_word`
+--
+
+DROP TABLE IF EXISTS `key_word`;
+CREATE TABLE IF NOT EXISTS `key_word` (
+  `key_word` varchar(254) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `key_word`
+--
+
+INSERT INTO `key_word` (`key_word`) VALUES
+('Hotel'),
+('Hotel'),
+('Hotel'),
+('Hotel'),
+('Hotel'),
+('Hotel'),
+('Hotel'),
+('%Hotel%'),
+('Hotel'),
+('Hotel'),
+('Hotel'),
+('Hotel'),
+('H'),
+('H'),
+(''),
+(''),
+('H'),
+('H'),
+('Hotel');
 
 -- --------------------------------------------------------
 

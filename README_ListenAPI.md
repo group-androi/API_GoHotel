@@ -107,3 +107,18 @@
 		Parameter:
 			username - tên đăng nhập
 			password - mật khẩu
+
+# table Keyword
+	get/post - /keyword/get.php - 
+		Parameter:
+			key - từ khóa - không truyền nếu muốn lấy tất cả
+	get/post - /keyword/create.php - 
+		Parameter:
+			key - từ khóa cần tạo - 
+	get/post - /keyword/delete.php -  - token
+		Parameter:
+			key -  - không truyền sẽ xóa tất cả
+	get/post - /ketword/update.php -  - token
+		Parameter:
+			key_new - từ khóa mới
+			key_old - từ khóa cũ
