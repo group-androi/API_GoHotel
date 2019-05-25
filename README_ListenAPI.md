@@ -70,6 +70,17 @@
 		Parameter: id - mã khách sạn muốn xóa
 	get - /hotel/search.php - tìm khách sạn theo tên
 		Parameter: key - từ khóa
+	post - /hotel/getHotelHome.php - lấy danh sách 
+		Parameter:
+			latitude - 
+			longitude -
+			limitfrom - allow null
+			limitcount - allow null
+	post - /hotel/getHotelMap
+		Parameter:
+			latitude -
+			longitude - 
+			radius - 
 
 # table User
 	get - /hotel/<<id>> - lấy thông tin của  người dùng
