@@ -2,7 +2,7 @@
 
     //require("./../helper/checkToken.php");
     
-if (!empty($_GET['key'])) {
+if (isset($_GET['key'])) {
 	require_once("./../helper/connect_db.php");
 	$Database = new myDatabase();
 	$db = $Database->connect();
