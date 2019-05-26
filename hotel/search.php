@@ -33,7 +33,7 @@ if (isset($_GET['key']) || isset($_POST['key'])) {
     echo is_numeric($_POST['limitcount']).'<br/>';
     echo "SELECT * FROM `hotel`left join `image` on `image`.`hotel_id` = `hotel`.`id_hotel` WHERE name_hotel like \'".$key_search."\' ".$limit.'<br/>';
 */
-    $query = $db->prepare("SELECT * FROM `hotel`left join `image` on `image`.`hotel_id` = `hotel`.`id_hotel` WHERE name_hotel like :keyword ".$limit);
+    $query = $db->prepare("SELECT * FROM `hotel`left join `image` on `image`.`hotel_id` = `hotel`.`id_hotel` WHERE name_hotel like :keyword GROUP by `hotel`.`name_hotel` ".$limit);
     $query->bindParam("keyword", $key_search);
     $query->execute();
     echo json_encode($query->fetchAll());
