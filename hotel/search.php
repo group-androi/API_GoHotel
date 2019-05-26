@@ -14,16 +14,27 @@ if (isset($_GET['key']) || isset($_POST['key'])) {
 
     $key_search='%'.$key_search.'%';
 
-    $query = $db->prepare("SELECT id_hotel 'key', 
-    							name_hotel 'name', 
-    							address, 
-    							(SELECT name_district FROM district WHERE district_id = id_district) 'district', 
-    							(SELECT name_city FROM city WHERE city_id = id_city) 'city', 
-    							price_room_per_day, 
-    							latitude, 
-    							longitude 
+    $limit="";
+
+    $limitfrom=isset($_GET['limitfrom']) ? $_GET['limitfrom'] : isset($_POST['limitfrom']) ? $_POST['limitfrom'] : '';
+    $limitcount=isset($_GET['limitcount']) ? $_GET['limitcount'] : isset($_POST['limitcount']) ? $_POST['limitcount'] : '';
+
+    $checkNumberLimit = isset($limitfrom) && isset($limitcount) && NULL!=filter_var($limitfrom, FILTER_VALIDATE_INT) && NULL!=filter_var($limitcount, FILTER_VALIDATE_INT);
+
+    if ($checkNumberLimit) {
+        $limit=" LIMIT ".$limitfrom.", ".$limitcount;
+    }
+
+    /*
+    echo $limit."<br/>";
+    echo isset($_POST['limitfrom']).'<br/>';
+    echo isset($_POST['limitcount']).'<br/>';
+    echo filter_var($_POST['limitfrom'], FILTER_VALIDATE_INT).'<br/>';
+    echo filter_var($_POST['limitcount'], FILTER_VALIDATE_INT).'<br/>';
+*/
+    $query = $db->prepare("SELECT *
     						FROM hotel 
-    						WHERE name_hotel like :keyword");
+    						WHERE name_hotel like :keyword ".$limit);
     $query->bindParam("keyword", $key_search);
     $query->execute();
     echo json_encode($query->fetchAll());

@@ -13,7 +13,7 @@
 
     $limit="";
 
-    $checkNumberLimit = isset($_POST['limitfrom']) && isset($_POST['limitcount']) && filter_var($_POST['limitfrom'], FILTER_VALIDATE_INT) && filter_var($_POST['limitcount'], FILTER_VALIDATE_INT);
+    $checkNumberLimit = isset($_POST['limitfrom']) && isset($_POST['limitcount']) && NULL!=filter_var($_POST['limitfrom'], FILTER_VALIDATE_INT) && NULL!=filter_var($_POST['limitcount'], FILTER_VALIDATE_INT);
 
     if ($checkNumberLimit) {
         $limit=" LIMIT ".$_POST['limitcount'].", ".$_POST['limitcount'];

@@ -89,6 +89,8 @@
 		Parameter: id - mã khách sạn muốn xóa - không truyền sẽ xóa tất cả
 	get/post - /hotel/search.php - tìm khách sạn theo tên (đồng thời sẽ lưu từ khóa vào cơ sở dữ liệu)
 		Parameter: key - từ khóa
+			limitfrom - allow null
+			limitcount - allow null
 	post - /hotel/getHotelHome.php - lấy danh sách 
 		Parameter:
 			latitude - 
