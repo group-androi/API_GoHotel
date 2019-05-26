@@ -15,6 +15,7 @@
     }
     $where = " WHERE ".implode(" AND ", $array_parameter);
 
+    //echo "SELECT `id_room` 'id', `name_room` 'name', `price_per_day`, `image`, `count` 'number_of_rooms', `status`, `hotel_id` FROM `room` ".$where;
 
     $query = $db->prepare("SELECT `id_room` 'id', `name_room` 'name', `price_per_day`, `image`, `count` 'number_of_rooms', `status`, `hotel_id` FROM `room` ".$where);
     
@@ -25,7 +26,7 @@
         $query->bindParam("hotel", $_GET['hotel']);
     }
 
-$query->execute();
+    $query->execute();
     //$citys = $db->fetchAll();
     echo json_encode($query->fetchAll());
  ?>

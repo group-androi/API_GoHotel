@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 25, 2019 at 05:33 PM
+-- Generation Time: May 26, 2019 at 02:57 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -875,6 +875,8 @@ CREATE TABLE IF NOT EXISTS `hotel` (
   `price_room_per_day` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `latitude` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `longitude` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `check_in` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `check_out` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_hotel`),
   KEY `city_id` (`city_id`,`district_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -883,13 +885,13 @@ CREATE TABLE IF NOT EXISTS `hotel` (
 -- Dumping data for table `hotel`
 --
 
-INSERT INTO `hotel` (`id_hotel`, `name_hotel`, `address`, `district_id`, `city_id`, `price_room_per_day`, `latitude`, `longitude`) VALUES
-(1, 'Khách sạn Grand', '2 Nguyễn Du, Phường 1', 747, 77, '1166667', '10.3437429', '107.0054358'),
-(2, 'Vũng Tàu Intourco Resort', '1A Thùy Vân, Phường 8', 747, 77, '1219672', '10.3523074', '107.0324322'),
-(3, 'Leman Cap Resort Vung Tau', '60 Hạ Long, Phường 2', 747, 77, '1510234', '10.3300774', '107.0073424'),
-(4, 'Green Hotel Vũng Tàu', '147C Thùy Vân, Phường Thắng Tam', 747, 77, '612500', '10.3373428', '107.0208231'),
-(5, 'Lan Rừng Resort & Spa', '03-06 Hạ Long', 747, 77, '708400', '10.3267925', '107.0111984'),
-(6, 'Khách sạn Mường Thanh', '09 Thống Nhất, Phường 1', 747, 77, '1105032', '10.3456574', '107.0053234');
+INSERT INTO `hotel` (`id_hotel`, `name_hotel`, `address`, `district_id`, `city_id`, `price_room_per_day`, `latitude`, `longitude`, `check_in`, `check_out`) VALUES
+(1, 'Khách sạn Grand', '2 Nguyễn Du, Phường 1', 747, 77, '1166667', '10.3437429', '107.0054358', NULL, NULL),
+(2, 'Vũng Tàu Intourco Resort', '1A Thùy Vân, Phường 8', 747, 77, '1219672', '10.3523074', '107.0324322', NULL, NULL),
+(3, 'Leman Cap Resort Vung Tau', '60 Hạ Long, Phường 2', 747, 77, '1510234', '10.3300774', '107.0073424', NULL, NULL),
+(4, 'Green Hotel Vũng Tàu', '147C Thùy Vân, Phường Thắng Tam', 747, 77, '612500', '10.3373428', '107.0208231', NULL, NULL),
+(5, 'Lan Rừng Resort & Spa', '03-06 Hạ Long', 747, 77, '708400', '10.3267925', '107.0111984', NULL, NULL),
+(6, 'Khách sạn Mường Thanh', '09 Thống Nhất, Phường 1', 747, 77, '1105032', '10.3456574', '107.0053234', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -955,7 +957,43 @@ INSERT INTO `key_word` (`key_word`) VALUES
 (''),
 ('H'),
 ('H'),
-('Hotel');
+('Hotel'),
+('H'),
+('H'),
+('H'),
+('H'),
+('H'),
+('H'),
+('H'),
+('H'),
+('H'),
+('H'),
+('H'),
+('H'),
+('H'),
+('H'),
+('H'),
+('H'),
+('H'),
+('H'),
+('H'),
+('Hotel'),
+('Hotel'),
+('Hotel'),
+('Hotel'),
+('Hotel'),
+('Kh'),
+('Kh'),
+('Kh'),
+('Kh'),
+('Kh'),
+('Kh'),
+('Kh'),
+('Kh'),
+('Kh'),
+('Kh'),
+('Kh'),
+('Kh');
 
 -- --------------------------------------------------------
 
