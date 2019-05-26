@@ -1,6 +1,6 @@
 <?php 
 
-    require("./../helper/checkToken.php");
+    require_once("./../helper/checkToken.php");
     
     if (!empty($_POST['id']) && 
         !empty($_POST['hotel'])) {
@@ -23,7 +23,7 @@
         }
         $set = explode(", ", $array_parameter);
         
-        require("./../helper/connect_db.php");
+        require_once("./../helper/connect_db.php");
         $db = (new myDatabase())->connect();
         
         $sql = "UPDATE `room` SET ".$set." WHERE `id_room`=:id  

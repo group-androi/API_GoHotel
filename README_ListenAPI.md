@@ -141,19 +141,26 @@
 			key_old - từ khóa cũ
 
 # table Room
-	get/post - /room/create.php - 
+	post - /room/create.php - 
 		Parameter:
-			key - từ khóa cần tạo - 
-	get/post - /room/get.php - 
+			name - 
+			hotel_id - 
+			price_1_day -  - allow null
+			image - file ảnh đại diện - k cần truyền
+			status - - k cần truyền
+			number_room -  - k cần truyền
+	get - /room/get.php - 
 		Parameter:
-			key - từ khóa - không truyền nếu muốn lấy tất cả
-	get/post - /room/delete.php -  - token
+			id - mã phòng - không truyền nếu muốn lấy tất cả
+			hotel - mã khách sạn
+	get - /room/delete.php -  - token
 		Parameter:
-			key -  - không truyền sẽ xóa tất cả
+			id - không truyền sẽ xóa tất cả
+			hotel - mã khách sạn không truyền sẽ xóa tất cả
 	get/post - /room/update.php -  - token
 		Parameter:
-			key_new - từ khóa mới
-			key_old - từ khóa cũ
+			id - mã phòng - không truyền nếu muốn lấy tất cả
+			hotel - mã khách sạn
 
 # table User
 	get - /hotel/<<id>> - lấy thông tin của  người dùng

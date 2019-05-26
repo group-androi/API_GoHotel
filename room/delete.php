@@ -1,6 +1,6 @@
 <?php 
 
-    require("./../helper/checkToken.php");
+    require_once("./../helper/checkToken.php");
     
     $array_parameter = array();
     if (isset($_GET['id'])) {
@@ -11,7 +11,7 @@
     }
     $where = " WHERE ".explode(" AND ", $array_parameter);
 
-	require("./../helper/connect_db.php");
+	require_once("./../helper/connect_db.php");
 	$db = (new myDatabase())->connect();
     $query = $db->prepare("DELETE FROM room ".$where);
     if (!empty($_GET["id"])) {
