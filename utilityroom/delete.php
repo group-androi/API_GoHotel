@@ -2,7 +2,7 @@
 
     require("./../helper/checkToken.php");
     
-    $array_param = array();
+    $array_param = array("1");
     if (isset($_GET['utility'])) {
         array_push($array_param, "utility_id = :utility");
     }

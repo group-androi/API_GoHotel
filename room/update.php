@@ -21,7 +21,7 @@
         if (isset($_FILES['image'])) {
             array_push($array_parameter, "image = :img");
         }
-        $set = explode(", ", $array_parameter);
+        $set = implode(", ", $array_parameter);
         
         require_once("./../helper/connect_db.php");
         $db = (new myDatabase())->connect();

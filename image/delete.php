@@ -15,7 +15,7 @@
     if (!empty($_POST['address_image'])) {
         array_push($array_parameter, 'name_image = :image');
     }
-    $where= " WHERE ".explode(" AND ", $array_parameter);
+    $where= " WHERE ".implode(" AND ", $array_parameter);
 
     $query = $db->prepare("SELECT name_image FROM image ".$where);
     if (!empty($_POST["hotel"])) {
