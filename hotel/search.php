@@ -33,8 +33,7 @@ if (isset($_GET['key']) || isset($_POST['key'])) {
     echo filter_var($_POST['limitcount'], FILTER_VALIDATE_INT).'<br/>';
 */
     $query = $db->prepare("SELECT *
-    						FROM hotel 
-    						WHERE name_hotel like :keyword ".$limit);
+    						FROM `hotel`, `image` WHERE `image`.`hotel_id` = `hotel`.`id_hotel` AND `image`.`room_id` = NULL AND name_hotel like :keyword ".$limit);
     $query->bindParam("keyword", $key_search);
     $query->execute();
     echo json_encode($query->fetchAll());
