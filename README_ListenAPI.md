@@ -102,6 +102,19 @@
 			latitude -
 			longitude - 
 			radius - 
+	post - /hotel/getHotelHome.php - 
+		Parameter:
+			latitude - 
+			longitude - 
+			limitfrom -  - nếu cần truyền
+			limitcount -  - nếu cần truyền
+			city_id - mã tỉnh - nếu cần truyền
+			district_id - mã quận huyện - nếu cần truyền
+			price_start - giới hạn giá phòng tối tiếu - nếu cần truyền
+			price_end - giới hạn giá phòng tối đa - nếu cần truyền
+			soft_price - sắp xếp theo giá tiền (chỉ nhận giá trị DESC hoặc ASC) - nếu cần truyền
+			soft_distance - sắp xếp theo khoảng cách (chỉ nhận giá trị DESC hoặc ASC) - nếu cần truyền
+			soft_star - sắp xếp số lượng đánh giá sao (chỉ nhận giá trị DESC hoặc ASC) - nếu cần truyền
 
 # table Image
 	post - /image/create.php - thêm ảnh khách sạn - token
@@ -161,6 +174,11 @@
 		Parameter:
 			id - mã phòng - không truyền nếu muốn lấy tất cả
 			hotel - mã khách sạn
+			name - tên phòng mới - nếu cần
+			price - giá mới - nếu cần
+			image - file ảnh đại diện mới - nếu cần truyền
+			status - - nếu cần truyền
+			number_rooms - số lượng phòng mới - nếu cần truyền
 
 # table User
 	get - /hotel/<<id>> - lấy thông tin của  người dùng

@@ -3,7 +3,7 @@
   class myDatabase {
     // DB Params
     private $host = 'localhost';
-    private $db_name = 'bookroomhotel';
+    private $db_name = 'bookroomhotel1';
     private $username = 'root';
     private $password = '';
     private $conn;
@@ -24,4 +24,5 @@
       return $this->conn;
     }
   }
+
   ?>

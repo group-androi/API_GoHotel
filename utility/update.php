@@ -21,7 +21,8 @@ if(!empty($_POST["id"])){
         $query->bindParam("name", $_POST['name']);
     }
     if (isset($_FILES['image'])) {
-        $query->bindParam("img", GetDirectoryCurrent().'files/'.$_FILES["image"]["name"]);
+        $soimage='/utility/files/'.$_FILES["image"]["name"];
+        $query->bindParam("img", $soimage);
     }
     $query->bindParam("id", $_POST['id']);
     $query->execute();

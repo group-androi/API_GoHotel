@@ -43,7 +43,7 @@
             $db->bindParam("number_room", $_POST['number_rooms']);
         }
         if (isset($_FILES['image'])){
-            $query->bindParam('img', GetDirectoryCurrent().'files/'.$_FILES["image"]["name"]);
+            $query->bindParam('img', '/room/files/'.$_FILES["image"]["name"]);
         }
         if (isset($_POST['status'])) {
             $db->bindParam("status", $_POST['status']);

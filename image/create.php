@@ -20,7 +20,7 @@ for ($i=0; $i < count($_FILES['file']['name']); $i++) {
 		    $sql="INSERT INTO `image`(`name_image`, `hotel_id`, `room_id`) VALUES (:file, :hotel, :room
 		)";
 			$query=$db->prepare($sql);
-			$fileStr = GetDirectoryCurrent().'/files/'.$_FILES["file"]["name"][$i];
+			$fileStr = '/image/files/'.$_FILES["file"]["name"][$i];
 			$query->bindParam('file', $fileStr);
 			$query->bindParam('hotel',$_POST['hotel_id']);
 			$query->bindParam('room', $_POST['room_id']);

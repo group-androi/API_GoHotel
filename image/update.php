@@ -18,9 +18,10 @@ try {
             $query="INSERT INTO `image`(`name_image`, `hotel_id`, `room_id`) VALUES (:file, :hotel, :room
         )";
             $query=$db->prepare($sql);
-            $query->bindParam('file', GetDirectoryCurrent().'/files/'.$_FILES["file"]["name"][i]);
+            $linkimage='/image/files/'.$_FILES["file"]["name"][i];
+            $query->bindParam('file', $linkimage);
             $query->bindParam('hotel',$_POST['hotel']);
-            $query->bindParam('room', empty($_POST['room']) ? '' : $_POST['room']);
+            $query->bindParam('room', $_POST['room']);
             $query->execute();
             $query->closeCursor();
             $count_updated++;

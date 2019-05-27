@@ -16,7 +16,7 @@ if (isset($_POST['name']) &&
     $query->bindParam("hotel", $_POST['hotel_id']);
     $query->bindParam("price", $_POST['price_1_day']);
 
-    $fileStr=isset($_FILES['image']) ? GetDirectoryCurrent().'files/'.$_FILES["image"]["name"] : "";
+    $fileStr=isset($_FILES['image']) ? '/room/files/'.$_FILES["image"]["name"] : "";
     $query->bindParam('image', $fileStr);
     $query->bindParam("number_room", $_POST['number_room']);
     $query->bindParam("status", $_POST['status']);

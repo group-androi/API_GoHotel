@@ -13,7 +13,7 @@ if (move_uploaded_file($_FILES["image"]["tmp_name"], "files/" . basename($_FILES
     $query = $db->prepare($sql);
     $query->bindParam("name", $_POST['name']);
 
-    $tempStr=GetDirectoryCurrent().'files/'.$_FILES["image"]["name"];
+    $tempStr='/utility/files/'.$_FILES["image"]["name"];
     $query->bindParam("img", $tempStr);
     $query->execute();
     
