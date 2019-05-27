@@ -6,7 +6,7 @@
 	$Database = new myDatabase();
 	$db = $Database->connect();
 
-	$where = (isset($_GET['key']) || isset($_POST['key'])) ? "WHERE key_word = :key" : "" ;
+	$where = '';
 
     $array_where = array('1');
     if (isset($_GET['hotel_id']) || isset($_POST['hotel_id'])) {
@@ -17,6 +17,9 @@
     }
     if (isset($_GET['comment']) || isset($_POST['comment'])) {
         array_push($array_where, 'comment = :comment');
+    }
+    if (isset($_GET['user_id']) || isset($_POST['user_id'])) {
+        array_push($array_where, 'user_id = :user');
     }
 
     $where = ' WHERE '.implode(' AND ', $array_where);
@@ -36,6 +39,10 @@
     if (isset($_GET['comment']) || isset($_POST['comment'])) {
         $comment = isset($_GET['comment']) ? $_GET['comment'] : $_POST['comment'];
         $query->bindParam("comment", $comment);
+    }
+    if (isset($_GET['user_id']) || isset($_POST['user_id'])) {
+        $user = isset($_GET['user_id']) ? $_GET['user_id'] : $_POST['user_id'];
+        $query->bindParam("user", $user);
     }
 
     $query->execute();

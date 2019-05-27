@@ -159,6 +159,33 @@
 		Parameter:
 			key_new - từ khóa mới
 			key_old - từ khóa cũ
+			
+# table Review
+	get/post - /keyword/get.php - 
+		Parameter:
+			hotel_id - mã khách sạn - không cần truyền
+			user_id - mã người dùng - không cần truyền
+			comment - bình luận người dùng - không cần truyền
+			star - sao đánh giá - không cần truyền
+	get/post - /keyword/create.php -  - token
+		Parameter:
+			hotel_id - mã khách sạn
+			user_id - mã người dùng
+			comment - bình luận người dùng - không cần truyền
+			star - sao đánh giá - không cần truyền
+	get/post - /keyword/delete.php -  - token
+		Parameter:
+			hotel_id - mã khách sạn - không cần truyền
+			user_id - mã người dùng - không cần truyền
+			comment - bình luận người dùng - không cần truyền
+			star - sao đánh giá - không cần truyền
+		(LƯU Ý SẼ XÓA TẤT CẢ NẾU K TRUYỀN GÌ CẢ)
+	get/post - /ketword/update.php -  - token
+		Parameter:
+			hotel_id - mã khách sạn
+			user_id - mã người dùng
+			comment_new - bình luận mới của người dùng - không truyền sẽ xóa nội dung
+			star_new - sao đánh giá mới - không truyền sẽ xóa nội dung
 
 # table Room
 	post - /room/create.php - 
