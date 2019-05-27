@@ -120,6 +120,9 @@
 			latitude - tung độ của trái đất
 			longitude - hoành độ của trái đất
 			radius - giới hạn khoảng cách
+			city_id - mã tỉnh - nếu cần truyền
+			district_id - mã quận huyện - nếu cần truyền
+			
 # table Image
 	post - /image/create.php - thêm ảnh khách sạn - token
 		Parameter:
