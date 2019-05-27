@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 26, 2019 at 02:57 PM
+-- Generation Time: May 27, 2019 at 02:50 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -915,13 +915,13 @@ CREATE TABLE IF NOT EXISTS `image` (
 --
 
 INSERT INTO `image` (`name_image`, `hotel_id`, `room_id`) VALUES
-('localhost/qlhs/image//files/0831201714160578.jpg', 1, NULL),
-('localhost/qlhs/image//files/234434_17031708540051594325.jpg', 1, NULL),
-('localhost/qlhs/image//files/62233934.jpg', 1, NULL),
-('localhost/qlhs/image//files/62233943.jpg', 1, NULL),
-('localhost/qlhs/image//files/grand_hotel_green.jpg', 1, NULL),
-('localhost/qlhs/image//files/grand-hotel-vung-tau1.jpg', 1, NULL),
-('localhost/qlhs/image//files/khach-san-grand-vung-tau.jpg', 1, NULL);
+('/image//files/62233943.jpg', 1, NULL),
+('/image/files/0831201714160578.jpg', 1, NULL),
+('/image/files/234434_17031708540051594325.jpg', 1, NULL),
+('/image/files/62233934.jpg', 1, NULL),
+('/image/files/grand_hotel_green.jpg', 1, NULL),
+('/image/files/grand-hotel-vung-tau1.jpg', 1, NULL),
+('/image/files/khach-san-grand-vung-tau.jpg', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -998,6 +998,19 @@ INSERT INTO `key_word` (`key_word`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `review`
+--
+
+DROP TABLE IF EXISTS `review`;
+CREATE TABLE IF NOT EXISTS `review` (
+  `hotel_id` int(11) NOT NULL,
+  `star` varchar(4) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `comment` text COLLATE utf8_unicode_ci
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `room`
 --
 
@@ -1020,7 +1033,7 @@ CREATE TABLE IF NOT EXISTS `room` (
 
 INSERT INTO `room` (`id_room`, `name_room`, `price_per_day`, `image`, `count`, `status`, `hotel_id`) VALUES
 (1, 'Phòng đơn', '320000', '', '12', 'Còn phòng', 1),
-(2, 'Phòng đơn', '350000', 'localhost/qlhs/room/files/khach-san-iris-can-tho[1].jpg', '19', 'Còn ít', 2);
+(2, 'Phòng đơn', '350000', '/room/files/khach-san-iris-can-tho[1].jpg', '19', 'Còn ít', 2);
 
 -- --------------------------------------------------------
 
@@ -1067,15 +1080,15 @@ CREATE TABLE IF NOT EXISTS `utility` (
 --
 
 INSERT INTO `utility` (`id_utility`, `name_utility`, `image`) VALUES
-(2, 'Cảm biến ánh sáng', 'localhost/qlhs/utility/files/2599_denled8[1].jpg'),
-(3, 'Có Tivi', 'localhost/qlhs/utility/files/SonyLCD[1].jpg'),
-(4, 'Đưa đón sân bay', 'localhost/qlhs/utility/files/duadonsanbay.png'),
-(5, 'Nằm ở trung tâm', 'localhost/qlhs/utility/files/namotrungtam.png'),
-(6, 'Wifi miễn phí cho mọi phòng', 'localhost/qlhs/utility/files/wifi.png'),
-(7, 'Dịch vụ làm đẹp', 'localhost/qlhs/utility/files/maysaytoc.png'),
-(8, 'Gần bãi biển', 'localhost/qlhs/utility/files/ganbien.png'),
-(9, 'Có bar', 'localhost/qlhs/utility/files/minibar.png'),
-(10, 'Dọn phòng hằng ngày', 'localhost/qlhs/utility/files/donphonghangngay.png');
+(2, 'Cảm biến ánh sáng', '/utility/files/2599_denled8[1].jpg'),
+(3, 'Có Tivi', '/utility/files/SonyLCD[1].jpg'),
+(4, 'Đưa đón sân bay', '/utility/files/duadonsanbay.png'),
+(5, 'Nằm ở trung tâm', '/utility/files/namotrungtam.png'),
+(6, 'Wifi miễn phí cho mọi phòng', '/utility/files/wifi.png'),
+(7, 'Dịch vụ làm đẹp', '/utility/files/maysaytoc.png'),
+(8, 'Gần bãi biển', '/utility/files/ganbien.png'),
+(9, 'Có bar', '/utility/files/minibar.png'),
+(10, 'Dọn phòng hằng ngày', '/utility/files/donphonghangngay.png');
 
 -- --------------------------------------------------------
 
@@ -1104,43 +1117,6 @@ INSERT INTO `utilityroom` (`utility_id`, `hotel_id`, `room_id`) VALUES
 (3, 2, 2),
 (4, 2, 2),
 (5, 2, 2);
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `district`
---
-ALTER TABLE `district`
-  ADD CONSTRAINT `district_ibfk_1` FOREIGN KEY (`city_id`) REFERENCES `city` (`id_city`);
-
---
--- Constraints for table `hotel`
---
-ALTER TABLE `hotel`
-  ADD CONSTRAINT `hotel_ibfk_1` FOREIGN KEY (`city_id`,`district_id`) REFERENCES `district` (`city_id`, `id_district`);
-
---
--- Constraints for table `image`
---
-ALTER TABLE `image`
-  ADD CONSTRAINT `image_ibfk_1` FOREIGN KEY (`hotel_id`,`room_id`) REFERENCES `room` (`hotel_id`, `id_room`),
-  ADD CONSTRAINT `image_ibfk_2` FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`id_hotel`);
-
---
--- Constraints for table `room`
---
-ALTER TABLE `room`
-  ADD CONSTRAINT `room_ibfk_1` FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`id_hotel`);
-
---
--- Constraints for table `utilityroom`
---
-ALTER TABLE `utilityroom`
-  ADD CONSTRAINT `utilityroom_ibfk_1` FOREIGN KEY (`utility_id`) REFERENCES `utility` (`id_utility`),
-  ADD CONSTRAINT `utilityroom_ibfk_2` FOREIGN KEY (`hotel_id`,`room_id`) REFERENCES `room` (`hotel_id`, `id_room`),
-  ADD CONSTRAINT `utilityroom_ibfk_3` FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`id_hotel`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
