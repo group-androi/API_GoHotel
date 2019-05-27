@@ -1,5 +1,5 @@
 <?php 
-require_once("./../helper/connect_db.php");
+require_once("connect_db.php");
 function CheckToken($token = "")
 {
 	$db = (new myDatabase())->connect();
@@ -12,6 +12,30 @@ function CheckToken($token = "")
     $result = count($query->fetchAll()) == 1 || $token = '';
     $query->closeCursor();
     return $result;
+}
+
+function GetIdUserFromToken()
+{
+    $result = array();
+    foreach (getallheaders() as $key => $value) {
+        if ($key == "token") {
+            $db = (new myDatabase())->connect();
+
+            $sql = "SELECT phone FROM user WHERE token like :token";
+            $query = $db->prepare($sql);
+            $query->bindParam("token", $value);
+            $query->execute();
+
+            $result=$query->fetchAll();
+
+            $query->closeCursor();
+        }
+    }
+    if (count($result)==0) {
+        return null;
+    }else{
+        return $result[0]['phone'];
+    }
 }
 
 function SetToken($phone='',$pw='')
