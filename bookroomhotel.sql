@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 27, 2019 at 02:50 PM
+-- Generation Time: May 27, 2019 at 05:55 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -21,6 +21,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `bookroomhotel1`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookroom`
+--
+
+DROP TABLE IF EXISTS `bookroom`;
+CREATE TABLE IF NOT EXISTS `bookroom` (
+  `id_book` int(11) NOT NULL AUTO_INCREMENT,
+  `hotel_id` int(11) NOT NULL,
+  `room_id` int(11) NOT NULL,
+  `date_start` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `date_end` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `price` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `time_book` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phone` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `info_user_booked` varchar(254) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id_book`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1004,6 +1024,8 @@ INSERT INTO `key_word` (`key_word`) VALUES
 DROP TABLE IF EXISTS `review`;
 CREATE TABLE IF NOT EXISTS `review` (
   `hotel_id` int(11) NOT NULL,
+  `room_id` int(11) NOT NULL,
+  `user_id` varchar(254) COLLATE utf8_unicode_ci NOT NULL,
   `star` varchar(4) COLLATE utf8_unicode_ci DEFAULT NULL,
   `comment` text COLLATE utf8_unicode_ci
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
