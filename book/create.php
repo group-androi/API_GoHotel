@@ -7,6 +7,8 @@ if (!empty($_POST['hotel_id']) &&
 	!empty($_POST['phone'])) {
     
     $temp="";
+    require_once("./../helper/connect_db.php");
+    require_once("./../helper/helper.php");
 	$db = (new myDatabase())->connect();
     
     $sql = "INSERT INTO `bookroom`(`hotel_id`, `room_id`, `date_start`, `date_end`, `price`, `time_book`, `phone`, `info_user_booked`, `user_id`) VALUES (:hotel, :room, :dateStart, :dateEnd, :price, :timeBook, :phone, :info, :user)";
