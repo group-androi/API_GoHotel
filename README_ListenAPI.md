@@ -106,8 +106,8 @@
 		Parameter:
 			latitude - 
 			longitude - 
-			limitfrom -  - nếu cần truyền
-			limitcount -  - nếu cần truyền
+			limit_from -  - nếu cần truyền
+			limit_count -  - nếu cần truyền
 			city_id - mã tỉnh - nếu cần truyền
 			district_id - mã quận huyện - nếu cần truyền
 			price_start - giới hạn giá phòng tối tiếu - nếu cần truyền
@@ -115,7 +115,11 @@
 			soft_price - sắp xếp theo giá tiền (chỉ nhận giá trị DESC hoặc ASC) - nếu cần truyền
 			soft_distance - sắp xếp theo khoảng cách (chỉ nhận giá trị DESC hoặc ASC) - nếu cần truyền
 			soft_star - sắp xếp số lượng đánh giá sao (chỉ nhận giá trị DESC hoặc ASC) - nếu cần truyền
-
+	post - /hotel/getHotelMap.php - 
+		Parameter:
+			latitude - tung độ của trái đất
+			longitude - hoành độ của trái đất
+			radius - giới hạn khoảng cách
 # table Image
 	post - /image/create.php - thêm ảnh khách sạn - token
 		Parameter:
