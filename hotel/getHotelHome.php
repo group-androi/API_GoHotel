@@ -61,7 +61,7 @@
         }
     }
 
-    $sql="SELECT `hotel`.*, `image`.`name_image` 'link_image' , `image`.`room_id`, SQRT((latitude - :latitude)*(latitude - :latitude)+(longitude - :longitude)*(longitude - :longitude)) 'distance' 
+    $sql="SELECT `hotel`.*, `image`.`name_image` 'link_image' , `image`.`room_id`, SQRT((latitude - :latitude)*(latitude - :latitude)+(longitude - :longitude)*(longitude - :longitude)) 'distance' , COUNT(`review`.`star`) 'count_star'
         FROM `hotel` LEFT JOIN `image` ON `image`.`hotel_id` = `hotel`.`id_hotel` 
         LEFT JOIN `review` ON `review`.`hotel_id` = `hotel`.`id_hotel`
         ".$where.' GROUP BY `hotel`.`id_hotel` '.$sort.$limit;
