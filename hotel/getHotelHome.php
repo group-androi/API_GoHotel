@@ -21,21 +21,21 @@
     }
 
     // sap xep
-    $soft='';
-    $array_soft= array();
-    if (isset($_POST['soft_price']) || isset($_POST['soft_star']) || isset($_POST['soft_distance'])) {
-        if (isset($_POST['soft_price']) && ($_POST['soft_price'] == 'DESC' || $_POST['soft_price'] == 'ASC')) {
-            array_push($array_soft, 'price_room_per_day '.$_POST['soft_price']);
+    $sort='';
+    $array_sort= array();
+    if (isset($_POST['sort_price']) || isset($_POST['sort_star']) || isset($_POST['sort_distance'])) {
+        if (isset($_POST['sort_price']) && ($_POST['sort_price'] == 'DESC' || $_POST['sort_price'] == 'ASC')) {
+            array_push($array_sort, 'price_room_per_day '.$_POST['sort_price']);
         }
-        if (isset($_POST['soft_distance']) && ($_POST['soft_distance'] == 'DESC' || $_POST['soft_distance'] == 'ASC')) {
-            array_push($array_soft, '((latitude - :latitude)*(latitude - :latitude)+(longitude - :longitude)*(longitude - :longitude)) '.$_POST['soft_distance']);
+        if (isset($_POST['sort_distance']) && ($_POST['sort_distance'] == 'DESC' || $_POST['sort_distance'] == 'ASC')) {
+            array_push($array_sort, '((latitude - :latitude)*(latitude - :latitude)+(longitude - :longitude)*(longitude - :longitude)) '.$_POST['sort_distance']);
         }
-        if (isset($_POST['soft_star']) && ($_POST['soft_star'] == 'DESC' || $_POST['soft_star'] == 'ASC')) {
-            array_push($array_soft, 'COUNT(`review`.`star`) '.$_POST['soft_star']);
+        if (isset($_POST['sort_star']) && ($_POST['sort_star'] == 'DESC' || $_POST['sort_star'] == 'ASC')) {
+            array_push($array_sort, 'COUNT(`review`.`star`) '.$_POST['sort_star']);
         }
 
-        if (count($array_soft)>0) {
-            $soft=' ORDER BY '.implode(', ', $array_soft).' ';
+        if (count($array_sort)>0) {
+            $sort=' ORDER BY '.implode(', ', $array_sort).' ';
         }
     }
 
@@ -64,8 +64,8 @@
     $sql="SELECT `hotel`.*, `image`.`name_image` 'link_image' , `image`.`room_id`, SQRT((latitude - :latitude)*(latitude - :latitude)+(longitude - :longitude)*(longitude - :longitude)) 'distance' 
         FROM `hotel` LEFT JOIN `image` ON `image`.`hotel_id` = `hotel`.`id_hotel` 
         LEFT JOIN `review` ON `review`.`hotel_id` = `hotel`.`id_hotel`
-        ".$where.' GROUP BY `hotel`.`id_hotel` '.$soft.$limit;
-        echo $sql;
+        ".$where.' GROUP BY `hotel`.`id_hotel` '.$sort.$limit;
+        //echo $sql;
 
     $query = $db->prepare($sql);
     $query->bindParam("latitude", $_POST['latitude']);

@@ -112,9 +112,9 @@
 			district_id - mã quận huyện - nếu cần truyền
 			price_start - giới hạn giá phòng tối tiếu - nếu cần truyền
 			price_end - giới hạn giá phòng tối đa - nếu cần truyền
-			soft_price - sắp xếp theo giá tiền (chỉ nhận giá trị DESC hoặc ASC) - nếu cần truyền
-			soft_distance - sắp xếp theo khoảng cách (chỉ nhận giá trị DESC hoặc ASC) - nếu cần truyền
-			soft_star - sắp xếp số lượng đánh giá sao (chỉ nhận giá trị DESC hoặc ASC) - nếu cần truyền
+			sort_price - sắp xếp theo giá tiền (chỉ nhận giá trị DESC hoặc ASC) - nếu cần truyền
+			sort_distance - sắp xếp theo khoảng cách (chỉ nhận giá trị DESC hoặc ASC) - nếu cần truyền
+			sort_star - sắp xếp số lượng đánh giá sao (chỉ nhận giá trị DESC hoặc ASC) - nếu cần truyền
 	post - /hotel/getHotelMap.php - 
 		Parameter:
 			latitude - tung độ của trái đất
