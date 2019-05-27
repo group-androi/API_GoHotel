@@ -1,5 +1,34 @@
 ﻿# API_GoHotel
 
+# table BookRoom
++	get - /book/get.php - lấy thông tin với id tương ứng nếu không truyền id thì sẽ lấy toàn bộ thông tin
+		Parameter: 
+			id - mã tỉnh thành - nếu cần
+		
++	post - /book/create.php - thêm đặt phòng
+		Parameter:
+			hotel_id - 
+			room_id - 
+			date_start - 
+			date_end - 
+			price - 
+			time_book - 
+			phone - 
+			info_user - 
++	post - /book/update.php - cập nhật lại thông tin đặt phòng
+		Parameter:
+			id - mã đặt phòng muốn sửa - bắt buộc
+			hotel_id_new -  - nếu cần thay đổi
+			room_id_new -  - nếu cần thay đổi
+			date_start_new -  - nếu cần thay đổi
+			date_end_new -  - nếu cần thay đổi
+			price_new -  - nếu cần thay đổi
+			time_book_new -  - nếu cần thay đổi
+			phone_new -  - nếu cần thay đổi
+			info_user_new -  - nếu cần thay đổi
++	get - /book/delete.php - xóa đặt phòng với id tương ứng
+		Parameter: id - mã đặt phòng muốn xóa
+
 # table City
 +	get - /city/get.php - lấy thông tin (tên) của tỉnh thành với id tương ứng nếu không truyền id thì sẽ lấy toàn bộ thông tin
 		Parameter: 

@@ -2,13 +2,13 @@
 
     require_once("./../helper/checkToken.php");
     
-if ((isset($_GET['user_id']) || isset($_POST['user_id'])) && (isset($_GET['hotel_id']) || isset($_POST['hotel_id']))) {
+if ((isset($_GET['user']) || isset($_POST['user'])) && (isset($_GET['hotel_id']) || isset($_POST['hotel_id']))) {
     $array_where = array("1");
 
     if (isset($_GET['hotel_id']) || isset($_POST['hotel_id'])) {
         array_push($array_where, 'hotel_id = :hotel');
     }
-    if (isset($_GET['user_id']) || isset($_POST['user_id'])) {
+    if (isset($_GET['user']) || isset($_POST['user'])) {
         array_push($array_where, 'user_id = :user');
     }
 
@@ -31,8 +31,8 @@ if ((isset($_GET['user_id']) || isset($_POST['user_id'])) && (isset($_GET['hotel
     $comment = isset($_GET['comment_new']) ? $_GET['comment_new'] : $_POST['comment_new'];
     $query->bindParam("comment", $comment);
     
-    if (isset($_GET['user_id']) || isset($_POST['user_id'])) {
-        $user = isset($_GET['user_id']) ? $_GET['user_id'] : $_POST['user_id'];
+    if (isset($_GET['user']) || isset($_POST['user'])) {
+        $user = isset($_GET['user']) ? $_GET['user'] : $_POST['user'];
         $query->bindParam("user", $user);
     }
     $query->execute();

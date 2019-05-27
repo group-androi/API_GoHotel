@@ -18,17 +18,17 @@ if(isset($_POST['id']))
             WHERE `id_hotel` = :id";
     $query = $db->prepare($sql);
 
-    $db->bindParam("nameHotel", $_POST['name']);
-    $db->bindParam("address", $_POST['address']);
-    $db->bindParam("districtId", $_POST['district_id']);
-    $db->bindParam("cityId", $_POST['city_id']);
-    $db->bindParam("price1Day", $_POST['price_1_day']);
-    $db->bindParam("latitude", $_POST['latitude']);
-    $db->bindParam("longitude", $_POST['longitude']);
-    $db->bindParam("checkIn", $_POST['check_in']);
-    $db->bindParam("checkOut", $_POST['check_out']);
-    $db->bindParam("id", $_POST['id']);
-
+    $query->bindParam("nameHotel", $_POST['name']);
+    $query->bindParam("address", $_POST['address']);
+    $query->bindParam("districtId", $_POST['district_id']);
+    $query->bindParam("cityId", $_POST['city_id']);
+    $query->bindParam("price1Day", $_POST['price_1_day']);
+    $query->bindParam("latitude", $_POST['latitude']);
+    $query->bindParam("longitude", $_POST['longitude']);
+    $query->bindParam("checkIn", $_POST['check_in']);
+    $query->bindParam("checkOut", $_POST['check_out']);
+    $query->bindParam("id", $_POST['id']);
+    
     $query->execute();
     echo json_encode(array("row_change"=>$query->rowCount()));
     $query->closeCursor();

@@ -1,7 +1,7 @@
 <?php 
 
-    require_once("./../helper/checkToken.php");
-    
+require_once("./../helper/checkToken.php");
+try {
     if (!empty($_POST['id']) && 
         !empty($_POST['hotel'])) {
 
@@ -31,26 +31,26 @@
         
         $query = $db->prepare($sql);
         
-        $db->bindParam("id", $_POST['name']);
-        $db->bindParam("hotel", $_POST['hotel']);
+        $query->bindParam("id", $_POST['name']);
+        $query->bindParam("hotel", $_POST['hotel']);
         if (isset($_POST['name'])) {
             array_push($array_parameter, "name_room = :name");
         }
         if (isset($_POST['price'])) {
-            $db->bindParam("price", $_POST['price_1_day']);
+            $query->bindParam("price", $_POST['price_1_day']);
         }
         if (isset($_POST['number_rooms'])) {
-            $db->bindParam("number_room", $_POST['number_rooms']);
+            $query->bindParam("number_room", $_POST['number_rooms']);
         }
         if (isset($_FILES['image'])){
             $query->bindParam('img', '/room/files/'.$_FILES["image"]["name"]);
         }
         if (isset($_POST['status'])) {
-            $db->bindParam("status", $_POST['status']);
+            $query->bindParam("status", $_POST['status']);
         }
         $query->execute();
 
-        echo json_encode(array("id_inserted"=>$db->lastInsertId()));
+        echo json_encode(array("row_change"=>$query->rowCount()));
 
         $query->closeCursor();
         if (isset($_FILES['image'])) {
@@ -58,8 +58,12 @@
         }
         http_response_code(201);
     } else {
-        echo json_encode("error"=>"Data transmission is missing!!!"));
+        echo json_encode(array("row_change"=>0);
 
         return;
-    }
+    }        
+} catch (Exception $e) {
+    echo json_encode(array("row_change"=>-1));
+}
+    
  ?>
