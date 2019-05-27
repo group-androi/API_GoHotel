@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 27, 2019 at 05:55 PM
+-- Generation Time: May 27, 2019 at 06:23 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `bookroom` (
   `id_book` int(11) NOT NULL AUTO_INCREMENT,
   `hotel_id` int(11) NOT NULL,
   `room_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `date_start` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `date_end` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `price` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,

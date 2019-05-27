@@ -190,29 +190,33 @@
 			key_old - từ khóa cũ
 			
 # table Review
-	get/post - /keyword/get.php - 
+	get/post - /review/get.php - 
 		Parameter:
 			hotel_id - mã khách sạn - không cần truyền
-			user_id - mã người dùng - không cần truyền
+			room_id - mã phòng - không cần truyền
+			user - người đánh giá - không cần truyền
 			comment - bình luận người dùng - không cần truyền
 			star - sao đánh giá - không cần truyền
-	get/post - /keyword/create.php -  - token
+	get/post - /review/create.php -  - token
 		Parameter:
 			hotel_id - mã khách sạn
-			user_id - mã người dùng
-			comment - bình luận người dùng - không cần truyền
-			star - sao đánh giá - không cần truyền
-	get/post - /keyword/delete.php -  - token
+			room_id - mã phòng
+			user - người đánh giá
+			comment - bình luận người dùng
+			star - sao đánh giá
+	get/post - /review/delete.php -  - token
 		Parameter:
 			hotel_id - mã khách sạn - không cần truyền
-			user_id - mã người dùng - không cần truyền
+			room_id - mã phòng - không cần truyền
+			user - người đánh giá - không cần truyền
 			comment - bình luận người dùng - không cần truyền
 			star - sao đánh giá - không cần truyền
 		(LƯU Ý SẼ XÓA TẤT CẢ NẾU K TRUYỀN GÌ CẢ)
-	get/post - /ketword/update.php -  - token
+	get/post - /review/update.php -  - token
 		Parameter:
 			hotel_id - mã khách sạn
-			user_id - mã người dùng
+			room_id - mã phòng
+			user - người đánh giá
 			comment_new - bình luận mới của người dùng - không truyền sẽ xóa nội dung
 			star_new - sao đánh giá mới - không truyền sẽ xóa nội dung
 

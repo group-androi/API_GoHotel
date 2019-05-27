@@ -16,6 +16,9 @@
     if (isset($_GET['user_id']) || isset($_POST['user_id'])) {
         array_push($array_where, 'user_id = :user');
     }
+    if (isset($_GET['room_id']) || isset($_POST['room_id'])) {
+        array_push($array_where, 'room_id = :room');
+    }
 
     $where = ' WHERE '.implode(' AND ', $array_where);
 
@@ -38,6 +41,10 @@
     if (isset($_GET['user_id']) || isset($_POST['user_id'])) {
         $user = isset($_GET['user_id']) ? $_GET['user_id'] : $_POST['user_id'];
         $query->bindParam("user", $user);
+    }
+    if (isset($_GET['room_id']) || isset($_POST['room_id'])) {
+        $room = isset($_GET['room_id']) ? $_GET['room_id'] : $_POST['room_id'];
+        $query->bindParam("room", $room);
     }
     
     $query->execute();
