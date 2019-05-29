@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 27, 2019 at 06:23 PM
+-- Generation Time: May 29, 2019 at 03:25 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `bookroom` (
   `id_book` int(11) NOT NULL AUTO_INCREMENT,
   `hotel_id` int(11) NOT NULL,
   `room_id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `user_id` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `date_start` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `date_end` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `price` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -41,7 +41,17 @@ CREATE TABLE IF NOT EXISTS `bookroom` (
   `phone` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `info_user_booked` varchar(254) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_book`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `bookroom`
+--
+
+INSERT INTO `bookroom` (`id_book`, `hotel_id`, `room_id`, `user_id`, `date_start`, `date_end`, `price`, `time_book`, `phone`, `info_user_booked`) VALUES
+(1, 1, 1, NULL, '2019-05-29', '2019-05-30', '250000', '2019-05-29 23:59:59', '01234561789', ''),
+(2, 1, 1, NULL, '2019-05-29', '2019-05-30', '250000', '2019-05-29 23:59:59', '01234561789', ''),
+(3, 1, 1, NULL, '2019-05-29', '2019-05-30', '250000', '2019-05-29 23:59:59', '01234561789', ''),
+(4, 1, 1, '947065823', '2019-05-29', '2019-05-30', '250000', '2019-05-29 23:59:59', '01234561789', '');
 
 -- --------------------------------------------------------
 
