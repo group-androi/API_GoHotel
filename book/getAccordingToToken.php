@@ -1,5 +1,5 @@
 <?php 
-
+    error_reporting(1); 
     require_once("./../helper/connect_db.php");
     require_once("./../helper/helper.php");
 	$Database = new myDatabase();
