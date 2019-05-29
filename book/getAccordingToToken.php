@@ -10,7 +10,13 @@
                             WHERE user_id = :user 
                             ORDER BY date_start");
     
-    $query->bindParam("user", GetIdUserFromToken());
+    $token=GetIdUserFromToken();
+
+    if ($token==null) {
+        $token='*';
+    }
+
+    $query->bindParam("user", $token);
     
     $query->execute();
     echo json_encode($query->fetchAll());
