@@ -5,7 +5,7 @@
 if (!empty($_POST['hotel_id']) && 
 	!empty($_POST['room_id']) && 
 	!empty($_POST['phone'])) {
-    
+    error_reporting(1); 
     $temp="";
     require_once("./../helper/connect_db.php");
     require_once("./../helper/helper.php");
