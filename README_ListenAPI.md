@@ -26,6 +26,7 @@
 			time_book_new -  - nếu cần thay đổi
 			phone_new -  - nếu cần thay đổi
 			info_user_new -  - nếu cần thay đổi
+			status - (dữ liệu phải là số) - nếu cần thay đổi
 +	get - /book/delete.php - xóa đặt phòng với id tương ứng
 		Parameter: id - mã đặt phòng muốn xóa
 	get - /book/getAccordingToToken.php - lấy danh sách đặt phòng theo token đã truyền ở header - token

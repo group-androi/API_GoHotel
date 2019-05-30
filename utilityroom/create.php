@@ -4,7 +4,7 @@
 if (empty($_POST['hotel_id']) ||
     empty($_POST['utility_id'])) {
 	echo json_encode(array("message"=>"Parameter null.", "result"=>0));
-http_response_code(400);
+    http_response_code(400);
 	die();
 }    
 try {

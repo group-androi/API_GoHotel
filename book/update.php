@@ -28,6 +28,9 @@ if(isset($_POST['id'])){
     if (isset($_POST['info_user_new'])) {
         array_push($array_set, '`room_id`=:room');
     }
+    if (isset($_POST['status']) && is_numeric($_POST['status'])) {
+        array_push($array_set, '`status`=:tus');
+    }
     $where ='';
     if (count($array_set)>0) {
         $where = implode(", ", $array_set);
@@ -64,6 +67,9 @@ if(isset($_POST['id'])){
     }
     if (isset($_POST['info_user_new'])) {
         $query->bindParam("user", $_POST['info_user_new']);
+    }
+    if (isset($_POST['status']) && is_numeric($_POST['status'])) {
+        $query->bindParam("tus", $_POST['status']);
     }
     $query->bindParam("id", $_POST['id']);
 
