@@ -29,7 +29,7 @@ $temp="";
     echo json_encode(array("message"=>"" ,"result"=>$db->lastInsertId()));
 
     $query->closeCursor();
-    http_response_code(201);
+    http_response_code(200);
 } 
 else {
 	echo json_encode(array("message"=>"Data transmission is missing!!!", 'result'=>0));

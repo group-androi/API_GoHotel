@@ -18,7 +18,7 @@ if (!empty($_POST["city_id"]) && !empty($_POST["name"])) {
         
         $query->closeCursor();
 
-        http_response_code(201);
+        http_response_code(200);
     } catch (Exception $e) {
         
         echo json_encode(array("message"=>"", "result"=>0));

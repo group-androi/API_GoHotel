@@ -28,7 +28,7 @@ if (isset($_POST['name']) &&
     if (isset($_FILES['image'])) {
         move_uploaded_file($_FILES["image"]["tmp_name"], "files/" . basename($_FILES["image"]["name"]));
     }
-    http_response_code(201);
+    http_response_code(200);
 } else {
 	echo json_encode(array("result"=>-1));
 

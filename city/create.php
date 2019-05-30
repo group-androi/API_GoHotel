@@ -17,7 +17,7 @@ try {
     echo json_encode(array("result"=>$db->lastInsertId()));
     
     $query->closeCursor();
-    http_response_code(201);
+    http_response_code(200);
  
 } catch (Exception $e) {
     echo json_encode(array("result"=>0);
