@@ -30,6 +30,9 @@
 +	get - /book/delete.php - xóa đặt phòng với id tương ứng
 		Parameter: id - mã đặt phòng muốn xóa
 	get - /book/getAccordingToToken.php - lấy danh sách đặt phòng theo token đã truyền ở header - token
+	get/post - /book/getDetail.php - 
+		Parameter: key - mã đặt phòng
+
 # table City
 +	get - /city/get.php - lấy thông tin (tên) của tỉnh thành với id tương ứng nếu không truyền id thì sẽ lấy toàn bộ thông tin
 		Parameter: 
