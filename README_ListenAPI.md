@@ -4,7 +4,8 @@
 +	get/post - /book/get.php - lấy thông tin với id tương ứng nếu không truyền id thì sẽ lấy toàn bộ thông tin
 		Parameter: 
 			id -  - nếu cần
-		
+			phone -  - nếu cần
+			status -  - nếu cần
 +	post - /book/create.php - thêm đặt phòng
 		Parameter:
 			hotel_id - 
