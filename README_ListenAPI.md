@@ -1,9 +1,9 @@
 ﻿# API_GoHotel
 
 # table BookRoom
-+	get - /book/get.php - lấy thông tin với id tương ứng nếu không truyền id thì sẽ lấy toàn bộ thông tin
++	get/post - /book/get.php - lấy thông tin với id tương ứng nếu không truyền id thì sẽ lấy toàn bộ thông tin
 		Parameter: 
-			id - mã tỉnh thành - nếu cần
+			id -  - nếu cần
 		
 +	post - /book/create.php - thêm đặt phòng
 		Parameter:
