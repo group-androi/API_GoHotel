@@ -1,8 +1,8 @@
 <?php 
 
     // require_once("./../helper/checkToken.php");
-    
-if(isset($_POST['id'])){
+    try {
+        if(isset($_POST['id'])){
     $array_set = array('id_book = :id');
     if (isset($_POST['hotel_id_new'])) {
         array_push($array_set, '`hotel_id`=:hotel');
@@ -36,8 +36,8 @@ if(isset($_POST['id'])){
         $where = implode(", ", $array_set);
     }
 
-	require_once("./../helper/connect_db.php");
-	$db = (new myDatabase())->connect();
+    require_once("./../helper/connect_db.php");
+    $db = (new myDatabase())->connect();
     $sql = "UPDATE `bookroom` 
             SET ".$where." 
             WHERE `id_book` = :id";
@@ -74,7 +74,12 @@ if(isset($_POST['id'])){
     $query->bindParam("id", $_POST['id']);
 
     $query->execute();
-    echo json_encode(array("row_change"=>$query->rowCount()));
+    echo json_encode(array("result"=>1));
     $query->closeCursor();
 }
+        
+    } catch (Exception $e) {
+    echo json_encode(array("result"=>0));       
+    }
+
  ?>
