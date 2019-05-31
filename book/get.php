@@ -6,7 +6,7 @@
 	$Database = new myDatabase();
 	$db = $Database->connect();
 
-	$where = () ? "WHERE " : "" ;
+	$where = "";
 	$array_where = array("1");
 
 	if (!empty($_GET['id']) || !empty($_POST['id'])) {
