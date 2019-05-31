@@ -38,13 +38,14 @@ if(!empty($_POST["phone"])) {
     $query->execute();
 
 
-    echo json_encode(array("rows_changed"=>$query->rowCount()));
+    
+    echo json_encode(array("message"=>"" ,"result"=>$query->rowCount()));
     $query->closeCursor();
 
     http_response_code(200);
 }
 else {
-    echo json_encode(array('rows_changed' => -1));
+    echo json_encode(array("message"=>"" ,"result"=>-1));
     http_response_code(400);
 }
  ?>}

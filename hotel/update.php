@@ -1,10 +1,10 @@
 <?php 
 
     require_once("./../helper/checkToken.php");
-    
-if(isset($_POST['id']))
-	require_once("./../helper/connect_db.php");
-	$db = (new myDatabase())->connect();
+    try {
+        if(isset($_POST['id']))
+    require_once("./../helper/connect_db.php");
+    $db = (new myDatabase())->connect();
     $sql = "UPDATE `hotel` 
             SET `name_hotel` = :name, 
                 `address` = :address, 
@@ -30,6 +30,11 @@ if(isset($_POST['id']))
     $query->bindParam("id", $_POST['id']);
     
     $query->execute();
-    echo json_encode(array("row_change"=>$query->rowCount()));
+    echo json_encode(array("message"=>"" ,"result"=>1));  
     $query->closeCursor();
+    } catch (Exception $e) {
+    echo json_encode(array("message"=>"" ,"result"=>0));  
+        
+    }
+
  ?>

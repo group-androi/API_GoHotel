@@ -1,10 +1,10 @@
 <?php 
-
+try {
     require("./../helper/checkToken.php");
     
 if(!empty($_POST["id"])){
-	require("./../helper/connect_db.php");
-	$db = (new myDatabase())->connect();
+    require("./../helper/connect_db.php");
+    $db = (new myDatabase())->connect();
     
     $array_parameter = array();
     if (isset($_POST['name'])) {
@@ -26,11 +26,17 @@ if(!empty($_POST["id"])){
     }
     $query->bindParam("id", $_POST['id']);
     $query->execute();
-    echo json_encode(array("rows_changed"=>$query->rowCount()));
+    
+    echo json_encode(array("message"=>"" ,"result"=>$query->rowCount()));
     $query->closeCursor();
 
     move_uploaded_file($_FILES["image"]["tmp_name"], "files/" . basename($_FILES["image"]["name"]));
     
     http_response_code(200);
+}
+    
+} catch (Exception $e) {
+    
+    echo json_encode(array("message"=>"" ,"result"=>0));
 }
  ?>

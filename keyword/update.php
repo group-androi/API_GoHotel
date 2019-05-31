@@ -16,11 +16,12 @@ if ((isset($_GET['key_new']) || isset($_POST['key_new'])) && (isset($_GET['key_o
     $query->bindParam("keyNew", $wordkey_new);
     $query->bindParam("keyOld", $wordkey_old);
     $query->execute();
-    echo json_encode(array("rows_changed"=>$query->rowCount()));
+    
+    echo json_encode(array("message"=>"" ,"result"=>$query->rowCount()));
     $query->closeCursor();
 }
 else{
- echo json_encode(array("rows_changed"=>-1));
+    echo json_encode(array("message"=>"" ,"result"=>0));
        
 }
  ?>

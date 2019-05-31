@@ -1,7 +1,9 @@
 <?php 
     //require_once("./../helper/checkToken.php");
     
-if(!empty($_POST["device_id"])){
+
+try {
+    if(!empty($_POST["device_id"])){
 
     $changeParam = array();
 
@@ -15,11 +17,11 @@ if(!empty($_POST["device_id"])){
 
     $parameter = implode(", ", $changeParam);
 
-	require_once("./../helper/connect_db.php");
-	$db = (new myDatabase())->connect();
+    require_once("./../helper/connect_db.php");
+    $db = (new myDatabase())->connect();
     $sql = "UPDATE `device` 
-		    SET ".$parameter." WHERE 
-		    `device_id`=:id";
+            SET ".$parameter." WHERE 
+            `device_id`=:id";
     $query = $db->prepare($sql);
     $query->bindParam("id", $_POST['device_id']);
 
@@ -30,7 +32,11 @@ if(!empty($_POST["device_id"])){
         $query->bindParam("log",$_POST['longitude']);
     }
     $query->execute();
-    echo json_encode(array("rows_changed"=>$query->rowCount()));
+    echo json_encode(array("message"=>"" ,"result"=>1));  
     $query->closeCursor();
+}
+} catch (Exception $e) {
+    
+    echo json_encode(array("message"=>"" ,"result"=>0));  
 }
  ?>

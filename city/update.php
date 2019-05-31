@@ -12,11 +12,11 @@ if(!empty($_POST["city_name"]) && !empty($_POST["id"])) {
     $query->bindParam("name", $_POST['city_name']);
     $query->bindParam("id", $_POST['id']);
     $query->execute();
-    echo json_encode(array("result"=>1));
+    echo json_encode(array("message"=>"" ,"result"=>1));  
     $query->closeCursor();
 }
 } catch (Exception $e) {
-    echo json_encode(array("result"=>0));   
+    echo json_encode(array("message"=>"" ,"result"=>0));  
 }
     
  ?>

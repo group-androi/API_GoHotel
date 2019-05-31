@@ -50,7 +50,8 @@ try {
         }
         $query->execute();
 
-        echo json_encode(array("row_change"=>$query->rowCount()));
+        
+    echo json_encode(array("message"=>"" ,"result"=>$query->rowCount()));
 
         $query->closeCursor();
         if (isset($_FILES['image'])) {
@@ -58,12 +59,12 @@ try {
         }
         http_response_code(201);
     } else {
-        echo json_encode(array("row_change"=>0);
+    echo json_encode(array("message"=>"" ,"result"=>0));
 
         return;
     }        
 } catch (Exception $e) {
-    echo json_encode(array("row_change"=>-1));
+    echo json_encode(array("message"=>"" ,"result"=>-1));
 }
     
  ?>

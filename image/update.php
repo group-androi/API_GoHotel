@@ -29,9 +29,10 @@ try {
         }
 
     }
-    echo json_encode(array('file_uploaded'=>$count_updated));
+    echo json_encode(array("message"=>"" ,"result"=>$count_updated));
     http_response_code(200);
 } catch (Exception $e) {
+    echo json_encode(array("message"=>"" ,"result"=>0));  
     http_response_code(400);
 
 ?>

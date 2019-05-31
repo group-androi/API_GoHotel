@@ -45,11 +45,11 @@ if (((isset($_GET['hotel_id']) && isset($_GET['user']) && isset($_GET['room_id']
     
 
     $query->execute();
-    echo json_encode(array("rows_changed"=>$query->rowCount()));
+    echo json_encode(array("message"=>"" ,"result"=>$query->rowCount()));
     $query->closeCursor();
 }
 else{
- echo json_encode(array("rows_changed"=>-1));
+    echo json_encode(array("message"=>"" ,"result"=>0));
        
 }
  ?>
