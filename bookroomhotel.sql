@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 31, 2019 at 04:01 PM
+-- Generation Time: Jun 08, 2019 at 03:14 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -39,21 +39,10 @@ CREATE TABLE IF NOT EXISTS `bookroom` (
   `price` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `time_book` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
   `phone` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `info_user_booked` varchar(254) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `info_user_booked` varchar(1024) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_book`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `bookroom`
---
-
-INSERT INTO `bookroom` (`id_book`, `hotel_id`, `room_id`, `user_id`, `date_start`, `date_end`, `price`, `time_book`, `phone`, `info_user_booked`, `status`) VALUES
-(1, 1, 1, NULL, '2019-05-29', '2019-05-30', '250000', '2019-05-29 23:59:59', '0123', '', 0),
-(2, 1, 1, NULL, '2019-05-29', '2019-05-30', '250000', '2019-05-29 23:59:59', '0456', '', 0),
-(3, 1, 1, NULL, '2019-05-29', '2019-05-30', '250000', '2019-05-29 23:59:59', '0789', '', 0),
-(4, 1, 1, '947065823', '2019-05-29', '2019-05-30', '250000', '2019-05-29 23:59:59', '0147', '', 0),
-(5, 1, 2, '0947065823', '2019-05-29', '2019-05-31', '350000', '2019-05-28 23:59:59', '0258', '', 0);
 
 -- --------------------------------------------------------
 
@@ -912,19 +901,23 @@ CREATE TABLE IF NOT EXISTS `hotel` (
   `check_out` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_hotel`),
   KEY `city_id` (`city_id`,`district_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `hotel`
 --
 
 INSERT INTO `hotel` (`id_hotel`, `name_hotel`, `address`, `district_id`, `city_id`, `price_room_per_day`, `latitude`, `longitude`, `check_in`, `check_out`) VALUES
-(1, 'Khách sạn Grand', '2 Nguyễn Du, Phường 1', 747, 77, '1166667', '10.3437429', '107.0054358', NULL, NULL),
-(2, 'Vũng Tàu Intourco Resort', '1A Thùy Vân, Phường 8', 747, 77, '1219672', '10.3523074', '107.0324322', NULL, NULL),
-(3, 'Leman Cap Resort Vung Tau', '60 Hạ Long, Phường 2', 747, 77, '1510234', '10.3300774', '107.0073424', NULL, NULL),
-(4, 'Green Hotel Vũng Tàu', '147C Thùy Vân, Phường Thắng Tam', 747, 77, '612500', '10.3373428', '107.0208231', NULL, NULL),
-(5, 'Lan Rừng Resort & Spa', '03-06 Hạ Long', 747, 77, '708400', '10.3267925', '107.0111984', NULL, NULL),
-(6, 'Khách sạn Mường Thanh', '09 Thống Nhất, Phường 1', 747, 77, '1105032', '10.3456574', '107.0053234', NULL, NULL);
+(7, 'SAMI HOTEL', '5 Dương Bá Trạc, Phường 1, Quận 8, Hồ Chí Minh, Việt Nam', 776, 1, '350000', '10.7502896', '106.688164200000', '12', '12'),
+(8, 'HUỲNH ANH HOTEL', '10 Đường số 51, Phường 14, Gò Vấp, Hồ Chí Minh, Việt Nam', 764, 1, '220000', '10.8467412', '106.642359800000', '21', '12'),
+(9, 'REDDOORZ NEAR TAN SON NHAT AIRPORT 3', 'B102 Đường Bạch Đằng, Phường 2, Tân Bình, Hồ Chí Minh, Việt Nam', 766, 1, '400000', '10.815577', '106.669703000000', '14', '12'),
+(10, 'HÀ NỘI HOTEL', '19/1 Hoàng Việt, Phường 4, Tân Bình, Hồ Chí Minh, Việt Nam', 766, 1, '250000', '10.796567', '106.660229999999', '12', '12'),
+(11, 'LYLY HOTEL', '110 Song Hành, Phường 10, Quận 6, Hồ Chí Minh, Việt Nam', 775, 1, '200000', '10.734159', '106.628556099999', '23', '8'),
+(12, 'REDDOORZ PLUS @ TRUNG SON RESIDENCE', '57 Đường số 6, Bình Hưng, Bình Chánh, Hồ Chí Minh, Việt Nam', 785, 1, '300000', '10.7375477', '106.691662899999', '14', '12'),
+(13, 'REDDOORZ PLUS NEAR LE QUANG DINH STREET', '11A Trần Bình Trọng, Phường 5, Bình Thạnh, Hồ Chí Minh, Vietnam', 765, 1, '280000', '10.811086', '106.689546999999', '14', '12'),
+(14, 'REDDOORZ NEAR MIEN TAY BUS STATION', '45 Song Hành, Phường 10, Quận 6, Hồ Chí Minh, Việt Nam', 785, 1, '430000', '10.7343171', '106.627374000000', '14', '12'),
+(15, 'FRIDAY PHAN XÍCH LONG', '36/4 Cù Lao, phường 2, Phú Nhuận, Hồ Chí Minh, Việt Nam', 768, 1, '500000', '10.796288', '106.689263999999', '12', '12'),
+(17, 'DRAGON HOTEL', '616/41 Lê Đức Thọ, Phường 15, Gò Vấp, Hồ Chí Minh, Việt Nam', 764, 1, '450000', '10.8502539', '106.664236299999', '14', '12');
 
 -- --------------------------------------------------------
 
@@ -948,13 +941,40 @@ CREATE TABLE IF NOT EXISTS `image` (
 --
 
 INSERT INTO `image` (`name_image`, `hotel_id`, `room_id`) VALUES
-('/image//files/62233943.jpg', 1, NULL),
-('/image/files/0831201714160578.jpg', 1, NULL),
-('/image/files/234434_17031708540051594325.jpg', 1, NULL),
-('/image/files/62233934.jpg', 1, NULL),
-('/image/files/grand_hotel_green.jpg', 1, NULL),
-('/image/files/grand-hotel-vung-tau1.jpg', 1, NULL),
-('/image/files/khach-san-grand-vung-tau.jpg', 1, NULL);
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=0dd27001433e855e1823b280cf8940d7&highQuality', 8, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=10bff56c19307a8d7810760e076ba046&highQuality', 12, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=1383fd21cf87438527680f9d3c10aa85&highQuality', 12, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=194622e51d73d7f7afec0c45be2d36e0&highQuality', 14, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=22b5a726105a2e1f04c57934c5683b38&highQuality', 10, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=24fa161987808dc7204861a294a9d13e&highQuality', 13, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=373f696d107ea2c20a963824f5156048&highQuality', 8, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=37473278468de350d28d5c417a9e5256&highQuality', 15, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=45de462222ccba2d50ce8868b2d1aa35&highQuality', 11, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=4f38b818360650c0af37f5ba98acd6b6&highQuality', 15, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=527a9546237826709472a29cc9e3a368&highQuality', 10, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=5341b6a636a32d90a2c0abfd031a64be&highQuality', 8, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=599f6773a3eff47d8f898c5db73379f8&highQuality', 8, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=5a790adae987d01219cd30bd07644fc1&highQuality', 9, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=5cd0371883feb4d53b22a4d2f208403d&highQuality', 14, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=5cf8d4a1264e0a1924c84401b14ddf40&highQuality', 0, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=5f2d1b0c3d551ebc21dd265729e9b3c8&highQuality', 10, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=6d3620054a7b224c4094ed0b8cef1e9b&highQuality', 8, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=73649a11b457c1499a672a5f0d943c9b&highQuality', 15, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=7ac0bba49229d4cce7703cde7217b29e&highQuality', 15, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=815032af7ecf2be51bfe37eed79f7901&highQuality', 0, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=85a580712dcb3d8dd219723004dcea34&highQuality', 10, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=864b7d9f52896b00c876561753c3ed68&highQuality', 15, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=894176bf09133a68822364aed8f52783&highQuality', 7, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=8e43de186641dfce20249fd50007abde&highQuality', 11, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=95381240f60d3f63098bff53d860caab&highQuality', 0, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=9a3aa5981d217752485ccc1bb03bd3e9&highQuality', 12, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=9c5b996065852ff8a5f1f28ce624824b&highQuality', 7, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=b2590590085107ec3520034982fbb247&highQuality', 14, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=d5b5285b93e68e92be8f86f6962650d0&highQuality', 13, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=d5be49da8bc3ed7d60a54e126c864000&highQuality', 8, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=e56eca1fc6056c7d5c630ccf0d3bc19f&highQuality', 10, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=ef9bafa039f53f02bd4c0139a55c6220&highQuality', 7, NULL),
+('http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=fa8ab173372b907458bbc81756c8da3e&highQuality', 7, NULL);
 
 -- --------------------------------------------------------
 
@@ -1060,15 +1080,41 @@ CREATE TABLE IF NOT EXISTS `room` (
   `hotel_id` int(11) NOT NULL,
   PRIMARY KEY (`id_room`),
   KEY `hotel_id` (`hotel_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `room`
 --
 
 INSERT INTO `room` (`id_room`, `name_room`, `price_per_day`, `image`, `count`, `status`, `hotel_id`) VALUES
-(1, 'Phòng đơn', '320000', '', '12', 'Còn phòng', 1),
-(2, 'Phòng đơn', '350000', '/room/files/khach-san-iris-can-tho[1].jpg', '19', 'Còn ít', 2);
+(3, 'Phòng Đôi', '400000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 7),
+(4, 'Phòng Cao Cấp', '300000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 7),
+(5, 'Phòng Sang Trọng', '350000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '23', '1', 7),
+(6, 'Deluxe Room', '345000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 0),
+(7, 'Superior Room', '295000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 0),
+(8, 'Phòng Đơn Nhỏ', '222000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 8),
+(9, 'Phòng Đơn Lớn', '250000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 8),
+(10, 'Phòng Đôi Nhỏ', '400000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 8),
+(11, 'Phòng Đôi Lớn', '450000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 8),
+(12, 'Standard Room', '250000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 9),
+(13, 'Deluxe Room', '350000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 9),
+(14, 'Family Room', '400000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 9),
+(15, 'DELUXE DOUBLE ROOM', '999000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 10),
+(16, 'DELUXE TWIN ROOM', '1200000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 10),
+(17, 'VIP ROOM', '650000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 11),
+(18, 'Phòng Lớn', '550000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 11),
+(19, 'Phòng Nhỏ', '400000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 11),
+(20, 'Standard Room', '750000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 12),
+(21, 'Superior Room', '700000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 12),
+(22, 'Family Room', '850000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 12),
+(23, 'Standard Room', '500000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 13),
+(24, 'Deluxe Room', '400000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 13),
+(25, 'Deluxe with Balcony Room', '470000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 13),
+(26, 'Standard Room', '300000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 14),
+(27, 'Superior Double Room', '400000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 14),
+(28, 'Superior Twin Room', '450000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 14),
+(29, 'Standard', '250000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 15),
+(30, 'Superior', '300000', 'http://118.69.128.59:8080/hotelapi/hotel/download/downloadHotelI', '12', '1', 15);
 
 -- --------------------------------------------------------
 
@@ -1080,6 +1126,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `dob` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `phone` char(16) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   `device_id` char(128) COLLATE utf8_unicode_ci DEFAULT NULL,
   `password` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `gender` varchar(8) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -1093,8 +1140,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`dob`, `phone`, `device_id`, `password`, `gender`, `token`) VALUES
-('1996-05-06', '0947065823', '72e11234567894561235678975641345689', '9319cb8aaafec663d657b9966bf1f7fc', 'nam', 'b8ec524d183d23898e6baeb8fd1e4d6eaad089e8a177748bbae5016c471352b1');
+INSERT INTO `user` (`dob`, `phone`, `email`, `device_id`, `password`, `gender`, `token`) VALUES
+('1996-05-06', '0947065823', NULL, '72e11234567894561235678975641345689', '9319cb8aaafec663d657b9966bf1f7fc', 'nam', 'b8ec524d183d23898e6baeb8fd1e4d6eaad089e8a177748bbae5016c471352b1');
 
 -- --------------------------------------------------------
 

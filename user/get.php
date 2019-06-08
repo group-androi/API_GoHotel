@@ -8,7 +8,7 @@
 
 	$where = (!empty($_POST['phone'])) ? "WHERE phone = :id" : "" ;
 
-    $query = $db->prepare("SELECT dob 'birthday', phone 'number_phone', gender, token FROM user ".$where." ORDER BY phone");
+    $query = $db->prepare("SELECT dob 'birthday', phone 'number_phone', gender, email,  token FROM user ".$where." ORDER BY phone");
     if (!empty($_POST["phone"])) {
     	$query->bindParam("id", $_POST['phone']);
     }

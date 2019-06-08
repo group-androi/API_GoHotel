@@ -59,8 +59,17 @@ if (isset($_POST['phone'])) {
 		    	$query->execute();
 
 		    	$query->closeCursor();	
-		    }
+		    } 
+	    	if (!empty($_POST['mail'])) {
+	    		
+		    	$sql="UPDATE user SET email = :mail WHERE phone like :username";
+		    	$query = $db->prepare($sql);
+		    	$query->bindParam("mail", $_POST["mail"]);
+		    	$query->bindParam("username", $_POST['phone']);
+		    	$query->execute();
 
+		    	$query->closeCursor();	
+		    }
 
 			$token = SetToken($_POST['phone'],$_POST['password']);
 

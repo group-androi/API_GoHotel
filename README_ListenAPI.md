@@ -257,20 +257,18 @@
 		Args: phone - tên đăng nhập người dùng - bỏ nếu muốn lấy tất cả thông tin người dùng
 	post - /user/create.php - thêm một người dùng (đăng ký)
 		Parameter:
-			username - tên người dùng
+			phone - số điện thoại
 			birthday - ngày sinh - allow null
-			gender - giới tính (0 hoặc 1) - null 
-			latitude - kinh độ của người dùng - null
-			longitude - vĩ độ của người dùng - null
+			mail - email sử dụng - allow null
+			gender - giới tính - null 
+			device_id - mã thiết bị đăng nhập - allow null
 	post - /hotel/update.php - cập nhật thông tin người dùng
 		Parameter: (thông tin sẽ thay đổi)
-			username - tên đăng nhập 
-			birthday - ngày sinh - allow null
 			phone - số điện thoại
-			gender - giới tính (0 hoặc 1) - null 
-			latitude - kinh độ của người dùng - null
-			longitude - vĩ độ của người dùng - null
-			tokenn - token muốn cập nhật - null
+			birthday - ngày sinh - allow null
+			mail - email sử dụng - allow null
+			gender - giới tính - null 
+			device_id - mã thiết bị đăng nhập - allow null
 	get - /user/delete.php - xóa người dùng
 		Parammeter: user - tên đăng nhập muốn xóa - khi không có giá trị này thì sẽ xóa toàn bộ thông tin hiện có trong
 	post - /login - đăng nhập

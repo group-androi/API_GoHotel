@@ -18,6 +18,9 @@ if(!empty($_POST["phone"])) {
     if (isset($_POST['device_id'])) {
         array_push($changeParam, "device_id = :device");
     }
+    if (isset($_POST['mail'])) {
+        array_push($changeParam, "email = :em");
+    }
 
     $parameters = implode(", ", $changeParam);
 
@@ -33,6 +36,9 @@ if(!empty($_POST["phone"])) {
     }
     if (isset($_POST['device_id'])) {
         $query->bindParam("device", $_POST['device_id']);
+    }
+    if (isset($_POST['mail'])) {
+        $query->bindParam("em", $_POST['mail']);
     }
 
     $query->execute();
