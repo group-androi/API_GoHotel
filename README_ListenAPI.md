@@ -265,7 +265,6 @@
 	post - /hotel/update.php - cập nhật thông tin người dùng
 		Parameter: (thông tin sẽ thay đổi)
 			phone - số điện thoại
-			pass - mật khẩu - null 
 			birthday - ngày sinh - allow null
 			mail - email sử dụng - allow null
 			gender - giới tính - null 
@@ -274,5 +273,11 @@
 		Parammeter: user - tên đăng nhập muốn xóa - khi không có giá trị này thì sẽ xóa toàn bộ thông tin hiện có trong
 	post - /login - đăng nhập
 		Parameter:
-			username - tên đăng nhập
+			phone - tên đăng nhập
 			password - mật khẩu
+	post - /user/changePassword.php - thay đổi mật khẩu người dùng - token
+		Parameter:
+			phone - số điện thoại
+			password_old - mật khẩu cũ
+			password_new - mật khẫu mới
+	
