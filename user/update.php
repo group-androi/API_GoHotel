@@ -21,6 +21,9 @@ if(!empty($_POST["phone"])) {
     if (isset($_POST['mail'])) {
         array_push($changeParam, "email = :em");
     }
+    if (isset($_POST['pass'])) {
+        array_push($changeParam, "password = :pw");
+    }
 
     $parameters = implode(", ", $changeParam);
 
@@ -39,6 +42,9 @@ if(!empty($_POST["phone"])) {
     }
     if (isset($_POST['mail'])) {
         $query->bindParam("em", $_POST['mail']);
+    }
+    if (isset($_POST['pass'])) {
+        $query->bindParam("pw", $_POST['pass']);
     }
 
     $query->execute();
