@@ -6,11 +6,11 @@
 	$Database = new myDatabase();
 	$db = $Database->connect();
 
-	$where = (!empty($_POST['phone'])) ? "WHERE phone = :id" : "" ;
+	$where = (!empty($_GET['phone'])) ? "WHERE phone = :id" : "" ;
 
     $query = $db->prepare("SELECT dob 'birthday', phone 'number_phone', gender, token FROM user ".$where." ORDER BY phone");
-    if (!empty($_POST["phone"])) {
-    	$query->bindParam("id", $_POST['phone']);
+    if (!empty($_GET["phone"])) {
+    	$query->bindParam("id", $_GET['phone']);
     }
     $query->execute();
     

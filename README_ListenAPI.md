@@ -253,8 +253,8 @@
 			number_rooms - số lượng phòng mới - nếu cần truyền
 
 # table User
-	get - /hotel/get.php - lấy thông tin của  người dùng
-		Args: phone - tên đăng nhập người dùng - bỏ nếu muốn lấy tất cả thông tin người dùng
+	get - /hotel/<<id>> - lấy thông tin của  người dùng
+		Args: id - tên đăng nhập người dùng - bỏ nếu muốn lấy tất cả thông tin người dùng
 	post - /user/create.php - thêm một người dùng (đăng ký)
 		Parameter:
 			username - tên người dùng
