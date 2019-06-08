@@ -265,6 +265,7 @@
 	post - /hotel/update.php - cập nhật thông tin người dùng
 		Parameter: (thông tin sẽ thay đổi)
 			phone - số điện thoại
+			pass - mật khẩu
 			birthday - ngày sinh - allow null
 			mail - email sử dụng - allow null
 			gender - giới tính - null 
