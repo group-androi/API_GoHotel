@@ -1,10 +1,10 @@
 <?php 
 
-    require("./../helper/checkToken.php");
+    require_once("./../helper/checkToken.php");
     
 if(!empty($_POST["phone"])) {
     $result = 1;
-    require("./../helper/connect_db.php");
+    require_once("./../helper/connect_db.php");
     $db = (new myDatabase())->connect();
 
     $changeParam = array();
@@ -22,7 +22,7 @@ if(!empty($_POST["phone"])) {
         array_push($changeParam, "email = :em");
     }
     if (isset($_POST['pass'])) {
-        array_push($changeParam, "password = :pw");
+        array_push($changeParam, "password = MD5(:pw)");
     }
 
     $parameters = implode(", ", $changeParam);
