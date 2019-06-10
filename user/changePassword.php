@@ -10,8 +10,8 @@ if(isset($_POST['password_new']) && isset($_POST['password_old']) && isset($_POS
 
     $query = $db->prepare("UPDATE user SET password = MD5(:passNew) WHERE phone = :id AND password = MD5(:passOld);");
     $query->bindParam("id", $_POST['phone']);
-    $query->bindParam("passNew", $_POST['password_new'])
-    $query->bindParam("passOld", $_POST['password_old'])
+    $query->bindParam("passNew", $_POST['password_new']);
+    $query->bindParam("passOld", $_POST['password_old']);
     $query->execute();
     
     $message = $query->rowCount() > 0 ? "Modified password." : "Password didn't modified.";
