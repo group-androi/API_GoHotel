@@ -206,14 +206,14 @@
 		Parameter:
 			hotel_id - mã khách sạn
 			room_id - mã phòng
-			user - người đánh giá
+			user - id user đánh giá
 			comment - bình luận người dùng
 			star - sao đánh giá
 	get/post - /review/delete.php -  - token
 		Parameter:
 			hotel_id - mã khách sạn - không cần truyền
 			room_id - mã phòng - không cần truyền
-			user - người đánh giá - không cần truyền
+			user - id user đánh giá - không cần truyền
 			comment - bình luận người dùng - không cần truyền
 			star - sao đánh giá - không cần truyền
 		(LƯU Ý SẼ XÓA TẤT CẢ NẾU K TRUYỀN GÌ CẢ)
@@ -221,7 +221,7 @@
 		Parameter:
 			hotel_id - mã khách sạn
 			room_id - mã phòng
-			user - người đánh giá
+			user - id user đánh giá
 			comment_new - bình luận mới của người dùng - không truyền sẽ xóa nội dung
 			star_new - sao đánh giá mới - không truyền sẽ xóa nội dung
 
