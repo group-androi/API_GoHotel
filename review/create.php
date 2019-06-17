@@ -34,6 +34,6 @@ try {
     http_response_code(200);
  
 } catch (Exception $e) {
-    echo json_encode(array("result"=>0);
+    echo json_encode(array("result"=>0));
 }
 	?>
