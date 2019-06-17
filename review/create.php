@@ -18,7 +18,7 @@ try {
 
     require_once("./../helper/connect_db.php");
     $db = (new myDatabase())->connect();
-    $sql = "INSERT INTO `review`(`hotel_id`,`room_id`,`star`,`comment`,`user`) VALUES (:key, :room, :star, :comment, :user)";
+    $sql = "INSERT INTO `review`(`hotel_id`,`room_id`,`star`,`comment`,`user_id`) VALUES (:key, :room, :star, :comment, :user)";
     $query = $db->prepare($sql);
 
     $query->bindParam("key", $hotel);
