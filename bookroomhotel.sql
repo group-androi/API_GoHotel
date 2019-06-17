@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 10, 2019 at 01:10 PM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 7.2.7
+-- Host: 127.0.0.1:3308
+-- Generation Time: Jun 17, 2019 at 07:03 AM
+-- Server version: 5.7.26
+-- PHP Version: 7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,8 +28,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `bookroom`
 --
 
-CREATE TABLE `bookroom` (
-  `id_book` int(11) NOT NULL,
+DROP TABLE IF EXISTS `bookroom`;
+CREATE TABLE IF NOT EXISTS `bookroom` (
+  `id_book` int(11) NOT NULL AUTO_INCREMENT,
   `hotel_id` int(11) NOT NULL,
   `room_id` int(11) NOT NULL,
   `user_id` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -39,8 +40,10 @@ CREATE TABLE `bookroom` (
   `time_book` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
   `phone` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `info_user_booked` varchar(1024) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `status` int(11) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `status` int(11) NOT NULL DEFAULT '0',
+  `reviewed` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id_book`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -48,10 +51,12 @@ CREATE TABLE `bookroom` (
 -- Table structure for table `city`
 --
 
-CREATE TABLE `city` (
-  `id_city` int(11) NOT NULL,
-  `name_city` varchar(32) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+DROP TABLE IF EXISTS `city`;
+CREATE TABLE IF NOT EXISTS `city` (
+  `id_city` int(11) NOT NULL AUTO_INCREMENT,
+  `name_city` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id_city`)
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `city`
@@ -128,10 +133,12 @@ INSERT INTO `city` (`id_city`, `name_city`) VALUES
 -- Table structure for table `device`
 --
 
-CREATE TABLE `device` (
+DROP TABLE IF EXISTS `device`;
+CREATE TABLE IF NOT EXISTS `device` (
   `id_device` char(128) COLLATE utf8_unicode_ci NOT NULL,
   `latitude` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `longitude` char(16) COLLATE utf8_unicode_ci DEFAULT NULL
+  `longitude` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id_device`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -147,11 +154,14 @@ INSERT INTO `device` (`id_device`, `latitude`, `longitude`) VALUES
 -- Table structure for table `district`
 --
 
-CREATE TABLE `district` (
-  `id_district` int(11) NOT NULL,
+DROP TABLE IF EXISTS `district`;
+CREATE TABLE IF NOT EXISTS `district` (
+  `id_district` int(11) NOT NULL AUTO_INCREMENT,
   `name_district` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `city_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `city_id` int(11) NOT NULL,
+  PRIMARY KEY (`id_district`),
+  KEY `city_id` (`city_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=974 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `district`
@@ -878,8 +888,9 @@ INSERT INTO `district` (`id_district`, `name_district`, `city_id`) VALUES
 -- Table structure for table `hotel`
 --
 
-CREATE TABLE `hotel` (
-  `id_hotel` int(11) NOT NULL,
+DROP TABLE IF EXISTS `hotel`;
+CREATE TABLE IF NOT EXISTS `hotel` (
+  `id_hotel` int(11) NOT NULL AUTO_INCREMENT,
   `name_hotel` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `address` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
   `district_id` int(11) DEFAULT NULL,
@@ -888,8 +899,10 @@ CREATE TABLE `hotel` (
   `latitude` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `longitude` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `check_in` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `check_out` char(16) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `check_out` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id_hotel`),
+  KEY `city_id` (`city_id`,`district_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `hotel`
@@ -922,10 +935,15 @@ INSERT INTO `hotel` (`id_hotel`, `name_hotel`, `address`, `district_id`, `city_i
 -- Table structure for table `image`
 --
 
-CREATE TABLE `image` (
+DROP TABLE IF EXISTS `image`;
+CREATE TABLE IF NOT EXISTS `image` (
   `name_image` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `hotel_id` int(11) NOT NULL,
-  `room_id` int(11) DEFAULT NULL
+  `room_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`name_image`,`hotel_id`),
+  UNIQUE KEY `name_image` (`name_image`,`hotel_id`,`room_id`),
+  KEY `room_id` (`room_id`),
+  KEY `hotel_id` (`hotel_id`,`room_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -1007,7 +1025,8 @@ INSERT INTO `image` (`name_image`, `hotel_id`, `room_id`) VALUES
 -- Table structure for table `key_word`
 --
 
-CREATE TABLE `key_word` (
+DROP TABLE IF EXISTS `key_word`;
+CREATE TABLE IF NOT EXISTS `key_word` (
   `key_word` varchar(254) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -1078,7 +1097,8 @@ INSERT INTO `key_word` (`key_word`) VALUES
 -- Table structure for table `review`
 --
 
-CREATE TABLE `review` (
+DROP TABLE IF EXISTS `review`;
+CREATE TABLE IF NOT EXISTS `review` (
   `hotel_id` int(11) NOT NULL,
   `room_id` int(11) NOT NULL,
   `user_id` varchar(254) COLLATE utf8_unicode_ci NOT NULL,
@@ -1092,15 +1112,18 @@ CREATE TABLE `review` (
 -- Table structure for table `room`
 --
 
-CREATE TABLE `room` (
-  `id_room` int(11) NOT NULL,
+DROP TABLE IF EXISTS `room`;
+CREATE TABLE IF NOT EXISTS `room` (
+  `id_room` int(11) NOT NULL AUTO_INCREMENT,
   `name_room` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
   `price_per_day` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
   `count` char(4) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `hotel_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `hotel_id` int(11) NOT NULL,
+  PRIMARY KEY (`id_room`),
+  KEY `hotel_id` (`hotel_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `room`
@@ -1142,14 +1165,18 @@ INSERT INTO `room` (`id_room`, `name_room`, `price_per_day`, `image`, `count`, `
 -- Table structure for table `user`
 --
 
-CREATE TABLE `user` (
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
   `dob` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `phone` char(16) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   `device_id` char(128) COLLATE utf8_unicode_ci DEFAULT NULL,
   `password` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `gender` varchar(8) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `token` char(128) COLLATE utf8_unicode_ci DEFAULT NULL
+  `token` char(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`phone`),
+  UNIQUE KEY `phone` (`phone`),
+  KEY `device_id` (`device_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -1170,11 +1197,13 @@ INSERT INTO `user` (`dob`, `phone`, `email`, `device_id`, `password`, `gender`, 
 -- Table structure for table `utility`
 --
 
-CREATE TABLE `utility` (
-  `id_utility` int(11) NOT NULL,
+DROP TABLE IF EXISTS `utility`;
+CREATE TABLE IF NOT EXISTS `utility` (
+  `id_utility` int(11) NOT NULL AUTO_INCREMENT,
   `name_utility` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `image` varchar(256) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `image` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id_utility`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `utility`
@@ -1197,10 +1226,16 @@ INSERT INTO `utility` (`id_utility`, `name_utility`, `image`) VALUES
 -- Table structure for table `utilityroom`
 --
 
-CREATE TABLE `utilityroom` (
+DROP TABLE IF EXISTS `utilityroom`;
+CREATE TABLE IF NOT EXISTS `utilityroom` (
   `utility_id` int(11) NOT NULL,
   `hotel_id` int(11) NOT NULL,
-  `room_id` int(11) DEFAULT NULL
+  `room_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`utility_id`,`hotel_id`),
+  UNIQUE KEY `utility_id` (`utility_id`,`hotel_id`,`room_id`),
+  KEY `room_id` (`room_id`),
+  KEY `room_id_2` (`room_id`),
+  KEY `hotel_id` (`hotel_id`,`room_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -1212,122 +1247,6 @@ INSERT INTO `utilityroom` (`utility_id`, `hotel_id`, `room_id`) VALUES
 (3, 2, 2),
 (4, 2, 2),
 (5, 2, 2);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `bookroom`
---
-ALTER TABLE `bookroom`
-  ADD PRIMARY KEY (`id_book`);
-
---
--- Indexes for table `city`
---
-ALTER TABLE `city`
-  ADD PRIMARY KEY (`id_city`);
-
---
--- Indexes for table `device`
---
-ALTER TABLE `device`
-  ADD PRIMARY KEY (`id_device`);
-
---
--- Indexes for table `district`
---
-ALTER TABLE `district`
-  ADD PRIMARY KEY (`id_district`),
-  ADD KEY `city_id` (`city_id`);
-
---
--- Indexes for table `hotel`
---
-ALTER TABLE `hotel`
-  ADD PRIMARY KEY (`id_hotel`),
-  ADD KEY `city_id` (`city_id`,`district_id`);
-
---
--- Indexes for table `image`
---
-ALTER TABLE `image`
-  ADD PRIMARY KEY (`name_image`,`hotel_id`),
-  ADD UNIQUE KEY `name_image` (`name_image`,`hotel_id`,`room_id`),
-  ADD KEY `room_id` (`room_id`),
-  ADD KEY `hotel_id` (`hotel_id`,`room_id`);
-
---
--- Indexes for table `room`
---
-ALTER TABLE `room`
-  ADD PRIMARY KEY (`id_room`),
-  ADD KEY `hotel_id` (`hotel_id`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`phone`),
-  ADD UNIQUE KEY `phone` (`phone`),
-  ADD KEY `device_id` (`device_id`);
-
---
--- Indexes for table `utility`
---
-ALTER TABLE `utility`
-  ADD PRIMARY KEY (`id_utility`);
-
---
--- Indexes for table `utilityroom`
---
-ALTER TABLE `utilityroom`
-  ADD PRIMARY KEY (`utility_id`,`hotel_id`),
-  ADD UNIQUE KEY `utility_id` (`utility_id`,`hotel_id`,`room_id`),
-  ADD KEY `room_id` (`room_id`),
-  ADD KEY `room_id_2` (`room_id`),
-  ADD KEY `hotel_id` (`hotel_id`,`room_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `bookroom`
---
-ALTER TABLE `bookroom`
-  MODIFY `id_book` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `city`
---
-ALTER TABLE `city`
-  MODIFY `id_city` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
-
---
--- AUTO_INCREMENT for table `district`
---
-ALTER TABLE `district`
-  MODIFY `id_district` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=974;
-
---
--- AUTO_INCREMENT for table `hotel`
---
-ALTER TABLE `hotel`
-  MODIFY `id_hotel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
---
--- AUTO_INCREMENT for table `room`
---
-ALTER TABLE `room`
-  MODIFY `id_room` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
-
---
--- AUTO_INCREMENT for table `utility`
---
-ALTER TABLE `utility`
-  MODIFY `id_utility` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
