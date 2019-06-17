@@ -9,16 +9,16 @@
 	$where = "";
 	$array_where = array("1");
 
-	if (!empty($_GET['id']) || !empty($_POST['id'])) {
+	if (isset($_GET['id']) || isset($_POST['id'])) {
 		array_push($array_where, "id_book = :id");
 	}
-	if (!empty($_GET['phone']) || !empty($_POST['phone'])) {
+	if (isset($_GET['phone']) || isset($_POST['phone'])) {
 		array_push($array_where, "phone = :phone");
 	}
-    if (!empty($_GET['status']) || !empty($_POST['status'])) {
+    if (isset($_GET['status']) || isset($_POST['status'])) {
         array_push($array_where, "status = :tus");
     }
-    if (!empty($_GET['reviewed']) || !empty($_POST['reviewed'])) {
+    if (isset($_GET['reviewed']) || isset($_POST['reviewed'])) {
         array_push($array_where, "reviewed = :rview");
     }
 
@@ -28,7 +28,7 @@
                             (SELECT name_hotel FROM hotel WHERE hotel.id_hotel = bookroom.hotel_id) 'name_hotel', 
                             `image`.`name_image` 'link_image',  
                             (SELECT name_room FROM room WHERE room.id_room = bookroom.room_id) 'name_room', 
-                            bookroom.user_id, `date_start`, `date_end`, `price`, `time_book`, `phone`, `info_user_booked`, `status`, `reviewed`
+                            bookroom.user_id, `date_start`, `date_end`, `price`, `time_book`, `phone`, `info_user_booked`, `status`, `reviewed`,
                             review.star, 
                             review.comment 
                             FROM bookroom
@@ -39,19 +39,19 @@
                             FROM bookroom 
                             ".$where." 
                             ORDER BY date_start");
-    if (!empty($_GET["id"]) || !empty($_POST['id'])) {
+    if (isset($_GET["id"]) || isset($_POST['id'])) {
     	$key = isset($_GET['id']) ? $_GET['id'] : $_POST['id'];
     	$query->bindParam("id", $key);
     }
-    if (!empty($_GET["phone"]) || !empty($_POST['phone'])) {
+    if (isset($_GET["phone"]) || isset($_POST['phone'])) {
     	$key = isset($_GET['phone']) ? $_GET['phone'] : $_POST['phone'];
     	$query->bindParam("phone", $key);
     }
-    if (!empty($_GET["status"]) || !empty($_POST['status'])) {
+    if (isset($_GET["status"]) || isset($_POST['status'])) {
         $key = isset($_GET['status']) ? $_GET['status'] : $_POST['status'];
         $query->bindParam("tus", $key);
     }
-    if (!empty($_GET["status"]) || !empty($_POST['status'])) {
+    if (isset($_GET["status"]) || isset($_POST['status'])) {
         $key = isset($_GET['status']) ? $_GET['status'] : $_POST['reviewed'];
         $query->bindParam("rview", $key);
     }

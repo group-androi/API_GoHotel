@@ -1,7 +1,7 @@
 <?php 
 
     require_once("./../helper/checkToken.php");
-if (empty($_POST['name'])) {
+if (!isset($_POST['name'])) {
 	echo json_encode(array("message"=>"Parameter null.","result"=>-1));
 	die();
 }    

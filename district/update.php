@@ -3,9 +3,9 @@ try {
     
     require_once("./../helper/checkToken.php");
     
-if(!empty($_POST["name"]) && 
-    !empty($_POST["id"]) && 
-    !empty($_POST['city_id']))
+if(isset($_POST["name"]) && 
+    isset($_POST["id"]) && 
+    isset($_POST['city_id']))
     
     require_once("./../helper/connect_db.php");
     $db = (new myDatabase())->connect();

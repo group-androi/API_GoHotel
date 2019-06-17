@@ -2,7 +2,7 @@
 try {
     require_once("./../helper/checkToken.php");
     
-if(!empty($_POST["city_name"]) && !empty($_POST["id"])) {
+if(isset($_POST["city_name"]) && isset($_POST["id"])) {
     require_once("./../helper/connect_db.php");
     $db = (new myDatabase())->connect();
     $sql = "UPDATE `city` 

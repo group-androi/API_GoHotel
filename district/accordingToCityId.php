@@ -2,8 +2,8 @@
 
     //require_once("./../helper/checkToken.php");
     
-if (!empty($_GET['city_id']) || 
-	!empty($_POST['city_id'])) {
+if (isset($_GET['city_id']) || 
+	isset($_POST['city_id'])) {
 	
 	require_once("./../helper/connect_db.php");
 	$Database = new myDatabase();

@@ -3,15 +3,15 @@
     
 
 try {
-    if(!empty($_POST["device_id"])){
+    if(isset($_POST["device_id"])){
 
     $changeParam = array();
 
-    if (!empty($_POST['latitude'])) {
+    if (isset($_POST['latitude'])) {
         array_push($changeParam, "latitude = :lat");
     }
 
-    if (!empty($_POST['longitude'])) {
+    if (isset($_POST['longitude'])) {
         array_push($changeParam, "longitude = :log")
     }
 
@@ -25,10 +25,10 @@ try {
     $query = $db->prepare($sql);
     $query->bindParam("id", $_POST['device_id']);
 
-    if (!empty($_POST['latitude'])) {
+    if (isset($_POST['latitude'])) {
         $query->bindParam("lat", $_POST['latitude']);
     }
-    if (!empty($_POST['longitude'])) {
+    if (isset($_POST['longitude'])) {
         $query->bindParam("log",$_POST['longitude']);
     }
     $query->execute();

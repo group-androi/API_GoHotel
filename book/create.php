@@ -2,9 +2,9 @@
 
     //require_once("./../helper/checkToken.php");
     
-if (!empty($_POST['hotel_id']) && 
-	!empty($_POST['room_id']) && 
-	!empty($_POST['phone'])) {
+if (isset($_POST['hotel_id']) && 
+	isset($_POST['room_id']) && 
+	isset($_POST['phone'])) {
     error_reporting(1); 
     $temp="";
     require_once("./../helper/connect_db.php");

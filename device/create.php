@@ -1,6 +1,6 @@
 <?php 
 
-if (empty($_POST['device_id'])||empty($_POST['latitude']) || empty($_POST['longitude'])) {
+if (!isset($_POST['device_id'])||!isset($_POST['latitude']) || !isset($_POST['longitude'])) {
     echo json_encode(array("message"=>"Has parameter null.", "result"=>-1));
     die();
 }
