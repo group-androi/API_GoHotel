@@ -1,7 +1,6 @@
 <?php 
-
-//    require("./../helper/checkToken.php");
-    if(empty($_POST['latitude']) || empty($_POST['longitude']))
+    //    require("./../helper/checkToken.php");
+    if(!isset($_POST['latitude']) || !isset($_POST['longitude']))
     {
         http_response_code(401);
         die();
@@ -63,9 +62,9 @@
 
     $sql="SELECT `hotel`.*, `image`.`name_image` 'link_image' , `image`.`room_id`, SQRT((latitude - :latitude)*(latitude - :latitude)+(longitude - :longitude)*(longitude - :longitude)) 'distance' , COUNT(`review`.`star`) 'count_star' 
         FROM `hotel` LEFT JOIN `image` ON `image`.`hotel_id` = `hotel`.`id_hotel` 
-        LEFT JOIN `review` ON `review`.`hotel_id` = `hotel`.`id_hotel`
+        LEFT JOIN `review` ON `review`.`hotel_id` = `hotel`.`id_hotel` 
         ".$where.' GROUP BY `hotel`.`id_hotel` '.$sort.$limit;
-        //echo $sql;
+        // echo $sql;
 
     $query = $db->prepare($sql);
     $query->bindParam("latitude", $_POST['latitude']);
