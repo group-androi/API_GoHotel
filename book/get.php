@@ -23,8 +23,7 @@
     }
 
 	$where = "WHERE ".implode(" AND ", $array_where);
-
-    $query = $db->prepare("SELECT `id_book`, 
+    $sql="SELECT `id_book`, 
                             (SELECT name_hotel FROM hotel WHERE hotel.id_hotel = bookroom.hotel_id) 'name_hotel', 
                             `image`.`name_image` 'link_image',  
                             (SELECT name_room FROM room WHERE room.id_room = bookroom.room_id) 'name_room', 
@@ -36,9 +35,10 @@
                                                 AND bookroom.room_id = review.room_id 
                                                 AND bookroom.user_id = review.user_id  
                             LEFT JOIN `image` ON `image`.`hotel_id` = `bookroom`.`hotel_id`
-                            FROM bookroom 
                             ".$where." 
-                            ORDER BY date_start");
+                            ORDER BY date_start";
+    //echo $sql;
+    $query = $db->prepare($sql);
     if (isset($_GET["id"]) || isset($_POST['id'])) {
     	$key = isset($_GET['id']) ? $_GET['id'] : $_POST['id'];
     	$query->bindParam("id", $key);
