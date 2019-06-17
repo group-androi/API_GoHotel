@@ -5,15 +5,23 @@
 	$db = $Database->connect();
 
     $query = $db->prepare("SELECT phone, 
-                            (SELECT name_hotel FROM hotel WHERE id_hotel = hotel_id) 'name_hotel', 
+                            (SELECT name_hotel FROM hotel WHERE hotel.id_hotel = bookroom.hotel_id) 'name_hotel', 
                             id_book, 
-                            (SELECT name_room FROM room WHERE id_room = room_id) 'name_room', 
+                            (SELECT name_room FROM room WHERE room.id_room = bookroom.room_id) 'name_room', 
                             time_book, 
                             date_start, 
                             date_end, 
+                            `image`.`name_image` 'link_image',  
                             price, 
-                            status 
-                            FROM bookroom 
+                            status, 
+                            `reviewed`, 
+                            review.star, 
+                            review.comment 
+                            FROM bookroom
+                            LEFT JOIN review ON bookroom.hotel_id = review.hotel_id
+                                                AND bookroom.room_id = review.room_id 
+                                                AND bookroom.user_id = review.user_id
+                            LEFT JOIN `image` ON `image`.`hotel_id` = `bookroom`.`hotel_id`
                             WHERE id_book = :key 
                             ORDER BY date_start");
     

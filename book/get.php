@@ -15,16 +15,27 @@
 	if (!empty($_GET['phone']) || !empty($_POST['phone'])) {
 		array_push($array_where, "phone = :phone");
 	}
-	if (!empty($_GET['status']) || !empty($_POST['status'])) {
-		array_push($array_where, "status = :tus");
-	}
+    if (!empty($_GET['status']) || !empty($_POST['status'])) {
+        array_push($array_where, "status = :tus");
+    }
+    if (!empty($_GET['reviewed']) || !empty($_POST['reviewed'])) {
+        array_push($array_where, "reviewed = :rview");
+    }
 
 	$where = "WHERE ".implode(" AND ", $array_where);
 
     $query = $db->prepare("SELECT `id_book`, 
-                            (SELECT name_hotel FROM hotel WHERE id_hotel = hotel_id) 'name_hotel', 
-                            (SELECT name_room FROM room WHERE id_room = room_id) 'name_room', 
-                            `user_id`, `date_start`, `date_end`, `price`, `time_book`, `phone`, `info_user_booked`, `status` 
+                            (SELECT name_hotel FROM hotel WHERE hotel.id_hotel = bookroom.hotel_id) 'name_hotel', 
+                            `image`.`name_image` 'link_image',  
+                            (SELECT name_room FROM room WHERE room.id_room = bookroom.room_id) 'name_room', 
+                            bookroom.user_id, `date_start`, `date_end`, `price`, `time_book`, `phone`, `info_user_booked`, `status`, `reviewed`
+                            review.star, 
+                            review.comment 
+                            FROM bookroom
+                            LEFT JOIN review ON bookroom.hotel_id = review.hotel_id
+                                                AND bookroom.room_id = review.room_id 
+                                                AND bookroom.user_id = review.user_id  
+                            LEFT JOIN `image` ON `image`.`hotel_id` = `bookroom`.`hotel_id`
                             FROM bookroom 
                             ".$where." 
                             ORDER BY date_start");
@@ -37,8 +48,12 @@
     	$query->bindParam("phone", $key);
     }
     if (!empty($_GET["status"]) || !empty($_POST['status'])) {
-    	$key = isset($_GET['status']) ? $_GET['status'] : $_POST['status'];
-    	$query->bindParam("tus", $key);
+        $key = isset($_GET['status']) ? $_GET['status'] : $_POST['status'];
+        $query->bindParam("tus", $key);
+    }
+    if (!empty($_GET["status"]) || !empty($_POST['status'])) {
+        $key = isset($_GET['status']) ? $_GET['status'] : $_POST['reviewed'];
+        $query->bindParam("rview", $key);
     }
     $query->execute();
     echo json_encode($query->fetchAll());

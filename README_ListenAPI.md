@@ -16,6 +16,7 @@
 			time_book - 
 			phone - 
 			info_user - 
+			reviewed - tình trạng review
 +	post - /book/update.php - cập nhật lại thông tin đặt phòng
 		Parameter:
 			id - mã đặt phòng muốn sửa - bắt buộc
@@ -28,6 +29,7 @@
 			phone_new -  - nếu cần thay đổi
 			info_user_new -  - nếu cần thay đổi
 			status - (dữ liệu phải là số) - nếu cần thay đổi
+			reviewed - tình trạng review - nếu cần thay đổi
 +	get - /book/delete.php - xóa đặt phòng với id tương ứng
 		Parameter: id - mã đặt phòng muốn xóa
 	get - /book/getAccordingToToken.php - lấy danh sách đặt phòng theo token đã truyền ở header - token
