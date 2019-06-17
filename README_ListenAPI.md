@@ -199,7 +199,7 @@
 		Parameter:
 			hotel_id - mã khách sạn - không cần truyền
 			room_id - mã phòng - không cần truyền
-			user - người đánh giá - không cần truyền
+			user - id user đánh giá - không cần truyền
 			comment - bình luận người dùng - không cần truyền
 			star - sao đánh giá - không cần truyền
 	get/post - /review/create.php -  - token
