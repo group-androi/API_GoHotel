@@ -5,6 +5,7 @@
 	$db = $Database->connect();
 
     $query = $db->prepare("SELECT phone, 
+							bookroom.hotel_id, bookroom.room_id,
                             (SELECT name_hotel FROM hotel WHERE hotel.id_hotel = bookroom.hotel_id) 'name_hotel', 
                             id_book, 
                             (SELECT name_room FROM room WHERE room.id_room = bookroom.room_id) 'name_room', 

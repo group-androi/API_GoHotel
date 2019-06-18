@@ -30,6 +30,7 @@
 
 	$where = "WHERE ".implode(" AND ", $array_where);
     $sql="SELECT `id_book`, 
+							bookroom.hotel_id, bookroom.room_id, 
                             (SELECT name_hotel FROM hotel WHERE hotel.id_hotel = bookroom.hotel_id) 'name_hotel', 
                             (SELECT `image`.`name_image` FROM image WHERE `image`.`hotel_id` = `bookroom`.`hotel_id` LIMIT 1) 'link_image', 
                             (SELECT name_room FROM room WHERE room.id_room = bookroom.room_id) 'name_room', 
