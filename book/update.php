@@ -31,7 +31,7 @@
     if (isset($_POST['status']) && is_numeric($_POST['status'])) {
         array_push($array_set, '`status`=:tus');
     }
-    if (isset($_POST['reviewed']) && is_numeric($_POST['reviewed'])) {
+    if (isset($_POST['reviewed']) && $_POST['reviewed']) {
         array_push($array_set, '`reviewed`=:rview');
     }
     $where ='';
