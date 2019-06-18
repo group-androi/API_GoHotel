@@ -3,7 +3,7 @@
     // require_once("./../helper/checkToken.php");
     try {
         if(isset($_POST['id'])){
-    $array_set = array('id_book = :id');
+    $array_set = array();
     if (isset($_POST['hotel_id_new'])) {
         array_push($array_set, '`hotel_id`=:hotel');
     }
@@ -44,6 +44,7 @@
     $sql = "UPDATE `bookroom` 
             SET ".$where." 
             WHERE `id_book` = :id";
+	//echo $sql;
     $query = $db->prepare($sql);
 
 
@@ -74,7 +75,7 @@
     if (isset($_POST['status']) && is_numeric($_POST['status'])) {
         $query->bindParam("tus", $_POST['status']);
     }
-    if (isset($_POST['reviewed']) && is_numeric($_POST['reviewed'])) {
+    if (isset($_POST['reviewed']) && $_POST['reviewed']) {
         $query->bindParam("rview", $_POST['reviewed']);
     }
     $query->bindParam("id", $_POST['id']);
@@ -85,6 +86,7 @@
 }
         
     } catch (Exception $e) {
+        //echo 'Connection Error: ' . $e->getMessage();
     echo json_encode(array("message"=>"" ,"result"=>0));  
     }
 
