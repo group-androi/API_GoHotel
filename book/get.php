@@ -16,7 +16,7 @@
 		array_push($array_where, "phone = :phone");
 	}
     if (isset($_GET['status']) || isset($_POST['status'])) {
-        array_push($array_where, "status = ". (isset($_GET['status']) ? $_GET['status'] : $_POST['status']));
+        array_push($array_where, "status = ". (isset($_GET['status']) ? intval($_GET['status']) : intval($_POST['status'])));
     }
     if (isset($_GET['reviewed']) || isset($_POST['reviewed'])) {
         array_push($array_where, "reviewed = :rview");
