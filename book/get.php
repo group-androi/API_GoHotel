@@ -15,6 +15,9 @@
 	if (isset($_GET['phone']) || isset($_POST['phone'])) {
 		array_push($array_where, "phone = :phone");
 	}
+	if (isset($_GET['device_id']) || isset($_POST['device_id'])) {
+		array_push($array_where, "device_id = :device");
+	}
     if (isset($_GET['status']) || isset($_POST['status'])) {
         array_push($array_where, "status = ". (isset($_GET['status']) ? intval($_GET['status']) : intval($_POST['status'])));
     }
@@ -30,7 +33,7 @@
                             (SELECT name_hotel FROM hotel WHERE hotel.id_hotel = bookroom.hotel_id) 'name_hotel', 
                             `image`.`name_image` 'link_image',  
                             (SELECT name_room FROM room WHERE room.id_room = bookroom.room_id) 'name_room', 
-                            bookroom.user_id, `date_start`, `date_end`, `price`, `time_book`, `phone`, `info_user_booked`, `status`, `reviewed`,
+                            bookroom.user_id, `date_start`, `date_end`, `price`, `time_book`, `phone`, `device_id`, `info_user_booked`, `status`, `reviewed`,
                             review.star, 
                             review.comment 
                             FROM bookroom
@@ -49,6 +52,10 @@
     if (isset($_GET["phone"]) || isset($_POST['phone'])) {
     	$key = isset($_GET['phone']) ? $_GET['phone'] : $_POST['phone'];
     	$query->bindParam("phone", $key);
+    }
+    if (isset($_GET["device_id"]) || isset($_POST['device_id'])) {
+    	$key = isset($_GET['device_id']) ? $_GET['device_id'] : $_POST['device_id'];
+    	$query->bindParam("device", $key);
     }
     /*if (isset($_GET["status"]) || isset($_POST['status'])) {
         $key = isset($_GET['status']) ? $_GET['status'] : $_POST['status'];

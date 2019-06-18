@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 18, 2019 at 04:37 AM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 7.2.7
+-- Host: 127.0.0.1:3306
+-- Generation Time: Jun 18, 2019 at 07:28 AM
+-- Server version: 5.7.26
+-- PHP Version: 7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,8 +28,10 @@ SET time_zone = "+00:00";
 -- Table structure for table `bookroom`
 --
 
-CREATE TABLE `bookroom` (
-  `id_book` int(11) NOT NULL,
+DROP TABLE IF EXISTS `bookroom`;
+CREATE TABLE IF NOT EXISTS `bookroom` (
+  `id_book` int(11) NOT NULL AUTO_INCREMENT,
+  `device_id` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   `hotel_id` int(11) NOT NULL,
   `room_id` int(11) NOT NULL,
   `user_id` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -40,17 +42,18 @@ CREATE TABLE `bookroom` (
   `phone` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `info_user_booked` varchar(1024) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT '0',
-  `reviewed` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `reviewed` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id_book`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `bookroom`
 --
 
-INSERT INTO `bookroom` (`id_book`, `hotel_id`, `room_id`, `user_id`, `date_start`, `date_end`, `price`, `time_book`, `phone`, `info_user_booked`, `status`, `reviewed`) VALUES
-(6, 10, 15, '077820445', '2019-06-17', '2019-06-18', '999000', '2019-06-17 04:18:49', '0778204451', '', 0, NULL),
-(7, 18, 33, '077820445', '2019-06-18', '2019-06-19', '300000', '2019-06-18 10:30:19', '0778204451', '', 0, NULL),
-(8, 8, 8, '077820445', '2019-06-18', '2019-06-19', '222000', '2019-06-18 10:36:33', '0778204451', '', 0, NULL);
+INSERT INTO `bookroom` (`id_book`, `device_id`, `hotel_id`, `room_id`, `user_id`, `date_start`, `date_end`, `price`, `time_book`, `phone`, `info_user_booked`, `status`, `reviewed`) VALUES
+(6, NULL, 10, 15, '077820445', '2019-06-17', '2019-06-18', '999000', '2019-06-17 04:18:49', '0778204451', '', 0, NULL),
+(7, NULL, 18, 33, '077820445', '2019-06-18', '2019-06-19', '300000', '2019-06-18 10:30:19', '0778204451', '', 0, NULL),
+(8, NULL, 8, 8, '077820445', '2019-06-18', '2019-06-19', '222000', '2019-06-18 10:36:33', '0778204451', '', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -58,10 +61,12 @@ INSERT INTO `bookroom` (`id_book`, `hotel_id`, `room_id`, `user_id`, `date_start
 -- Table structure for table `city`
 --
 
-CREATE TABLE `city` (
-  `id_city` int(11) NOT NULL,
-  `name_city` varchar(32) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+DROP TABLE IF EXISTS `city`;
+CREATE TABLE IF NOT EXISTS `city` (
+  `id_city` int(11) NOT NULL AUTO_INCREMENT,
+  `name_city` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id_city`)
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `city`
@@ -138,10 +143,12 @@ INSERT INTO `city` (`id_city`, `name_city`) VALUES
 -- Table structure for table `device`
 --
 
-CREATE TABLE `device` (
+DROP TABLE IF EXISTS `device`;
+CREATE TABLE IF NOT EXISTS `device` (
   `id_device` char(128) COLLATE utf8_unicode_ci NOT NULL,
   `latitude` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `longitude` char(16) COLLATE utf8_unicode_ci DEFAULT NULL
+  `longitude` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id_device`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -157,11 +164,14 @@ INSERT INTO `device` (`id_device`, `latitude`, `longitude`) VALUES
 -- Table structure for table `district`
 --
 
-CREATE TABLE `district` (
-  `id_district` int(11) NOT NULL,
+DROP TABLE IF EXISTS `district`;
+CREATE TABLE IF NOT EXISTS `district` (
+  `id_district` int(11) NOT NULL AUTO_INCREMENT,
   `name_district` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `city_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `city_id` int(11) NOT NULL,
+  PRIMARY KEY (`id_district`),
+  KEY `city_id` (`city_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=974 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `district`
@@ -888,8 +898,9 @@ INSERT INTO `district` (`id_district`, `name_district`, `city_id`) VALUES
 -- Table structure for table `hotel`
 --
 
-CREATE TABLE `hotel` (
-  `id_hotel` int(11) NOT NULL,
+DROP TABLE IF EXISTS `hotel`;
+CREATE TABLE IF NOT EXISTS `hotel` (
+  `id_hotel` int(11) NOT NULL AUTO_INCREMENT,
   `name_hotel` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `address` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
   `district_id` int(11) DEFAULT NULL,
@@ -898,8 +909,10 @@ CREATE TABLE `hotel` (
   `latitude` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `longitude` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `check_in` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `check_out` char(16) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `check_out` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id_hotel`),
+  KEY `city_id` (`city_id`,`district_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `hotel`
@@ -933,10 +946,15 @@ INSERT INTO `hotel` (`id_hotel`, `name_hotel`, `address`, `district_id`, `city_i
 -- Table structure for table `image`
 --
 
-CREATE TABLE `image` (
+DROP TABLE IF EXISTS `image`;
+CREATE TABLE IF NOT EXISTS `image` (
   `name_image` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `hotel_id` int(11) NOT NULL,
-  `room_id` int(11) DEFAULT NULL
+  `room_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`name_image`,`hotel_id`),
+  UNIQUE KEY `name_image` (`name_image`,`hotel_id`,`room_id`),
+  KEY `room_id` (`room_id`),
+  KEY `hotel_id` (`hotel_id`,`room_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -944,72 +962,72 @@ CREATE TABLE `image` (
 --
 
 INSERT INTO `image` (`name_image`, `hotel_id`, `room_id`) VALUES
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=0071e303a63a0b943f19c8e940adf204&highQuality=true', 22, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=0dd27001433e855e1823b280cf8940d7&highQuality', 8, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=0e21445f2737ef92fb2991e9ad236aef&highQuality=true', 23, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=10bff56c19307a8d7810760e076ba046&highQuality', 12, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=11450b255df744f780f7b7b5de2fdb3d&highQuality=true', 20, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=1383fd21cf87438527680f9d3c10aa85&highQuality', 12, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=174f120441ad4a34af99c959b904f142&highQuality=true', 20, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=194622e51d73d7f7afec0c45be2d36e0&highQuality', 14, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=1dee754acc4bf7e259d85d56d2f70429&highQuality=true', 24, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=22b5a726105a2e1f04c57934c5683b38&highQuality', 10, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=23bff4938752fafdebcc73998f1236df&highQuality=true', 23, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=24fa161987808dc7204861a294a9d13e&highQuality', 13, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=2b7037d615541236e2e0d813dd75c85f&highQuality=true', 21, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=36729932b1104531688cbb1f1f7361e5&highQuality=true', 19, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=373f696d107ea2c20a963824f5156048&highQuality', 8, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=37473278468de350d28d5c417a9e5256&highQuality', 15, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=3a469f7e35c654b5348a888a22e6f45f&highQuality=true', 23, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=45de462222ccba2d50ce8868b2d1aa35&highQuality', 11, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=4895d0a16b977546578bf6aacbda3706&highQuality=true', 19, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=4a4d96ae13091fd5653e56feb95e1682&highQuality=true', 26, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=4f38b818360650c0af37f5ba98acd6b6&highQuality', 15, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=50d7f0db15da8a535de5124806ba5c73&highQuality=true', 26, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=50dedd4fe4fdba85aaae9f4cb40a013f&highQuality=true', 21, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=527a9546237826709472a29cc9e3a368&highQuality', 10, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=5341b6a636a32d90a2c0abfd031a64be&highQuality', 8, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=59956d9e87fc2484252faa6c2e3d0486&highQuality=true', 18, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=599f6773a3eff47d8f898c5db73379f8&highQuality', 8, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=5a790adae987d01219cd30bd07644fc1&highQuality', 9, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=5cd0371883feb4d53b22a4d2f208403d&highQuality', 14, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=5cf8d4a1264e0a1924c84401b14ddf40&highQuality', 17, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=5f2d1b0c3d551ebc21dd265729e9b3c8&highQuality', 10, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=6116405d5e755da3fc6bc3e65fb81f17&highQuality=true', 23, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=68a6d89c06e87296ef8d7e64edf22925&highQuality=true', 25, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=6d3620054a7b224c4094ed0b8cef1e9b&highQuality', 8, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=73649a11b457c1499a672a5f0d943c9b&highQuality', 15, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=7ac0bba49229d4cce7703cde7217b29e&highQuality', 15, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=815032af7ecf2be51bfe37eed79f7901&highQuality', 17, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=838b430a5f229359fdc208b48f45d55e&highQuality=true', 18, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=85a580712dcb3d8dd219723004dcea34&highQuality', 10, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=864b7d9f52896b00c876561753c3ed68&highQuality', 15, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=894176bf09133a68822364aed8f52783&highQuality', 7, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=8e43de186641dfce20249fd50007abde&highQuality', 11, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=95381240f60d3f63098bff53d860caab&highQuality', 17, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=9a3aa5981d217752485ccc1bb03bd3e9&highQuality', 12, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=9c5b996065852ff8a5f1f28ce624824b&highQuality', 7, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=b2590590085107ec3520034982fbb247&highQuality', 14, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=d5b5285b93e68e92be8f86f6962650d0&highQuality', 13, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=d5be49da8bc3ed7d60a54e126c864000&highQuality', 8, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=e56eca1fc6056c7d5c630ccf0d3bc19f&highQuality', 10, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=ef9bafa039f53f02bd4c0139a55c6220&highQuality', 7, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=fa8ab173372b907458bbc81756c8da3e&highQuality', 7, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=0071e303a63a0b943f19c8e940adf204&highQuality=true', 22, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=0dd27001433e855e1823b280cf8940d7&highQuality', 8, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=0e21445f2737ef92fb2991e9ad236aef&highQuality=true', 23, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=11450b255df744f780f7b7b5de2fdb3d&highQuality=true', 20, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=174f120441ad4a34af99c959b904f142&highQuality=true', 20, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=1dee754acc4bf7e259d85d56d2f70429&highQuality=true', 24, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=23bff4938752fafdebcc73998f1236df&highQuality=true', 23, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=2b7037d615541236e2e0d813dd75c85f&highQuality=true', 21, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=36729932b1104531688cbb1f1f7361e5&highQuality=true', 19, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=3a469f7e35c654b5348a888a22e6f45f&highQuality=true', 23, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=4895d0a16b977546578bf6aacbda3706&highQuality=true', 19, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=4a4d96ae13091fd5653e56feb95e1682&highQuality=true', 26, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=50d7f0db15da8a535de5124806ba5c73&highQuality=true', 26, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=50dedd4fe4fdba85aaae9f4cb40a013f&highQuality=true', 21, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=59956d9e87fc2484252faa6c2e3d0486&highQuality=true', 18, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=6116405d5e755da3fc6bc3e65fb81f17&highQuality=true', 23, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=68a6d89c06e87296ef8d7e64edf22925&highQuality=true', 25, NULL),
-('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=838b430a5f229359fdc208b48f45d55e&highQuality=true', 18, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=8f2a81a67dba433170a95f05f67089c9&highQuality=true', 19, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=91160450ee470afdc66eed2094a8e3e3&highQuality=true', 24, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=930cf00abeab95db530fe34f40ca746c&highQuality=true', 19, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=95381240f60d3f63098bff53d860caab&highQuality', 17, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=9a3aa5981d217752485ccc1bb03bd3e9&highQuality', 12, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=9c5b996065852ff8a5f1f28ce624824b&highQuality', 7, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=9de71bb0929d48546e4e45c042992780&highQuality=true', 25, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=a03dd71095c78bab8f5a0867be24b97a&highQuality=true', 20, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=abc409d7cd9d241148f94271fd9a389e&highQuality=true', 20, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=b065c8988569b1cae5e912cc226b13d3&highQuality=true', 18, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=b2590590085107ec3520034982fbb247&highQuality', 14, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=baaeca3e6ee63e32a9aa7d5bd60b7b60&highQuality=true', 18, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=bfe0272380a847fe9073fe573e733997&highQuality=true', 23, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=d36ea8aa5282da5ff2bdf1db2e65c6db&highQuality=true', 20, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=d5b5285b93e68e92be8f86f6962650d0&highQuality', 13, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=d5be49da8bc3ed7d60a54e126c864000&highQuality', 8, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=d7eeccb1a044dbb4cc2b281b14bc7cc9&highQuality=true', 22, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=d8312d55cc7d97fe7287c499d0055db9&highQuality=true', 18, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=e56eca1fc6056c7d5c630ccf0d3bc19f&highQuality', 10, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=e5d1a538eb9d70fda60bccccd185200b&highQuality=true', 19, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=ef9bafa039f53f02bd4c0139a55c6220&highQuality', 7, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=efd67b091fab17ddb021720b1e8c7ef1&highQuality=true', 22, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=f45ed112e72585c6ed17d1b3d5e1000f&highQuality=true', 22, NULL),
+('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=fa8ab173372b907458bbc81756c8da3e&highQuality', 7, NULL),
 ('http://api.go2joy.vn/hotelapi/hotel/download/downloadHotelImageViaKey?imageKey=fbd5a2b11361e6edd10bae8c5f24c810&highQuality=true', 25, NULL);
 
 -- --------------------------------------------------------
@@ -1018,7 +1036,8 @@ INSERT INTO `image` (`name_image`, `hotel_id`, `room_id`) VALUES
 -- Table structure for table `key_word`
 --
 
-CREATE TABLE `key_word` (
+DROP TABLE IF EXISTS `key_word`;
+CREATE TABLE IF NOT EXISTS `key_word` (
   `key_word` varchar(254) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -1090,7 +1109,8 @@ INSERT INTO `key_word` (`key_word`) VALUES
 -- Table structure for table `review`
 --
 
-CREATE TABLE `review` (
+DROP TABLE IF EXISTS `review`;
+CREATE TABLE IF NOT EXISTS `review` (
   `hotel_id` int(11) NOT NULL,
   `room_id` int(11) NOT NULL,
   `user_id` varchar(254) COLLATE utf8_unicode_ci NOT NULL,
@@ -1111,15 +1131,18 @@ INSERT INTO `review` (`hotel_id`, `room_id`, `user_id`, `star`, `comment`) VALUE
 -- Table structure for table `room`
 --
 
-CREATE TABLE `room` (
-  `id_room` int(11) NOT NULL,
+DROP TABLE IF EXISTS `room`;
+CREATE TABLE IF NOT EXISTS `room` (
+  `id_room` int(11) NOT NULL AUTO_INCREMENT,
   `name_room` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
   `price_per_day` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   `count` char(4) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `hotel_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `hotel_id` int(11) NOT NULL,
+  PRIMARY KEY (`id_room`),
+  KEY `hotel_id` (`hotel_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `room`
@@ -1179,14 +1202,18 @@ INSERT INTO `room` (`id_room`, `name_room`, `price_per_day`, `image`, `count`, `
 -- Table structure for table `user`
 --
 
-CREATE TABLE `user` (
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
   `dob` char(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `phone` char(16) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   `device_id` char(128) COLLATE utf8_unicode_ci DEFAULT NULL,
   `password` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `gender` varchar(8) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `token` char(128) COLLATE utf8_unicode_ci DEFAULT NULL
+  `token` char(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`phone`),
+  UNIQUE KEY `phone` (`phone`),
+  KEY `device_id` (`device_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -1207,11 +1234,13 @@ INSERT INTO `user` (`dob`, `phone`, `email`, `device_id`, `password`, `gender`, 
 -- Table structure for table `utility`
 --
 
-CREATE TABLE `utility` (
-  `id_utility` int(11) NOT NULL,
+DROP TABLE IF EXISTS `utility`;
+CREATE TABLE IF NOT EXISTS `utility` (
+  `id_utility` int(11) NOT NULL AUTO_INCREMENT,
   `name_utility` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `image` varchar(256) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `image` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id_utility`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `utility`
@@ -1234,10 +1263,16 @@ INSERT INTO `utility` (`id_utility`, `name_utility`, `image`) VALUES
 -- Table structure for table `utilityroom`
 --
 
-CREATE TABLE `utilityroom` (
+DROP TABLE IF EXISTS `utilityroom`;
+CREATE TABLE IF NOT EXISTS `utilityroom` (
   `utility_id` int(11) NOT NULL,
   `hotel_id` int(11) NOT NULL,
-  `room_id` int(11) DEFAULT NULL
+  `room_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`utility_id`,`hotel_id`),
+  UNIQUE KEY `utility_id` (`utility_id`,`hotel_id`,`room_id`),
+  KEY `room_id` (`room_id`),
+  KEY `room_id_2` (`room_id`),
+  KEY `hotel_id` (`hotel_id`,`room_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -1249,122 +1284,6 @@ INSERT INTO `utilityroom` (`utility_id`, `hotel_id`, `room_id`) VALUES
 (3, 2, 2),
 (4, 2, 2),
 (5, 2, 2);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `bookroom`
---
-ALTER TABLE `bookroom`
-  ADD PRIMARY KEY (`id_book`);
-
---
--- Indexes for table `city`
---
-ALTER TABLE `city`
-  ADD PRIMARY KEY (`id_city`);
-
---
--- Indexes for table `device`
---
-ALTER TABLE `device`
-  ADD PRIMARY KEY (`id_device`);
-
---
--- Indexes for table `district`
---
-ALTER TABLE `district`
-  ADD PRIMARY KEY (`id_district`),
-  ADD KEY `city_id` (`city_id`);
-
---
--- Indexes for table `hotel`
---
-ALTER TABLE `hotel`
-  ADD PRIMARY KEY (`id_hotel`),
-  ADD KEY `city_id` (`city_id`,`district_id`);
-
---
--- Indexes for table `image`
---
-ALTER TABLE `image`
-  ADD PRIMARY KEY (`name_image`,`hotel_id`),
-  ADD UNIQUE KEY `name_image` (`name_image`,`hotel_id`,`room_id`),
-  ADD KEY `room_id` (`room_id`),
-  ADD KEY `hotel_id` (`hotel_id`,`room_id`);
-
---
--- Indexes for table `room`
---
-ALTER TABLE `room`
-  ADD PRIMARY KEY (`id_room`),
-  ADD KEY `hotel_id` (`hotel_id`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`phone`),
-  ADD UNIQUE KEY `phone` (`phone`),
-  ADD KEY `device_id` (`device_id`);
-
---
--- Indexes for table `utility`
---
-ALTER TABLE `utility`
-  ADD PRIMARY KEY (`id_utility`);
-
---
--- Indexes for table `utilityroom`
---
-ALTER TABLE `utilityroom`
-  ADD PRIMARY KEY (`utility_id`,`hotel_id`),
-  ADD UNIQUE KEY `utility_id` (`utility_id`,`hotel_id`,`room_id`),
-  ADD KEY `room_id` (`room_id`),
-  ADD KEY `room_id_2` (`room_id`),
-  ADD KEY `hotel_id` (`hotel_id`,`room_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `bookroom`
---
-ALTER TABLE `bookroom`
-  MODIFY `id_book` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `city`
---
-ALTER TABLE `city`
-  MODIFY `id_city` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
-
---
--- AUTO_INCREMENT for table `district`
---
-ALTER TABLE `district`
-  MODIFY `id_district` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=974;
-
---
--- AUTO_INCREMENT for table `hotel`
---
-ALTER TABLE `hotel`
-  MODIFY `id_hotel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-
---
--- AUTO_INCREMENT for table `room`
---
-ALTER TABLE `room`
-  MODIFY `id_room` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
-
---
--- AUTO_INCREMENT for table `utility`
---
-ALTER TABLE `utility`
-  MODIFY `id_utility` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -9,6 +9,7 @@
                             id_book, 
                             (SELECT name_room FROM room WHERE room.id_room = bookroom.room_id) 'name_room', 
                             time_book, 
+							device_id, 
                             date_start, 
                             date_end, 
                             `image`.`name_image` 'link_image',  

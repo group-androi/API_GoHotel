@@ -11,7 +11,7 @@ if (isset($_POST['hotel_id']) &&
     require_once("./../helper/helper.php");
 	$db = (new myDatabase())->connect();
     
-    $sql = "INSERT INTO `bookroom`(`hotel_id`, `room_id`, `date_start`, `date_end`, `price`, `time_book`, `phone`, `info_user_booked`, `user_id`, `reviewed`) VALUES (:hotel, :room, :dateStart, :dateEnd, :price, :timeBook, :phone, :info, :user, :review)";
+    $sql = "INSERT INTO `bookroom`(`hotel_id`, `room_id`, `date_start`, `date_end`, `price`, `time_book`, `phone`, `info_user_booked`, `user_id`, `reviewed`, `device_id`) VALUES (:hotel, :room, :dateStart, :dateEnd, :price, :timeBook, :phone, :info, :user, :review, :device)";
     
     $query = $db->prepare($sql);
     
@@ -25,6 +25,7 @@ if (isset($_POST['hotel_id']) &&
     $query->bindParam("info", $_POST['info_user']);
     $query->bindParam("review", $_POST['reviewed']);
     $query->bindParam("user", GetIdUserFromToken());
+    $query->bindParam("device", $_POST['device_id']);
     
     $query->execute();
 

@@ -6,6 +6,7 @@
 			id -  - nếu cần
 			phone -  - nếu cần
 			status -  - nếu cần
+			device_id -  - nếu cần
 			date_end -   - nếu cần
 +	post - /book/create.php - thêm đặt phòng
 		Parameter:
@@ -16,7 +17,8 @@
 			price - 
 			time_book - 
 			phone - 
-			info_user - 
+			info_user -
+			device_id - 
 			reviewed - tình trạng review
 +	post - /book/update.php - cập nhật lại thông tin đặt phòng
 		Parameter:
