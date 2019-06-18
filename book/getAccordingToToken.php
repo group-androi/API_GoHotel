@@ -15,7 +15,7 @@
                                                 AND bookroom.room_id = review.room_id 
                                                 AND bookroom.user_id = review.user_id
                             LEFT JOIN `image` ON `image`.`hotel_id` = `bookroom`.`hotel_id`
-                            WHERE user_id = :user 
+                            WHERE bookroom.user_id = :user 
                             ORDER BY date_start");
     
     $token=GetIdUserFromToken();
