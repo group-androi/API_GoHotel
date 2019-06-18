@@ -51,8 +51,8 @@
         $key = isset($_GET['status']) ? $_GET['status'] : $_POST['status'];
         $query->bindParam("tus", $key);
     }
-    if (isset($_GET["status"]) || isset($_POST['status'])) {
-        $key = isset($_GET['status']) ? $_GET['status'] : $_POST['reviewed'];
+    if (isset($_GET["reviewed"]) || isset($_POST['reviewed'])) {
+        $key = isset($_GET['reviewed']) ? $_GET['reviewed'] : $_POST['reviewed'];
         $query->bindParam("rview", $key);
     }
     $query->execute();
