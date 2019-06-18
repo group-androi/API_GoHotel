@@ -16,16 +16,13 @@
 		array_push($array_where, "phone = :phone");
 	}
     if (isset($_GET['status']) || isset($_POST['status'])) {
-        array_push($array_where, "status = :tus");
-    }
-    if (isset($_GET['reviewed']) || isset($_POST['reviewed'])) {
-        array_push($array_where, "reviewed = :rview");
+        array_push($array_where, "status = ". (isset($_GET['status']) ? $_GET['status'] : $_POST['status']));
     }
     if (isset($_GET['reviewed']) || isset($_POST['reviewed'])) {
         array_push($array_where, "reviewed = :rview");
     }
     if (isset($_GET['date_end']) || isset($_POST['date_end'])) {
-        array_push($array_where, "str_to_date(date_end, '%Y-%m-%d') <= str_to_date(:dend, '%Y-%m-%d')");
+        array_push($array_where, "str_to_date(date_end, '%Y-%m-%d') <= str_to_date(:dend , '%Y-%m-%d')");
     }
 
 	$where = "WHERE ".implode(" AND ", $array_where);
@@ -53,10 +50,11 @@
     	$key = isset($_GET['phone']) ? $_GET['phone'] : $_POST['phone'];
     	$query->bindParam("phone", $key);
     }
-    if (isset($_GET["status"]) || isset($_POST['status'])) {
+    /*if (isset($_GET["status"]) || isset($_POST['status'])) {
         $key = isset($_GET['status']) ? $_GET['status'] : $_POST['status'];
         $query->bindParam("tus", $key);
-    }
+		//echo $key;
+    }*/
     if (isset($_GET["reviewed"]) || isset($_POST['reviewed'])) {
         $key = isset($_GET['reviewed']) ? $_GET['reviewed'] : $_POST['reviewed'];
         $query->bindParam("rview", $key);
@@ -64,6 +62,7 @@
     if (isset($_GET["date_end"]) || isset($_POST['date_end'])) {
         $key = isset($_GET['date_end']) ? $_GET['date_end'] : $_POST['date_end'];
         $query->bindParam("dend", $key);
+		//echo $key;
     }
     $query->execute();
     echo json_encode($query->fetchAll());
