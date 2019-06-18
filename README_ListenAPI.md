@@ -6,6 +6,7 @@
 			id -  - nếu cần
 			phone -  - nếu cần
 			status -  - nếu cần
+			date_end -   - nếu cần
 +	post - /book/create.php - thêm đặt phòng
 		Parameter:
 			hotel_id - 

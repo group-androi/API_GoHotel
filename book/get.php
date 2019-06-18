@@ -21,6 +21,12 @@
     if (isset($_GET['reviewed']) || isset($_POST['reviewed'])) {
         array_push($array_where, "reviewed = :rview");
     }
+    if (isset($_GET['reviewed']) || isset($_POST['reviewed'])) {
+        array_push($array_where, "reviewed = :rview");
+    }
+    if (isset($_GET['date_end']) || isset($_POST['date_end'])) {
+        array_push($array_where, "str_to_date(date_end, '%Y-%m-%d') <= str_to_date(:dend, '%Y-%m-%d')");
+    }
 
 	$where = "WHERE ".implode(" AND ", $array_where);
     $sql="SELECT `id_book`, 
@@ -54,6 +60,10 @@
     if (isset($_GET["reviewed"]) || isset($_POST['reviewed'])) {
         $key = isset($_GET['reviewed']) ? $_GET['reviewed'] : $_POST['reviewed'];
         $query->bindParam("rview", $key);
+    }
+    if (isset($_GET["date_end"]) || isset($_POST['date_end'])) {
+        $key = isset($_GET['date_end']) ? $_GET['date_end'] : $_POST['date_end'];
+        $query->bindParam("dend", $key);
     }
     $query->execute();
     echo json_encode($query->fetchAll());
